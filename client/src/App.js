@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import MainPage from './components/MainPage/MainPage';
 import KidsPage from './components/KidsPage/KidsHome';
 
-// Router 정의
+// React Router 정의
 function App() {
     return (
         <div className="App">
@@ -24,7 +24,7 @@ function Home() {
     return (
         <div className="container-home">
             <div className="link-main">
-                <Link to="/main">메인</Link>
+                <Link to="/main">메인</Link> {/* <a href> 태그와 비슷 localhost:3000/main 으로 이동 */}
             </div>
             <div className="link-kids">
                 <Link to="/kids">키즈</Link>

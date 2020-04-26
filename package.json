@@ -7,9 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm run start --prefix client",
     "server": "nodemon --watch server/ server/index.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run client\" \"npm run server\"",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "dev": "concurrently --kill-others-on-fail \"npm run client\" \"npm run server\""
   },
   "repository": {
     "type": "git",
@@ -20,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/msg824/yourics/issues"
   },
-  "homepage": "https://msg824.github.io/yourics",
+  "homepage": "https://github.com/msg824/",
   "dependencies": {
     "axios": "^0.19.2",
     "concurrently": "^5.2.0",

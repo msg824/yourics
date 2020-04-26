@@ -1,5 +1,65 @@
-.container_main {
-    background-color: skyblue;
+/*------- PC ( 1920 x 1080 ) -------*/
+
+/* MainPage 전체 div */
+.container-main {
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* yourics 로고 */
+.logo {
+    margin-top: 80px;
+}
+
+/* 검색창 */
+.search {
+    margin-top: 30px;
+}
+
+/* 동영상과 가사를 감싸는 메인 div */
+.main-div {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+}
+
+/* 동영상 */
+.video {
+    width: 800px;
+    height: 500px;
+    margin: 0px 20px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+/* 가사 박스 */
+.lyrics {
+    width: 800px;
+    height: 500px;
+    margin: 0px 20px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+/* footer (sns 공유 부분) */
+footer {
+    width: 100%;
+    margin-top: 130px;
+}
+
+/* sns ul */
+.sns-list {
+    display: flex;
+    justify-content: flex-end;  /* 우측 정렬 */
+    list-style: none;
+    margin-right: 100px;
+}
+
+/* sns li */
+.sns-list li {
+    margin: 0px 10px;
 }
