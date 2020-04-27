@@ -1,3 +1,4 @@
 /node_modules
-/Server_secret.js
-/devServer_secret.js
+
+Server_secret.js
+devServer_secret.js
