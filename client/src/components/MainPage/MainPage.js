@@ -21,7 +21,7 @@ class MainPage extends React.Component {
                 {/* 로고, 노래검색 */}
                 <header>
                     <div className="logo">
-                        로고 사진 div
+                        로고 사진2 div
                     </div>
                     <div className="search">
                         노래 검색 div
