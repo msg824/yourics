@@ -1,5 +1,6 @@
 import React from 'react';
 import './indexRoot.css';
+import MainPage from './MainPage/MainPage';
 
 class IndexRoot extends React.Component {
     constructor(props) {
@@ -17,6 +18,7 @@ class IndexRoot extends React.Component {
         return (
             <div className="container">
                 minsung
+                <MainPage></MainPage>
             </div>
         ) 
     }
