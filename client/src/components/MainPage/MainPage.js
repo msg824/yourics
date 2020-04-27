@@ -17,15 +17,23 @@ class MainPage extends React.Component {
 
     render() {
         return (
+        <div className="cotainer-main0">
+            <div className="backhome">
+                <img src="/images/backhome.png"></img>
+            </div>
+
             <div className="container-main">
                 {/* 로고, 노래검색 */}
                 <header>
                     <div className="logo">
+                        
                     <img src="/images/main_logo.png" /> 
                     </div>
+
                     <div className="search">
                         노래 검색 div
                     </div>
+                  
                 </header>
 
                 {/* 동영상, 가사 */}
@@ -48,6 +56,7 @@ class MainPage extends React.Component {
                     </ul>
                 </footer>
             </div>
+        </div>    
         ) 
     }
 }
