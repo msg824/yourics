@@ -1,6 +1,21 @@
 /* css 선택자 이름은 중복되면 안됨 */
-
 .container-home {
-    font-size: 20pt;
+}
+
+.container-background {
     text-align: center;
+    background-image: url(/images/background.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.logo-place {
+    position: absolute;
+    text-align: start;
+    z-index: 2;
+}
+
+.sns-place {
+    text-align: end;
 }

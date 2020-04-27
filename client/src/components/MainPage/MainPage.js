@@ -21,7 +21,7 @@ class MainPage extends React.Component {
                 {/* 로고, 노래검색 */}
                 <header>
                     <div className="logo">
-                        로고 사진2 div
+                    <img src="/images/main_logo.png" /> 
                     </div>
                     <div className="search">
                         노래 검색 div
@@ -41,9 +41,10 @@ class MainPage extends React.Component {
                 {/* SNS 공유 */}
                 <footer>
                     <ul className="sns-list">
-                        <li>kakao</li>
-                        <li>insta</li>
-                        <li>fackbook</li>
+                        <li><img src="/images/sns_insta.png" /></li>
+                        <li><img src="/images/sns_fb.png" /></li>
+                        <li><img src="/images/sns_kakao.png" /></li>
+                        <li><img src="/images/sns_twitter.png" /></li>
                     </ul>
                 </footer>
             </div>

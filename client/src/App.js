@@ -23,11 +23,27 @@ function App() {
 function Home() {
     return (
         <div className="container-home">
-            <div className="link-main">
-                <Link to="/main">메인</Link> {/* <a href> 태그와 비슷 localhost:3000/main 으로 이동 */}
+          
+        <div className="container-background">
+          <img src="/images/yourics_home_logo.png"></img>
+          
+                <div className="link-main">
+                <Link to="/main">
+                <img src="/images/play.png"></img>    
+                </Link> {/* <a href> 태그와 비슷 localhost:3000/main 으로 이동 */}
             </div>
+            </div>
+
             <div className="link-kids">
-                <Link to="/kids">키즈</Link>
+                <Link to="/kids">
+                    <div className="logo-place">
+                <img src="/images/home_kids_logo.png"></img>
+                </div>
+                </Link>
+            </div>
+
+            <div className="sns-place">
+            <img src="/images/sns.png"></img>
             </div>
         </div>
     )
