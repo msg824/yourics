@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const configs = require('../server_secret');
+const configs = require('../devServer_secret');
 const { google } = require('googleapis');
 
 router.get('/', (req, res) => {
-    res.json({ data: configs.youtubeApi });
+    res.json({ data: "I'm king." });
 })
 
 router.get('/search', async (req, res) => {

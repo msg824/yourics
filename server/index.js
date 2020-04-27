@@ -1,9 +1,12 @@
 const express = require('express');
 const app = express();
 const axios = require('axios');
+const { google } = require('googleapis');
+
+process.env.NODE_ENV = ( process.env.NODE_ENV && ( process.env.NODE_ENV ).trim().toLowerCase() == 'production' ) ? 'production' : 'development';
 
 let configs = {};
-process.env.NODE_ENV === 'development' ? configs = 'http://localhost:5000' : configs = '배포 IP주소';
+process.env.NODE_ENV === 'development' ? configs = require('./devServer_secret') : configs = '배포 IP주소';
 
 // router 정의
 const youtubeApi = require('./routes/youtubeApi');
@@ -22,3 +25,10 @@ app.use('/youtube', youtubeApi);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+const apiTest = google.youtube({
+    version: 'v3',
+    auth: configs.youtubeApi
+})
+
+// console.log(apiTest)
