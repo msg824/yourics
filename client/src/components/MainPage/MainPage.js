@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './css/MainPage.css';
 
+
 class MainPage extends React.Component {
     constructor(props) {
         super(props);
@@ -19,7 +20,9 @@ class MainPage extends React.Component {
         return (
         <div className="cotainer-main0">
             <div className="backhome">
-                <img src="/images/backhome.png"></img>
+                <a href="http://localhost:3000/">
+                    <img src="/images/backhome2.png" alt="move home"></img>
+                </a>
             </div>
 
             <div className="container-main">
@@ -27,7 +30,7 @@ class MainPage extends React.Component {
                 <header>
                     <div className="logo">
                         
-                    <img src="/images/main_logo.png" /> 
+                    <img src="/images/main_logo.png" alt="Yourics" /> 
                     </div>
 
                     <div className="search">
@@ -49,10 +52,10 @@ class MainPage extends React.Component {
                 {/* SNS 공유 */}
                 <footer>
                     <ul className="sns-list">
-                        <li><img src="/images/sns_insta.png" /></li>
-                        <li><img src="/images/sns_fb.png" /></li>
-                        <li><img src="/images/sns_kakao.png" /></li>
-                        <li><img src="/images/sns_twitter.png" /></li>
+                        <li><img src="/images/sns_insta.png" alt="insta" /></li>
+                        <li><img src="/images/sns_fb.png" alt="facebook" /></li>
+                        <li><img src="/images/sns_kakao.png" alt="kakaotalk" /></li>
+                        <li><img src="/images/sns_twitter.png" alt="twitter" /></li>
                     </ul>
                 </footer>
             </div>

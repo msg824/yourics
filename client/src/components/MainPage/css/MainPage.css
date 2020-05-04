@@ -30,6 +30,7 @@
 /* 검색창 */
 .search {
     margin-top: 30px;
+    text-align: center; 
 }
 
 /* 동영상과 가사를 감싸는 메인 div */
@@ -60,18 +61,19 @@
 /* footer (sns 공유 부분) */
 footer {
     width: 100%;
-    margin-top: 130px;
+    margin: auto 70px;
 }
 
 /* sns ul */
 .sns-list {
     display: flex;
-    justify-content: center;  /* 우측 정렬 */
+    justify-content: center;  /* 가운데 정렬 */
     list-style: none;
-    margin-right: 100px;
+    margin-right: 50px;
 }
 
 /* sns li */
 .sns-list li {
-    margin: 0px 10px;
+    margin: 0px 5px;
+
 }
