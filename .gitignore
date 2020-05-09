@@ -1,4 +1,4 @@
 /node_modules
 
-Server_secret.js
-devServer_secret.js
+development.js
+production.js
