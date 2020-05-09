@@ -45,7 +45,7 @@ class MainPage extends React.Component {
     }
 
     render() {
-        const { ready, searchValue, videoName, videoId } = this.state;
+        const { ready, searchValue, videoId } = this.state;
         console.log(this.state.searchValue);
         
         return (
@@ -68,7 +68,7 @@ class MainPage extends React.Component {
                 <div className="main-div">
                     <div className="video">
                         {
-                            videoId && <iframe title="counting stars" width="800" height="500" 
+                            videoId && <iframe title="song" width="800" height="500" 
                             src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
                             frameBorder="0" 
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> 
