@@ -38,7 +38,7 @@ class MainPage extends React.Component {
         await axios.post('http://localhost:5000/youtube/search', {
             song: this.state.videoName
         }).then(result => {
-            this.setState({ videoId: result.data.id.videoId });
+            this.setState({ videoId: result.data });
             console.log(result.data);
         }).catch(err=>{console.log('video ID loading Error', err)})
         

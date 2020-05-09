@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/youtube', youtubeApi);
 
 const port = process.env.PORT || 5000;
-sequelize.sync().then(() => {
+sequelize.sync({ force: false }).then(() => {
     app.listen(port, () => console.log(`Listening on port ${port}`));
 })
 
