@@ -19,6 +19,6 @@
 
 
  ## Web App Usage
- - add configs file.
- - mysql, mysqlworkbench download. (version 8.0.20)
+ - Add configs file.
+ - MySQL, MySQL Workbench download. (version 8.0.20)
  - Execute the SQL query before running the server. (create database)
