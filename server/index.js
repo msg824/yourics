@@ -2,12 +2,13 @@ const express = require('express');
 const app = express();
 const axios = require('axios');
 const { google } = require('googleapis');
+const sequelize = require('./models').sequelize;
 
-// 환경변수가 production 이 아닐 경우 development
-process.env.NODE_ENV = ( process.env.NODE_ENV && ( process.env.NODE_ENV ).trim().toLowerCase() == 'production' ) ? 'production' : 'development';
+// // 환경변수가 production 이 아닐 경우 development
+// process.env.NODE_ENV = ( process.env.NODE_ENV && ( process.env.NODE_ENV ).trim().toLowerCase() == 'production' ) ? 'production' : 'development';
 
 let configs = {};
-process.env.NODE_ENV === 'development' ? configs = require('./devServer_secret') : configs = require('./Server_secret');
+process.env.NODE_ENV === 'production' ? configs = require('./config/production') : configs = require('./config/development');
 
 // router 정의
 const youtubeApi = require('./routes/youtubeApi');
@@ -25,7 +26,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/youtube', youtubeApi);
 
 const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`Listening on port ${port}`));
+sequelize.sync().then(() => {
+    app.listen(port, () => console.log(`Listening on port ${port}`));
+})
+
 
 // // API 할당량 테스트
 // const youtube = google.youtube({
@@ -35,16 +39,23 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // async function searchList(song) {
 //     try {
-//         const res = await youtube.search.list({
-//             part: 'id',
-//             q: 'counting stars',
-//             maxResults: '1',
-//             type: 'video',
-//             fields: 'items(id(videoId))'
-//         });
-    
-//         console.log('res.data', res.data)
-//         console.log('res.data.items', res.data.items[0]);
+//         const songName = '';
+
+//         if (!songName) {
+//             console.log(songName, 'asdf')
+//             const res = await youtube.search.list({
+//                 part: 'snippet',
+//                 q: '소주한잔',
+//                 maxResults: '1',
+//                 type: 'video',
+//                 // fields: 'items(id(videoId))'
+//             });
+
+//             console.log('res.data.items', res.data.items[0]);
+//             console.log('res.data.items.snippet.thumbnails', res.data.items[0].snippet.thumbnails)
+//         }
+        
+
 //     } catch (error) {
 //         console.log('youtube search API Error', error)
 //     }

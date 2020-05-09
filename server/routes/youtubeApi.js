@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const configs = require('../devServer_secret');
+const configs = require('../config/development');
 const { google } = require('googleapis');
+const models = require('../models');
+
+// DB define
+const Songlist = models.songlist;
 
 const youtube = google.youtube({
     version: 'v3',
