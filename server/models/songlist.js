@@ -5,7 +5,12 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        
+
+        viewCount: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+
         queryName: {
             type: DataTypes.STRING,
             allowNull: false
