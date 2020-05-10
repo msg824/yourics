@@ -25,7 +25,8 @@ async function searchList(song) {
             const res = await youtube.search.list({
                 part: 'snippet',
                 q: song,
-                maxResults: '1'
+                maxResults: '1',
+                type: "video"
             });
 
             console.log('Youtube API Coast +100');
