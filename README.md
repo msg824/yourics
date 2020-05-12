@@ -22,4 +22,5 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
  ## Web App Usage
  - Add configs file.
  - MySQL, MySQL Workbench download. (version 8.0.20)
- - Execute the SQL query before running the server. (create database)
+ - Execute the SQL query before running the server.
+ - Save lyrics in DB.

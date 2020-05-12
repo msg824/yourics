@@ -1,10 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
     const Yourics = sequelize.define("songlist",{
+        /*
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
+        */
 
         viewCount: {
             type: DataTypes.INTEGER,
