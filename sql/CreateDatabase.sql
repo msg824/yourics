@@ -1,0 +1,1 @@
+CREATE DATABASE yourics_development default CHARACTER SET UTF8;

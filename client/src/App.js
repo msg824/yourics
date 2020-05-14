@@ -7,7 +7,8 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import MainPage from './components/MainPage/MainPage';
 import KidsPage from './components/KidsPage/KidsHome';
 import TitlePage from './components/TitlePage/TitlePage';
-import KidsMain from './components/KidsMain/KidsMain'
+import KidsMain from './components/KidsMain/KidsMain';
+import pre from './components/pre/pre';
 
 // React Router 정의
 function App() {
@@ -20,6 +21,7 @@ function App() {
                     <Route path="/kids" children={<KidsPage/>} /> {/* KidsPage 호출 */}
                     <Route path="/title" children={<TitlePage/>} />
                     <Route path="/kidsmain" children={<KidsMain/>} />
+                    <Route path="/pre" children={<pre/>} />
                 </Switch>
             </Router>
         </div>
@@ -50,13 +52,16 @@ function Home() {
                 <Link to="/kidsmain">
                 <p> 키즈메인 페이지 </p>
                 </Link>
+                <Link to="/pre">
+                <p> 연습 페이지 </p>
+                </Link>
             </div>
 
             <div className="container-background">
                 <img src="/images/yourics_home_logo2.png" alt="welcome yourics"></img>
                 <div className="link-main">
                     <Link to="/main">
-                        <br></br>
+                        <br/>
                         <img src="/images/play.png" alt="play"></img>
                     </Link> {/* <a href> 태그와 비슷 localhost:3000/main 으로 이동 */}
                 </div>

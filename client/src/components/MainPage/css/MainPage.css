@@ -3,6 +3,32 @@
     
 }
 
+@font-face {
+    font-family: 'BBTreeGB';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff') format('woff'); font-weight: normal; font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: normal; 
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal; 
+}
+
 /* MainPage 전체 div */
 .container-main {
     width: 100%;
@@ -23,12 +49,12 @@
 }
 
 .backhome img:hover {
-    content: url(/images/backhome.png);
+    content: url(/images/backhome2_hover.png);
 }
 
 /* yourics 로고 */
 .logo {
-    margin-top: 80px;
+    margin-top: 30px;
 }
 
 /* 검색창 */
@@ -49,8 +75,22 @@
     width: 800px;
     height: 500px;
     margin: 0px 20px;
-    border: 1px solid black;
     text-align: center;
+}
+
+.videoimage{
+    position: absolute;
+    margin-top: 20px;
+    margin-left: -5px;
+    z-index: 1;
+}
+
+.vvv{
+    position: relative;
+    align-items: center;
+    margin: 63px 140px auto auto; 
+    z-index: 2;
+    border-radius: 5px;
 }
 
 /* 가사 박스 */
@@ -81,3 +121,51 @@ footer {
     margin: 0px 5px;
 
 }
+
+.sns-list li img {
+    width: 40px;
+    height: 40px;
+}
+
+.img-button {
+    background: url(/images/search_icon.png);
+    width: 40px;
+    height: 40px;
+    border: transparent;
+    margin: 0px 5px;
+  }
+
+ .img-button:hover {
+    background: url(/images/search_icon.png);
+    width: 40px;
+    height: 40px;
+    border: transparent;
+    margin: 0px 5px;
+  }
+
+.search-box{
+    width: 500px;
+    height: 40px;
+    margin: 0px 5px;
+    border: 2px solid white;
+    border-radius: 15px;
+    text-align: center;
+    font-size: medium;
+    font-family: 'GmarketSansMedium';
+}
+
+.search-box:hover {
+    border: 2px solid rgb(221, 144, 1);;
+}
+
+  .img-button2 {
+    width: 90px;
+    height: 40px;
+    margin: 0px -10px;
+    background-color: transparent;
+    border:transparent;
+    text-align: center;
+    font-size: large;
+    font-family: 'GmarketSansBold';
+    color: rgb(61, 61, 61);
+  }

@@ -45,10 +45,10 @@ class KidsMain extends React.Component {
 
                 {/* 동영상, 가사 */}
                 <div className="kidsmain-div">
-                    <div className="video">
+                    <div className="kvideo">
                         동영상 div
                     </div>
-                    <div className="lyrics">
+                    <div className="klyrics">
                         가사 div
                     </div>
                 </div>

@@ -43,7 +43,7 @@
 }
 
 /* 동영상 */
-.video {
+.kvideo {
     width: 800px;
     height: 500px;
     margin: 0px 20px;
@@ -52,7 +52,7 @@
 }
 
 /* 가사 박스 */
-.lyrics {
+.klyrics {
     width: 800px;
     height: 500px;
     margin: 0px 20px;
