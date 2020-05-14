@@ -19,20 +19,22 @@ class MainPage extends React.Component {
     render() {
         return (
         <div className="cotainer-main0">
+            
             <div className="backhome">
-                <a href="http://localhost:3000/">
+                <a href="http://localhost:3000/"> 
                     <img src="/images/backhome2.png" alt="move home"></img>
                 </a>
             </div>
-
+                
             <div className="container-main">
                 {/* 로고, 노래검색 */}
                 <header>
                     <div className="logo">
-                        
+                    {/* <img src="/images/3211.gif" alt="Music Image"/> */}
                     <img src="/images/main_logo.png" alt="Yourics" /> 
+                    {/* <img src="/images/3211.gif" alt="Music Image"/> */}
                     </div>
-
+                    
                     <div className="search">
                         노래 검색 div
                     </div>

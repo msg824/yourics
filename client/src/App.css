@@ -14,12 +14,24 @@
 }
 
 .logo-place {
-        position: absolute;
-        bottom: 0;
+    position: absolute;
+    bottom: 0;
+}
+
+.logo-place img:hover {
+    content: url(/images/yourics_h_kids_logo_hover.png);
 }
 
 .sns-place {
     position: absolute;
     right: 0;
     bottom: 0;
+}
+
+.DesignPage {
+    position: absolute;
+}
+
+.link-main img:hover {
+    content: url(/images/play_hover.png);
 }

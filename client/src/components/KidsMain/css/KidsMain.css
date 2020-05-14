@@ -1,34 +1,32 @@
 /*------- PC ( 1920 x 1080 ) -------*/
-.container-main0 {
+.container-kids-main0 {
     
 }
 
-/* MainPage 전체 div */
-.container-main {
+.container-kids-main {
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-image: url(/images/main_background.png);
+    background-image: url(/images/kidshome_back.jpg);
     background-size: cover;
-
-    /*--background-image:--*/
 }
 
-/* backhome 아이콘 */
-.backhome {
+.backhome2 {
     position: absolute;
+    bottom: 0px;
 }
 
-.backhome img:hover {
+.backhome2 img:hover {
     content: url(/images/backhome.png);
 }
 
-/* yourics 로고 */
-.logo {
-    margin-top: 80px;
+/* kidsmain 로고 */
+.kidsmain-logo {
+    /*margin-top: 80px; */
+   
 }
 
 /* 검색창 */
@@ -38,7 +36,7 @@
 }
 
 /* 동영상과 가사를 감싸는 메인 div */
-.main-div {
+.kidsmain-div {
     display: flex;
     flex-direction: row;
     margin-top: 50px;
