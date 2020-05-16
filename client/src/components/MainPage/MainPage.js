@@ -70,7 +70,7 @@ class MainPage extends React.Component {
             <div className="cotainer-main0">
                 <div className="backhome">
                     <a href="http://localhost:3000/">
-                        <img src="/images/backhome2.png" alt="move home"></img>
+                        <img src="/images/ufo.png" alt="move home"></img>
                     </a>
                 </div>
 
@@ -100,7 +100,7 @@ class MainPage extends React.Component {
                     <div className="main-div">
                       
                       <div className="videoimage">
-                        <img src="/images/tv2_2.png" alt="tv"/>
+                        <img src="/images/tv_image3.png" alt="tv"/>
                       </div>
 
                         <div className="video">                      
@@ -115,20 +115,21 @@ class MainPage extends React.Component {
                         </div>
                         <div className="lyrics">
                             <div className="lyricsimage">
-                                <img src="/images/retro1.png" alt="lyrics"/>
+                               <img src="/images/lyricsimg (1).png"alt="lyrics"/>
                             </div>
-                            가사 div
+                            
                         </div>
                     </div>
 
                     {/* SNS 공유 */}
                     <footer>
-                        <ul className="sns-list">
-                            <li><img src="/images/sns_insta.png" alt="insta" /></li>
+                        <div className="copyright">
+                            Copyright 2020. M&P All rights reserved.
+                           {/*  <li><img src="/images/sns_insta.png" alt="insta" /></li>
                             <li><img src="/images/sns_fb.png" alt="facebook" /></li>
                             <li><img src="/images/sns_kakao.png" alt="kakaotalk" /></li>
-                            <li><img src="/images/sns_twitter.png" alt="twitter" /></li>
-                        </ul>
+                            <li><img src="/images/sns_twitter.png" alt="twitter" /></li> */}
+                        </div>
                     </footer>
                 </div>
             </div>    

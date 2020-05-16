@@ -37,30 +37,31 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-image: url(/images/main_background.png);
+    background-color: gray;
     background-size: cover;
-
-    /*--background-image:--*/
+    background: url(/images/bb14.jpg);
 }
 
 /* backhome 아이콘 */
 .backhome {
     position: absolute;
+    margin-top: 30px;
+    margin-left: 20px;
 }
 
 .backhome img:hover {
-    content: url(/images/backhome2_hover.png);
+    content: url(/images/ufo2.png);
 }
 
 /* yourics 로고 */
 .logo {
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
 /* 검색창 */
 .search {
     margin-top: 30px;
-    text-align: center; 
+    text-align: center;
 }
 
 /* 동영상과 가사를 감싸는 메인 div */
@@ -88,20 +89,22 @@
 .vvv{
     position: relative;
     align-items: center;
-    margin: 63px 140px auto auto; 
+    margin: 77px 96px auto auto; 
     z-index: 2;
-    border-radius: 5px;
+    border-radius: 50px;
 }
 
 /* 가사 박스 */
 .lyrics {
-    width: 800px;
-    height: 500px;
-    margin: 0px 20px;
-    border: 1px solid black;
+    width: 600px;
+    height: 450px;
+    margin: 45px 50px;
     text-align: center;
 }
 
+.lyricsimage {
+    margin-top: -25px;
+}
 /* footer (sns 공유 부분) */
 footer {
     width: 100%;
@@ -128,7 +131,7 @@ footer {
 }
 
 .img-button {
-    background: url(/images/search_icon.png);
+    background: url(/images/searchyy.png);
     width: 40px;
     height: 40px;
     border: transparent;
@@ -136,7 +139,7 @@ footer {
   }
 
  .img-button:hover {
-    background: url(/images/search_icon.png);
+    background: url(/images/searchyyy.png);
     width: 40px;
     height: 40px;
     border: transparent;
@@ -155,7 +158,7 @@ footer {
 }
 
 .search-box:hover {
-    border: 2px solid rgb(221, 144, 1);;
+    border: 2px solid orange;
 }
 
   .img-button2 {
@@ -167,5 +170,12 @@ footer {
     text-align: center;
     font-size: large;
     font-family: 'GmarketSansBold';
-    color: rgb(61, 61, 61);
+    color: white;
+  }
+
+  .copyright {
+      font-family: 'GmarketSansLight';
+      text-align: center;
+      font-size: small;
+      color: white;
   }
