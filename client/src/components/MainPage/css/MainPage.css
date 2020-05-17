@@ -29,6 +29,8 @@
     font-style: normal; 
 }
 
+@font-face { font-family: 'JSDongkang-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); font-weight: normal; font-style: normal; }
+
 /* MainPage 전체 div */
 .container-main {
     width: 100%;
@@ -55,7 +57,7 @@
 
 /* yourics 로고 */
 .logo {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 /* 검색창 */
@@ -94,17 +96,58 @@
     border-radius: 50px;
 }
 
-/* 가사 박스 */
+/* 가사 박스 Image */
 .lyrics {
+    display: flex;
     width: 600px;
     height: 450px;
-    margin: 45px 50px;
+    margin: 35px 50px;
     text-align: center;
+    background: url('/images/lyricsimg (1).png');
+    background-size: cover;
 }
 
-.lyricsimage {
-    margin-top: -25px;
+/* 가사 박스 text */
+.lyrics .content {
+    width: 500px;
+    height: 240px;
+    margin: 117px auto auto 60px;
+    color: white;
+    text-align: center;
+    overflow-y: auto;
+    line-height: 170%;
+    font-family: 'JSDongkang-Regular';
+    opacity: 96%;
 }
+
+/* 가사 홀수 라인 */
+.content span:nth-child(2n-1) {
+    /* padding-left: 30px; */
+}
+
+/* 가사 짝수 라인 */
+.content span:nth-child(2n) {
+    opacity: 80%;
+    /* padding-left: 30px; */
+}
+
+.lyrics .content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.lyrics .content::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+}
+
+.lyrics .content::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+}
+
 /* footer (sns 공유 부분) */
 footer {
     width: 100%;
