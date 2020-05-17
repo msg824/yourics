@@ -1,0 +1,81 @@
+/*------- PC ( 1920 x 1080 ) -------*/
+.container-kids-main0 {
+    
+}
+
+.container-kids-main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(/images/kidshome_back.jpg);
+    background-size: cover;
+}
+
+.backhome2 {
+    position: absolute;
+    bottom: 0px;
+}
+
+.backhome2 img:hover {
+    content: url(/images/backhome.png);
+}
+
+/* kidsmain 로고 */
+.kidsmain-logo {
+    /*margin-top: 80px; */
+   
+}
+
+/* 검색창 */
+/* .search {
+    margin-top: 30px;
+    text-align: center; 
+} */
+
+/* 동영상과 가사를 감싸는 메인 div */
+.kidsmain-div {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+}
+
+/* 동영상 */
+.kvideo {
+    width: 800px;
+    height: 500px;
+    margin: 0px 20px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+/* 가사 박스 */
+.klyrics {
+    width: 800px;
+    height: 500px;
+    margin: 0px 20px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+/* footer (sns 공유 부분) */
+/* footer {
+    width: 100%;
+    margin: auto 70px;
+} */
+
+/* sns ul */
+.sns-list {
+    display: flex;
+    justify-content: center;  /* 가운데 정렬 */
+    list-style: none;
+    margin-right: 50px;
+}
+
+/* sns li */
+.sns-list li {
+    margin: 0px 5px;
+
+}
