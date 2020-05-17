@@ -30,10 +30,10 @@
 }
 
 /* 검색창 */
-.search {
+/* .search {
     margin-top: 30px;
     text-align: center; 
-}
+} */
 
 /* 동영상과 가사를 감싸는 메인 div */
 .kidsmain-div {
@@ -61,10 +61,10 @@
 }
 
 /* footer (sns 공유 부분) */
-footer {
+/* footer {
     width: 100%;
     margin: auto 70px;
-}
+} */
 
 /* sns ul */
 .sns-list {
