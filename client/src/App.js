@@ -32,18 +32,14 @@ function App() {
 function Home() {
     return (
         <div className="container-home">
-
+            <div className="home-background">
             <div className="link-kids">
-                    <div className="logo-place">
-                        <Link to="/kids">
-                            <img src="/images/yourics_h_kids_logo.png" alt="move Yourics Kids"></img>
-                        </Link>
-                    </div>
+                    
                 </div>
-
-            <div className="sns-place">
+            
+            {/* <div className="sns-place">
                 <img src="/images/sns.png" alt="share SNS"></img>
-            </div>
+            </div> */}
 
             <div className="DesignPage">
                 <Link to="/title">
@@ -57,16 +53,34 @@ function Home() {
                 </Link>
             </div>
 
-            <div className="container-background">
-                <img src="/images/yourics_home_logo2.png" alt="welcome yourics"></img>
+            <div className="container-center">
+                가사를 보며 음악을 감상해보세요.
+                <div className="yourics">
+                 YouRics
+                </div>
                 <div className="link-main">
                     <Link to="/main">
-                        <br/>
-                        <img src="/images/play.png" alt="play"></img>
+                        <div className="play">
+                            시작하기
+                        </div>
                     </Link> {/* <a href> 태그와 비슷 localhost:3000/main 으로 이동 */}
                 </div>
+                    <div className="sun">
+                    </div>
+                        <div className="YK">
+                             아이들을 위한
+                        </div>
+                        <div className="yourics">
+                            YouRics Kids
+                        </div>
+                        <Link to="/kids">
+                        <div className="play">
+                            시작하기
+                        </div>
+                        </Link>
+                    </div>
             </div>
-        </div>
+            </div>
     )
 }
 

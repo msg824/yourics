@@ -25,7 +25,7 @@ async function lyricsCrawling(song) {
     await page.click('input[src="https://ssl.pstatic.net/static/nmusic/201008/btn_search.gif"]')
 
     // 페이지 이동 대기 1초
-    await page.waitFor(100);
+    await page.waitFor(3000);
 
     // 가사 버튼 Element 찾은 후, trackId 추출
     const getDate = await page.$('a[title="가사"]');

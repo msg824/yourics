@@ -31,6 +31,9 @@
 
 @font-face { font-family: 'JSDongkang-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); font-weight: normal; font-style: normal; }
 
+
+/* PC */
+@media screen and (min-width: 769px) and (min-width: 1950px), (min-width: 769px) {
 /* MainPage 전체 div */
 .container-main {
     width: 100%;
@@ -57,7 +60,7 @@
 
 /* yourics 로고 */
 .logo {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 /* 검색창 */
@@ -222,3 +225,199 @@ footer {
       font-size: small;
       color: white;
   }
+}
+
+/* MOBILE */
+@media screen and (max-width: 768px) {
+    /* MainPage 전체 div */
+    .container-main {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: gray;
+        background-size: cover;
+        background: url(/images/bb14.jpg);
+    }
+    
+    /* backhome 아이콘 */
+    .backhome {
+        position: absolute;
+        margin-top: 30px;
+        margin-left: 20px;
+    }
+    
+    .backhome img:hover {
+        content: url(/images/ufo2.png);
+    }
+    
+    /* yourics 로고 */
+    .logo {
+        margin-top: 30px;
+    }
+    
+    /* 검색창 */
+    .search {
+        margin-top: 30px;
+        text-align: center;
+    }
+    
+    /* 동영상과 가사를 감싸는 메인 div */
+    .main-div {
+        display: flex;
+        flex-direction: row;
+        margin-top: 50px;
+    }
+    
+    /* 동영상 */
+    .video {
+        width: 800px;
+        height: 500px;
+        margin: 0px 20px;
+        text-align: center;
+    }
+    
+    .videoimage{
+        position: absolute;
+        margin-top: 20px;
+        margin-left: -5px;
+        z-index: 1;
+    }
+    
+    .vvv{
+        position: relative;
+        align-items: center;
+        margin: 77px 96px auto auto; 
+        z-index: 2;
+        border-radius: 50px;
+    }
+    
+    /* 가사 박스 Image */
+    .lyrics {
+        display: flex;
+        width: 600px;
+        height: 450px;
+        margin: 35px 50px;
+        text-align: center;
+        background: url('/images/lyricsimg (1).png');
+        background-size: cover;
+    }
+    
+    /* 가사 박스 text */
+    .lyrics .content {
+        width: 500px;
+        height: 240px;
+        margin: 117px auto auto 60px;
+        color: white;
+        text-align: center;
+        overflow-y: auto;
+        line-height: 170%;
+        font-family: 'JSDongkang-Regular';
+        opacity: 96%;
+    }
+    
+    /* 가사 홀수 라인 */
+    .content span:nth-child(2n-1) {
+        /* padding-left: 30px; */
+    }
+    
+    /* 가사 짝수 라인 */
+    .content span:nth-child(2n) {
+        opacity: 80%;
+        /* padding-left: 30px; */
+    }
+    
+    .lyrics .content::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    .lyrics .content::-webkit-scrollbar-thumb {
+        background-color: #2f3542;
+        border-radius: 10px;
+        background-clip: padding-box;
+        border: 2px solid transparent;
+    }
+    
+    .lyrics .content::-webkit-scrollbar-track {
+        background-color: grey;
+        border-radius: 10px;
+        box-shadow: inset 0px 0px 5px white;
+    }
+    
+    /* footer (sns 공유 부분) */
+    footer {
+        width: 100%;
+        margin: auto 70px;
+    }
+    
+    /* sns ul */
+    .sns-list {
+        display: flex;
+        justify-content: center;  /* 가운데 정렬 */
+        list-style: none;
+        margin-right: 50px;
+    }
+    
+    /* sns li */
+    .sns-list li {
+        margin: 0px 5px;
+    
+    }
+    
+    .sns-list li img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .img-button {
+        background: url(/images/searchyy.png);
+        width: 40px;
+        height: 40px;
+        border: transparent;
+        margin: 0px 5px;
+      }
+    
+     .img-button:hover {
+        background: url(/images/searchyyy.png);
+        width: 40px;
+        height: 40px;
+        border: transparent;
+        margin: 0px 5px;
+      }
+    
+    .search-box{
+        width: 500px;
+        height: 40px;
+        margin: 0px 5px;
+        border: 2px solid white;
+        border-radius: 15px;
+        text-align: center;
+        font-size: medium;
+        font-family: 'GmarketSansMedium';
+    }
+    
+    .search-box:hover {
+        border: 2px solid orange;
+    }
+    
+      .img-button2 {
+        width: 90px;
+        height: 40px;
+        margin: 0px -10px;
+        background-color: transparent;
+        border:transparent;
+        text-align: center;
+        font-size: large;
+        font-family: 'GmarketSansBold';
+        color: white;
+      }
+    
+      .copyright {
+          font-family: 'GmarketSansLight';
+          text-align: center;
+          font-size: small;
+          color: white;
+      }
+    }
