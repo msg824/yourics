@@ -1,3 +1,3 @@
 use yourics_development;
 
-ALTER TABLE songlists AUTO_INCREMENT=300;
+ALTER TABLE songlists AUTO_INCREMENT=21;

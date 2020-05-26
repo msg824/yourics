@@ -52,7 +52,7 @@ class MainPage extends React.Component {
             song: this.state.videoName
         })
 
-        this.setState({ lyrics: lyricsLoad.data.lyrics })
+        this.setState({ lyrics: lyricsLoad.data })
 
         await axios.post('http://localhost:5000/youtube/search', {
             song: this.state.videoName
@@ -111,7 +111,7 @@ class MainPage extends React.Component {
 
                         <div className="video">
                             {
-                                videoId && <iframe title="song" width="600" height="375" className="vvv" 
+                                videoId && <iframe title="song" width="600" height="375" id="YT_Video" 
                                 src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
                                 frameBorder="0" 
                                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen> 
