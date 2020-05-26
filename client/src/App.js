@@ -8,7 +8,7 @@ import MainPage from './components/MainPage/MainPage';
 import KidsPage from './components/KidsPage/KidsHome';
 import TitlePage from './components/TitlePage/TitlePage';
 import KidsMain from './components/KidsMain/KidsMain';
-import pre from './components/pre/pre';
+import Pre from './components/pre/Pre';
 
 // React Router 정의
 function App() {
@@ -21,7 +21,7 @@ function App() {
                     <Route path="/kids" children={<KidsPage/>} /> {/* KidsPage 호출 */}
                     <Route path="/title" children={<TitlePage/>} />
                     <Route path="/kidsmain" children={<KidsMain/>} />
-                    <Route path="/pre" children={<pre/>} />
+                    <Route path="/pre" children={<Pre/>} />
                 </Switch>
             </Router>
         </div>
