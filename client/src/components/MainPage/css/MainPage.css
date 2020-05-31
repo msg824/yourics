@@ -222,3 +222,15 @@ footer {
       font-size: small;
       color: white;
   }
+
+  form {
+      display: flex;
+  }
+
+  .songtype-checkbox {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      color: white;
+      margin: 0px 5px;
+  }

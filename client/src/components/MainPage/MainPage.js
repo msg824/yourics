@@ -11,14 +11,23 @@ class MainPage extends React.Component {
             searchValue: '',    // 검색 창 value
             videoName: null,    // 검색 결과
             videoId: null,      // 노래 ID 값
-            lyrics: ''          // 노래 가사
+            lyrics: '',         // 노래 가사
+            songType: '',       // 노래 검색시 기본, MV, LIVE 선택 체크박스
+            checkboxGroup: {
+                mv: false,
+                live: false
+            },
         }
+
         this.searchChange = this.searchChange.bind(this);
         this.searchSubmit = this.searchSubmit.bind(this);
+        this.handleCheck = this.handleCheck.bind(this);
+        
+        this.input = React.createRef();
     }
 
     componentDidMount() {
-        
+
     }
 
     // input 에 텍스트 입력시 state 값 변경
@@ -28,11 +37,21 @@ class MainPage extends React.Component {
 
     // 검색 버튼 클릭 시 영상 호출되도록 구현
     async searchSubmit(event) {
+        const { songType } = this.state;
+
         this.setState({
             clickAvoid: true,
-            videoName: this.state.searchValue,  // 영상 제목 state 값 반영
+            videoNameLyric: this.state.searchValue,
             searchValue: ''
-        });
+        })
+
+        if (!songType) {
+            this.setState({ videoName: this.state.searchValue });
+        } else if (songType === 'mv') {
+            this.setState({ videoName: this.state.searchValue+' mv' });
+        } else if (songType === 'live') {
+            this.setState({ videoName: this.state.searchValue+' live' });
+        }
 
         await event.preventDefault();
 
@@ -49,7 +68,7 @@ class MainPage extends React.Component {
         }
 
         const lyricsLoad = await axios.post('http://localhost:5000/crawling/lyricsLoad', {
-            song: this.state.videoName
+            song: this.state.videoNameLyric
         })
 
         this.setState({ lyrics: lyricsLoad.data })
@@ -68,6 +87,23 @@ class MainPage extends React.Component {
 
         }).catch(err=>{console.log('video ID loading Error', err)})
         
+    }
+
+    async handleCheck(event) {
+        let songTypeObj = {};
+
+        songTypeObj[event.target.value] = await event.target.checked;
+
+        this.setState({ checkboxGroup: songTypeObj });
+
+        if (this.state.checkboxGroup['mv']) {
+            this.setState({ songType: 'mv' })
+        } else if (this.state.checkboxGroup['live']) {
+            this.setState({ songType: 'live' })
+        } else {
+            this.setState({ songType: '' })
+        }
+
     }
 
     render() {
@@ -92,6 +128,17 @@ class MainPage extends React.Component {
 
                         <div className="search">
                             <form onSubmit={this.searchSubmit}>
+                                <div className="songtype-checkbox">
+                                    <label>
+                                        <input type="checkbox" name="checkboxGroup" value="mv" checked={this.state.checkboxGroup['mv'] || ''} onChange={this.handleCheck} />
+                                        MV
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" name="checkboxGroup" value="live" checked={this.state.checkboxGroup['live'] || ''} onChange={this.handleCheck} />
+                                        Live
+                                    </label>
+                                </div>
+                                
                                 <input type="text" value={searchValue} onChange={this.searchChange} className="search-box"/>
                                 {
                                     !clickAvoid ?
