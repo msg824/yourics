@@ -21,9 +21,8 @@ class MainPage extends React.Component {
 
         this.searchChange = this.searchChange.bind(this);
         this.searchSubmit = this.searchSubmit.bind(this);
-        this.handleCheck = this.handleCheck.bind(this);
-        
-        this.input = React.createRef();
+        this.songTypeCheck = this.songTypeCheck.bind(this);
+        this.randomPlay = this.randomPlay.bind(this);
     }
 
     componentDidMount() {
@@ -41,7 +40,6 @@ class MainPage extends React.Component {
 
         this.setState({
             clickAvoid: true,
-            videoNameLyric: this.state.searchValue,
             searchValue: ''
         })
 
@@ -68,7 +66,7 @@ class MainPage extends React.Component {
         }
 
         const lyricsLoad = await axios.post('http://localhost:5000/crawling/lyricsLoad', {
-            song: this.state.videoNameLyric
+            song: this.state.videoName
         })
 
         this.setState({ lyrics: lyricsLoad.data })
@@ -89,7 +87,7 @@ class MainPage extends React.Component {
         
     }
 
-    async handleCheck(event) {
+    async songTypeCheck(event) {
         let songTypeObj = {};
 
         songTypeObj[event.target.value] = await event.target.checked;
@@ -106,92 +104,118 @@ class MainPage extends React.Component {
 
     }
 
+    async randomPlay() {
+        const rPlay = await axios.get('http://localhost:5000/dbFront/randomPlay');
+        this.setState({ clickAvoid: true });
+
+        setTimeout(() => {
+            this.setState({ clickAvoid: false });
+
+        }, 1000);
+        
+        this.setState({
+            videoId: rPlay.data.videoId,
+            lyrics: rPlay.data.lyrics
+        });
+    }
+
     render() {
         const { clickAvoid, searchValue, videoId, lyrics } = this.state;
 
-        return (
-            <div className="cotainer-main0">
-                <div className="backhome">
-                    <a href="http://localhost:3000/">
-                        <img src="/images/ufo.png" alt="move home"></img>
-                    </a>
-                </div>
-
-                <div className="container-main">
-                    {/* 로고, 노래검색 */}
-                    <header>
-                        <div className="logo">
-                            <center>
-                                <img src="/images/main_logo.png" alt="Yourics" /> 
-                            </center>
-                        </div>
-
-                        <div className="search">
-                            <form onSubmit={this.searchSubmit}>
-                                <div className="songtype-checkbox">
-                                    <label>
-                                        <input type="checkbox" name="checkboxGroup" value="mv" checked={this.state.checkboxGroup['mv'] || ''} onChange={this.handleCheck} />
-                                        MV
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" name="checkboxGroup" value="live" checked={this.state.checkboxGroup['live'] || ''} onChange={this.handleCheck} />
-                                        Live
-                                    </label>
-                                </div>
-                                
-                                <input type="text" value={searchValue} onChange={this.searchChange} className="search-box"/>
-                                {
-                                    !clickAvoid ?
-                                    <input type="submit" value=" " className="img-button" />
-                                    :
-                                    <input type="submit" disabled value="검색중..." className="img-button2"/>
-                                }
-                            </form>
-                        </div>
-                    </header>
-
-                    {/* 동영상, 가사 */}
-                    <div className="main-div">
-                        <div className="videoimage">
-                            <img src="/images/tv_image3.png" alt="tv"/>
-                        </div>
-
-                        <div className="video">
-                            {
-                                videoId && <iframe title="song" width="600" height="375" id="YT_Video" 
-                                src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-                                frameBorder="0" 
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen> 
-                                </iframe>
-                            }
-                        </div>
-
-                        <div className="lyrics">
-                            <span className="content">
-                                {
-                                    lyrics.split('<br>').map( (line,idx) => {
-                                        return <span key={idx}>
-                                            {line}<br/>
-                                        </span>
-                                    })
-                                }
-                            </span>
-                        </div>
+            return (
+                <div className="cotainer-main0">
+                    <div className="backhome">
+                        <a href="http://localhost:3000/">
+                            <img src="/images/ufo.png" alt="move home"></img>
+                        </a>
                     </div>
-
-                    {/* SNS 공유 */}
-                    <footer>
-                        <div className="copyright">
-                            Copyright 2020. M&P All rights reserved.
-                           {/*  <li><img src="/images/sns_insta.png" alt="insta" /></li>
-                            <li><img src="/images/sns_fb.png" alt="facebook" /></li>
-                            <li><img src="/images/sns_kakao.png" alt="kakaotalk" /></li>
-                            <li><img src="/images/sns_twitter.png" alt="twitter" /></li> */}
+    
+                    <div className="container-main">
+                        {/* 로고, 노래검색 */}
+                        <header>
+                            <div className="logo">
+                                <center>
+                                    <img src="/images/main_logo.png" alt="Yourics" /> 
+                                </center>
+                            </div>
+    
+                            <div className="search">
+                                <form onSubmit={this.searchSubmit}>
+                                    <div className="songtype-checkbox">
+                                        <label>
+                                            <input type="checkbox" name="checkboxGroup" value="mv" checked={this.state.checkboxGroup['mv'] || ''} onChange={this.songTypeCheck} />
+                                            MV
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" name="checkboxGroup" value="live" checked={this.state.checkboxGroup['live'] || ''} onChange={this.songTypeCheck} />
+                                            Live
+                                        </label>
+                                    </div>
+                                    
+                                    <input type="text" value={searchValue} onChange={this.searchChange} className="search-box"/>
+                                    {
+                                        !clickAvoid ?
+                                        <input type="submit" value=" " className="img-button" />
+                                        :
+                                        <input type="submit" disabled value="검색중..." className="img-button2"/>
+                                    }
+                                    
+                                    <div>
+                                        {
+                                            !clickAvoid ?
+                                            <img src="/images/randombtn.png" className="randomImg" alt="random" onClick={this.randomPlay}></img>
+                                            :
+                                            <span>랜덤</span>
+                                        }
+                                
+                                    </div>
+                                </form>
+                            </div>
+                        </header>
+    
+                        {/* 동영상, 가사 */}
+                        <div className="main-div">
+                            <div className="videoimage">
+                                <img src="/images/tv_image3.png" alt="tv"/>
+                            </div>
+    
+                            <div className="video">
+                                {
+                                    videoId && <iframe title="song" width="600" height="375" id="YT_Video" 
+                                    src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+                                    frameBorder="0" 
+                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen> 
+                                    </iframe>
+                                }
+                            </div>
+    
+                            <div className="lyrics">
+                                <span className="content">
+                                    {
+                                        lyrics &&
+                                        lyrics.split('<br>').map( (line,idx) => {
+                                            return <span key={idx}>
+                                                {line}<br/>
+                                            </span>
+                                        })
+                                    }
+                                </span>
+                            </div>
                         </div>
-                    </footer>
-                </div>
-            </div>    
-        ) 
+    
+                        {/* SNS 공유 */}
+                        <footer>
+                            <div className="copyright">
+                                Copyright 2020. M&P All rights reserved.
+                               {/*  <li><img src="/images/sns_insta.png" alt="insta" /></li>
+                                <li><img src="/images/sns_fb.png" alt="facebook" /></li>
+                                <li><img src="/images/sns_kakao.png" alt="kakaotalk" /></li>
+                                <li><img src="/images/sns_twitter.png" alt="twitter" /></li> */}
+                            </div>
+                        </footer>
+                    </div>
+                </div>    
+            )
     }
 }
 
