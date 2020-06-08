@@ -2,7 +2,7 @@ import React from 'react';
 // import axios from 'axios';
 import './css/pre.css';
 
-class pre extends React.Component {
+class Pre extends React.Component {
     state = {
       focused: false
     }
@@ -27,4 +27,4 @@ class pre extends React.Component {
     }
   }
 
-  export default pre;
+  export default Pre;
