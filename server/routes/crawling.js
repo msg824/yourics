@@ -23,6 +23,11 @@ async function lyricsCrawling(song) {
             let query = song;
             query = query.replace(regSpChar, '%26');
 
+            if (regSpChar.test(query)) {
+                const blankReg = /\s{1,}/g;
+                query = query.replace(blankReg, '+');
+            }
+
             let data = {};
         
             // 사이트 이동 (2초)

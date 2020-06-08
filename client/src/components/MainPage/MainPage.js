@@ -40,7 +40,8 @@ class MainPage extends React.Component {
 
         this.setState({
             clickAvoid: true,
-            searchValue: ''
+            searchValue: '',
+            queryLyric: this.state.searchValue
         })
 
         if (!songType) {
@@ -65,8 +66,10 @@ class MainPage extends React.Component {
 
         }
 
+        console.log(this.state.queryLyric)
+
         const lyricsLoad = await axios.post('http://localhost:5000/crawling/lyricsLoad', {
-            song: this.state.videoName
+            song: this.state.queryLyric
         })
 
         this.setState({ lyrics: lyricsLoad.data })
