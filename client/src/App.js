@@ -8,7 +8,7 @@ import MainPage from './components/MainPage/MainPage';
 import KidsPage from './components/KidsPage/KidsHome';
 import TitlePage from './components/TitlePage/TitlePage';
 import KidsMain from './components/KidsMain/KidsMain';
-import Pre from './components/pre/pre';
+import Pre from './components/pre/Pre';
 
 // React Router 정의
 function App() {
