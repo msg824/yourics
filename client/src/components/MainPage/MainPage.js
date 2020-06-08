@@ -17,8 +17,11 @@ class MainPage extends React.Component {
         this.searchSubmit = this.searchSubmit.bind(this);
     }
 
-    componentDidMount() {
-        
+    async componentDidMount() {
+
+        const rankLoad = await axios.get('http://localhost:5000/rank/rankLoad', {
+        })
+        console.log(rankLoad);
     }
 
     // input 에 텍스트 입력시 state 값 변경
@@ -52,7 +55,7 @@ class MainPage extends React.Component {
             song: this.state.videoName
         })
 
-        this.setState({ lyrics: lyricsLoad.data.lyrics })
+        this.setState({ lyrics: lyricsLoad.data })
 
         await axios.post('http://localhost:5000/youtube/search', {
             song: this.state.videoName
@@ -66,8 +69,7 @@ class MainPage extends React.Component {
 
             }, 1000);
 
-        }).catch(err=>{console.log('video ID loading Error', err)})
-        
+        }).catch(err=>{console.log('video ID loading Error', err)})    
     }
 
     render() {
@@ -75,12 +77,12 @@ class MainPage extends React.Component {
 
         return (
             <div className="cotainer-main0">
+                <div className="backg">
                 <div className="backhome">
                     <a href="http://localhost:3000/">
                         <img src="/images/ufo.png" alt="move home"></img>
                     </a>
                 </div>
-
                 <div className="container-main">
                     {/* 로고, 노래검색 */}
                     <header>
@@ -102,16 +104,16 @@ class MainPage extends React.Component {
                             </form>
                         </div>
                     </header>
-
+                    
                     {/* 동영상, 가사 */}
                     <div className="main-div">
                         <div className="videoimage">
-                            <img src="/images/tv_image3.png" alt="tv"/>
+                            <img src="/images/videoframe2.png" alt="tv"/>
                         </div>
 
                         <div className="video">
                             {
-                                videoId && <iframe title="song" width="600" height="375" className="vvv" 
+                                videoId && <iframe title="song" width="800" height="500" id="YT_Video" 
                                 src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
                                 frameBorder="0" 
                                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen> 
@@ -142,6 +144,7 @@ class MainPage extends React.Component {
                             <li><img src="/images/sns_twitter.png" alt="twitter" /></li> */}
                         </div>
                     </footer>
+                </div>
                 </div>
             </div>    
         ) 

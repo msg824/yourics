@@ -5,10 +5,10 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 // import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import MainPage from './components/MainPage/MainPage';
-import KidsPage from './components/KidsPage/KidsHome';
-import TitlePage from './components/TitlePage/TitlePage';
-import KidsMain from './components/KidsMain/KidsMain';
-import pre from './components/pre/pre';
+// import KidsPage from './components/KidsPage/KidsHome';
+// import TitlePage from './components/TitlePage/TitlePage';
+// import KidsMain from './components/KidsMain/KidsMain';
+// import pre from './components/pre/pre';
 
 // React Router 정의
 function App() {
@@ -18,10 +18,6 @@ function App() {
         	    <Switch>
                     <Route exact path="/" children={<Home/>} /> {/* 아래 Home 함수 호출 */}
                     <Route path="/main" children={<MainPage/>} /> {/* MainPage 호출 */}
-                    <Route path="/kids" children={<KidsPage/>} /> {/* KidsPage 호출 */}
-                    <Route path="/title" children={<TitlePage/>} />
-                    <Route path="/kidsmain" children={<KidsMain/>} />
-                    <Route path="/pre" children={<pre/>} />
                 </Switch>
             </Router>
         </div>
@@ -41,7 +37,7 @@ function Home() {
                 <img src="/images/sns.png" alt="share SNS"></img>
             </div> */}
 
-            <div className="DesignPage">
+            {/* <div className="DesignPage">
                 <Link to="/title">
                 <p> 타이틀 페이지 </p>
                 </Link>
@@ -51,7 +47,7 @@ function Home() {
                 <Link to="/pre">
                 <p> 연습 페이지 </p>
                 </Link>
-            </div>
+            </div> */}
 
             <div className="container-center">
                 가사를 보며 음악을 감상해보세요.

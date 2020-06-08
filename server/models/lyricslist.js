@@ -1,14 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
-    const Yourics = sequelize.define("songlist",{
+    const lyrics = sequelize.define('lyricslist', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
-        },
-
-        viewCount: {
-            type: DataTypes.INTEGER,
-            allowNull: false
         },
 
         queryName: {
@@ -16,33 +11,23 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
 
-        videoId: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-
         title: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
 
-        description: {
+        artist: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
 
-        channelId: {
+        album: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
 
-        channelTitle: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-
-        publishedAt: {
-            type: DataTypes.DATE,
+        lyrics: {
+            type: DataTypes.STRING(5000),
             allowNull: false
         },
 
@@ -51,11 +36,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: sequelize.literal('now()')
         }
-    },
+    }, 
     {
-        timestamps: false   // createdAt, updatedAt 자동생성 방지
+        timestamps: false
     });
 
-    return Yourics;
-
+    return lyrics;
 }

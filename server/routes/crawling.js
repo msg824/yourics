@@ -7,109 +7,151 @@ const puppeteer = require('puppeteer');
 const lyricslist = models.lyricslist;
 
 async function lyricsCrawling(song) {
-    const browser = await puppeteer.launch({
-        headless: true  // false 일 경우 실행 시 웹사이트 확인 가능
-    });
-    const page = await browser.newPage();
-    const query = song;
-
-    // 사이트 이동 (2초)
-    await page.goto('https://music.naver.com/home/index.nhn');
-
-    // query 입력
-    await page.evaluate(searchName => {
-        document.querySelector('input[name="query"]').value = searchName;
-    }, query)
-
-    // 검색 버튼 클릭
-    await page.click('input[src="https://ssl.pstatic.net/static/nmusic/201008/btn_search.gif"]')
-
-    // 페이지 이동 대기 1초
-    await page.waitFor(3000);
-
-    // 가사 버튼 Element 찾은 후, trackId 추출
-    const getDate = await page.$('a[title="가사"]');
-    const getClassName = getDate._remoteObject.description;
-    const splitId = getClassName.split(':');
-    const trackId = splitId[3];
-
-    // 가사 페이지 이동
-    await page.goto(`https://music.naver.com/lyric/index.nhn?trackId=${trackId}`)
-
-    // 가사 페이지 맞는지 확인
-    if (page.url() === `https://music.naver.com/lyric/index.nhn?trackId=${trackId}`){
-
-        let data = {};
-
-        // title
-        try {
-            data.title = await page.$eval('#pop_content > div.section_info > div.dsc > h2 > span > a', element => {
-                return element.textContent
+    try {
+        const findRes = await lyricslist.findOne({
+            where: {queryName: song}
+        }).catch(err => {
+            console.error('Search Lyrics Error', err)
+        })
+    
+        if (!findRes) {
+            const browser = await puppeteer.launch({
+                headless: true,  // false 일 경우 실행 시 웹사이트 확인 가능
             });
-        } catch (err) {
-            data.title = null;
-            // console.log('title is null', err);
-        }
-
-        // artist
-        try {
-            data.artist = await page.$eval('#pop_content > div.section_info > div.dsc > span.artist > a', element => {
-                return element.textContent
-            });
-        } catch (err) {
-            data.artist = null;
-            // console.log('artist is null', err);
-        }
-
-        // songWriter
-        try {
-            data.songWriter = await page.$eval('#pop_content > div.section_info > div.dsc > p > span:nth-child(1) > a', element => {
-                return element.textContent.trim();
-            });
-        } catch (err) {
-            data.songWriter = null;
-            // console.log('songWriter is null', err);
-        }
+            const page = await browser.newPage();
+            const query = song;
+            let data = {};
         
-        // composer
-        try {
-            data.composer = await page.$eval('#pop_content > div.section_info > div.dsc > p > span:nth-child(2) > a', element => {
-                return element.textContent.trim();
-            });
-
-        } catch (err) {
-            data.composer = null;
-            // console.log('composer is null', err)
-        }
+            // 사이트 이동 (2초)
+            await page.goto(`https://music.naver.com/search/search.nhn?query=${query}&x=0&y=0`);
         
-        // arrangement
-        try {
-            data.arrangement = await page.$eval('#pop_content > div.section_info > div.dsc > p > span:nth-child(3) > a', element => {
-                return element.textContent.trim();
-            });
+            // title
+            try {
+                data.title = await page.$eval('#content > div:nth-child(3) > div._tracklist_mytrack.tracklist_table.tracklist_type1._searchTrack > table > tbody > tr:nth-child(2) > td.name', element => {
+                    let stringRep = element.textContent.replace(/(\n|\t)/g, "");
+                    return stringRep
+                });
+                
+            } catch (err) {
+                try {
+                    data.title = await page.$eval('#content > div:nth-child(4) > div._tracklist_mytrack.tracklist_table.tracklist_type1._searchTrack > table > tbody > tr:nth-child(2) > td.name', element => {
+                        let stringRep = element.textContent.replace(/(\n|\t)/g, "");
+                        return stringRep
+                    })
+                    // console.log('title is null', err);
+        
+                } catch (err) {
+                    data.title = null;
+                    console.log('No data')
+                }
+                
+            }
+        
+            // artist
+            try {
+                data.artist = await page.$eval('#content > div:nth-child(3) > div._tracklist_mytrack.tracklist_table.tracklist_type1._searchTrack > table > tbody > tr:nth-child(2) > td._artist.artist > a > span', element => {
+                    let stringRep = element.textContent.replace(/(\n|\t)/g, "");
+                    return stringRep
+                });
+            } catch (err) {
+                try {
+                    data.artist = await page.$eval('#content > div:nth-child(4) > div._tracklist_mytrack.tracklist_table.tracklist_type1._searchTrack > table > tbody > tr:nth-child(2) > td._artist.artist > a > span', element => {
+                        let stringRep = element.textContent.replace(/(\n|\t)/g, "");
+                        return stringRep
+                    });
+        
+                } catch (err) {
+                    try {
+                        await page.waitFor(1000);
+                        await page.click('#content > div:nth-child(4) > div._tracklist_mytrack.tracklist_table.tracklist_type1._searchTrack > table > tbody > tr:nth-child(2) > td._artist.artist.no_ell2 > a')
+        
+                        const artist = await page.$eval('#scroll_tl_artist > div.scrollbar-box > div > ul > li:nth-child(1) > a', element => {
+                            return element.textContent
+                        });
+        
+                        const artist2 = await page.$eval('#scroll_tl_artist > div.scrollbar-box > div > ul > li:nth-child(2) > a', element => {
+                            return element.textContent
+                        });
+        
+                        const setArtist = artist + ', ' + artist2;
+                        data.artist = setArtist;
+        
+                    } catch (err) {
+                        data.artist = null;
+                        console.log('artist is null', err);
+                    }
+                    
+                }
+                
+            }
+        
+            // album
+            try {
+                data.album = await page.$eval('#content > div:nth-child(3) > div._tracklist_mytrack.tracklist_table.tracklist_type1._searchTrack > table > tbody > tr:nth-child(2) > td.album > a > span', element => {
+                    let stringRep = element.textContent.replace(/(\n|\t)/g, "");
+                    return stringRep
+                });
+            } catch (err) {
+                try {
+                    data.album = await page.$eval('#content > div:nth-child(4) > div._tracklist_mytrack.tracklist_table.tracklist_type1._searchTrack > table > tbody > tr:nth-child(2) > td.album > a > span', element => {
+                        let stringRep = element.textContent.replace(/(\n|\t)/g, "");
+                        return stringRep
+                    });
+        
+                } catch (err) {
+                    data.album = null;
+                    // console.log('album is null', err);
+                }
+                
+            }
+        
+            // 가사 버튼 Element 찾은 후, trackId 추출
+            const getDate = await page.$('a[title="가사"]');
+            const getClassName = getDate._remoteObject.description;
+            const splitId = getClassName.split(':');
+            const trackId = splitId[3];
+        
+            // 가사 페이지 이동
+            await page.goto(`https://music.naver.com/lyric/index.nhn?trackId=${trackId}`)
+        
+            // 가사 페이지 맞는지 확인
+            if (page.url() === `https://music.naver.com/lyric/index.nhn?trackId=${trackId}`){
+        
+                // lyrics
+                try {
+                    data.lyrics = await page.$eval('#lyricText', element => {
+                        return element.innerHTML
+                    });
+        
+                } catch (err) {
+                    data.lyrics = null;
+                    console.log('lyrics is null', err);
+                }
+        
+            }
+            
+            // 브라우저 닫기
+            await browser.close();
 
-        } catch (err) {
-            data.arrangement = null;
-            // console.log('arrangement is null', err);
+            lyricslist.create({
+                queryName: song,
+                title: data.title,
+                artist: data.artist,
+                album: data.album,
+                lyrics: data.lyrics
+            }).catch(err => {
+                console.error('Lyrics data Create Error', err);
+            })
+
+            return data.lyrics
         }
 
-        // lyrics
-        try {
-            data.lyrics = await page.$eval('#lyricText', element => {
-                return element.innerHTML
-            });
+        return findRes.dataValues.lyrics
 
-        } catch (err) {
-            data.lyrics = null;
-            console.log('lyrics is null', err);
-        }
-
-        return data
+    } catch (err) {
+        console.log('Lyrics Crawling Error', err);
     }
     
-    
-    // 브라우저 닫기
-    await browser.close();
 }
 
 router.post('/lyricsLoad', async (req, res) => {
