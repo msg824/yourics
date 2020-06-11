@@ -85,8 +85,26 @@ async function lyricsCrawling(song) {
                         data.artist = setArtist;
         
                     } catch (err) {
-                        data.artist = null;
-                        console.log('artist is null', err);
+                        try {
+                            await page.waitFor(1000);
+                            await page.click('#content > div:nth-child(3) > div._tracklist_mytrack.tracklist_table.tracklist_type1._searchTrack > table > tbody > tr:nth-child(2) > td._artist.artist.no_ell2 > a')
+            
+                            const artist = await page.$eval('#scroll_tl_artist > div.scrollbar-box > div > ul > li:nth-child(1) > a', element => {
+                                return element.textContent
+                            });
+            
+                            const artist2 = await page.$eval('#scroll_tl_artist > div.scrollbar-box > div > ul > li:nth-child(2) > a', element => {
+                                return element.textContent
+                            });
+            
+                            const setArtist = artist + ', ' + artist2;
+                            data.artist = setArtist;
+
+                        } catch (err) {
+                            data.artist = null;
+                            console.log('artist is null', err);
+
+                        }
                     }
                     
                 }

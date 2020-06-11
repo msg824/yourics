@@ -69,27 +69,37 @@ class MainPage extends React.Component {
 
         }
 
-        console.log(this.state.queryLyric)
-
-        const lyricsLoad = await axios.post('http://localhost:5000/crawling/lyricsLoad', {
-            song: this.state.queryLyric
+        const searchList = await axios.post('http://localhost:5000/searchList/findSong', {
+            song: this.state.videoName
         })
 
-        this.setState({ lyrics: lyricsLoad.data })
+        if (!searchList.data) {
+            // 가사 크롤링 -> 유튜브 API -> 노래재생
+            console.log('데이터 없음', searchList.data);
 
-        await axios.post('http://localhost:5000/youtube/search', {
-            song: this.state.videoName
+        } else {
+            // 여기에 모달 띄우는 코드 작성
+            const lyricsLoad = await axios.post('http://localhost:5000/crawling/lyricsLoad', {
+                song: this.state.queryLyric
+            })
 
-        }).then(result => {
-            this.setState({ videoId: result.data });
+            this.setState({ lyrics: lyricsLoad.data })
 
-        }).then(() => {
-            setTimeout(() => {
-                this.setState({ clickAvoid: false });
+            await axios.post('http://localhost:5000/youtube/search', {
+                song: this.state.videoName
 
-            }, 1000);
+            }).then(result => {
+                this.setState({ videoId: result.data });
 
-        }).catch(err=>{console.log('video ID loading Error', err)})    
+            }).then(() => {
+                setTimeout(() => {
+                    this.setState({ clickAvoid: false });
+
+                }, 1000);
+
+            }).catch(err=>{console.log('video ID loading Error', err)});
+
+        }
     }
 
     async songTypeCheck(event) {
@@ -141,7 +151,9 @@ class MainPage extends React.Component {
                             <header>
                                 <div className="logo">
                                     <center>
-                                        <img src="/images/main_logo.png" alt="Yourics" /> 
+                                        <a href="/main">
+                                            <img src="/images/main_logo.png" alt="Yourics" />
+                                        </a>
                                     </center>
                                 </div>
         

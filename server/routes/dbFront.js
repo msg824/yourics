@@ -31,12 +31,12 @@ async function randomPlay() {
 
         let dbQueryName = findName.queryName;
         let reNameMv = dbQueryName.substr(dbQueryName.length - 3);
-        let reNameLive = dbQueryName.substr(dbQueryName.length - 4);
+        let reNameLive = dbQueryName.substr(dbQueryName.length - 5);
 
         if (reNameMv === ' mv') {
             dbQueryName = dbQueryName.slice(0, -3);
         } else if (reNameLive === ' live') {
-            dbQueryName = dbQueryName.slice(0, -4);
+            dbQueryName = dbQueryName.slice(0, -5);
         }
 
         const findId = await Lyricslist.findOne({
