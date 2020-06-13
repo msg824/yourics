@@ -30,15 +30,7 @@ async function randomPlay() {
         data.videoId = findName.videoId;
 
         let dbQueryName = findName.queryName;
-        let reNameMv = dbQueryName.substr(dbQueryName.length - 3);
-        let reNameLive = dbQueryName.substr(dbQueryName.length - 5);
-
-        if (reNameMv === ' mv') {
-            dbQueryName = dbQueryName.slice(0, -3);
-        } else if (reNameLive === ' live') {
-            dbQueryName = dbQueryName.slice(0, -5);
-        }
-
+        
         const findId = await Lyricslist.findOne({
             where: {queryName: dbQueryName},
             raw: true
@@ -52,6 +44,30 @@ async function randomPlay() {
     return data
 }
 
+async function vcUp(song) {
+    try {
+        const findRes = await Songlist.findOne({
+            where: {queryName: song}
+        }).catch(err => {
+            console.error('Search Song Error', err);
+        });
+
+        // 현재 조회수
+        const currentView = findRes.dataValues.viewCount;
+
+        // 노래 검색 시 조회수 +1
+        Songlist.update({
+            viewCount: currentView+1 }, {
+            where: { queryName: song }
+        }).catch(err => {
+            console.error('viewCount Update Error', err);
+        })
+        
+    } catch (err) {
+        console.log('View Count Up function Err', err);
+    }
+}
+
 router.get("/randomPlay", async(req, res) => {
     try {
         const result = await randomPlay();
@@ -60,5 +76,15 @@ router.get("/randomPlay", async(req, res) => {
         console.log("randomPlay err : " + err);
     }
 });
+
+router.post('/viewCountUp', async(req, res) => {
+    try {
+        const result = await vcUp(req.body.song);
+        res.send(result);
+
+    } catch (err) {
+        console.log('viewCount Up Err :', err);
+    }
+})
 
 module.exports = router;

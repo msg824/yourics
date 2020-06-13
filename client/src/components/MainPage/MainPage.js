@@ -25,7 +25,13 @@ class MainPage extends React.Component {
 
         this.handleHide = () => {
 			this.setState({ show: false });
-		};
+        };
+        
+        this.viewCountUp = async (song) => {
+            await axios.post('http://localhost:5000/dbFront/viewCountUp', {
+                song: song
+            })
+        };
 
         this.searchChange = this.searchChange.bind(this);
         this.searchSubmit = this.searchSubmit.bind(this);
@@ -90,7 +96,7 @@ class MainPage extends React.Component {
 
         if (!searchList.data) {
             // 가사 크롤링 -> 유튜브 API -> 노래재생
-            console.log('데이터 없음', searchList.data);
+            console.log('No data, 크롤링 진행', searchList.data);
 
             const lyricsLoad = await axios.post('http://localhost:5000/crawling/lyricsLoad', {
                 song: this.state.videoName
@@ -119,7 +125,17 @@ class MainPage extends React.Component {
             // 검색 시 리스트 보여지는 부분
             const finalRes = searchRes.map((data, i) => {
                 return <div key={i} className="modal-list">
-                    <div className="modal-songname" onClick={() => {this.setState({ videoId: data.videoId, lyrics: data.lyrics, clickAvoid: false, show: false })}}>
+                    <div className="modal-songname" onClick={() => {
+                        this.setState ({ 
+                            videoId: data.videoId, 
+                            lyrics: data.lyrics, 
+                            clickAvoid: false, 
+                            show: false 
+                        })
+
+                        this.viewCountUp(data.queryName)
+
+                    }}>
                         {data.title}
                     </div>
                     <div>{data.artist}</div>
