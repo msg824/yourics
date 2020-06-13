@@ -20,7 +20,7 @@ class MainPage extends React.Component {
             resultList: null,   // 노래 검색 결과 리스트
             dataLength: null,   // 노래 검색 결과 개수
 
-            show: false,
+            show: false,        // 모달 on off
         };
 
         this.handleHide = () => {
@@ -53,7 +53,6 @@ class MainPage extends React.Component {
             clickAvoid: true,
             searchValue: '',
             queryLyric: this.state.searchValue,
-            show: true
         })
         
         // 중복 검색 방지
@@ -93,13 +92,34 @@ class MainPage extends React.Component {
             // 가사 크롤링 -> 유튜브 API -> 노래재생
             console.log('데이터 없음', searchList.data);
 
+            const lyricsLoad = await axios.post('http://localhost:5000/crawling/lyricsLoad', {
+                song: this.state.videoName
+            })
+
+            this.setState({ lyrics: lyricsLoad.data })
+
+            await axios.post('http://localhost:5000/youtube/search', {
+                song: this.state.videoName
+
+            }).then(result => {
+                this.setState({ videoId: result.data });
+
+            }).then(() => {
+                setTimeout(() => {
+                    this.setState({ clickAvoid: false });
+
+                }, 1000);
+
+            }).catch(err=>{console.log('video ID loading Error', err)});
+
         } else {
             // 여기에 모달 띄우는 코드 작성
+            this.setState({ show: true });
             
             // 검색 시 리스트 보여지는 부분
             const finalRes = searchRes.map((data, i) => {
                 return <div key={i} className="modal-list">
-                    <div className="modal-songname" onClick={() => {this.setState({ videoId: data.videoId, lyrics: data.lyrics, clickAvoid: false })}}>
+                    <div className="modal-songname" onClick={() => {this.setState({ videoId: data.videoId, lyrics: data.lyrics, clickAvoid: false, show: false })}}>
                         {data.title}
                     </div>
                     <div>{data.artist}</div>
@@ -112,26 +132,6 @@ class MainPage extends React.Component {
                 dataLength: searchList.data.length 
             })
             
-            // const lyricsLoad = await axios.post('http://localhost:5000/crawling/lyricsLoad', {
-            //     song: this.state.queryLyric
-            // })
-
-            // this.setState({ lyrics: lyricsLoad.data })
-
-            // await axios.post('http://localhost:5000/youtube/search', {
-            //     song: this.state.videoName
-
-            // }).then(result => {
-            //     this.setState({ videoId: result.data });
-
-            // }).then(() => {
-            //     setTimeout(() => {
-            //         this.setState({ clickAvoid: false });
-
-            //     }, 1000);
-
-            // }).catch(err=>{console.log('video ID loading Error', err)});
-
         }
     }
 

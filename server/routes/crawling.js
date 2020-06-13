@@ -21,6 +21,16 @@ async function lyricsCrawling(song) {
             const page = await browser.newPage();
             const regSpChar = /&/gi;
             let query = song;
+
+            let reNameMv = query.substr(query.length - 3);
+            let reNameLive = query.substr(query.length - 5);
+
+            if (reNameMv === ' mv') {
+                query = query.slice(0, -3);
+            } else if (reNameLive === ' live') {
+                query = query.slice(0, -5);
+            }
+
             query = query.replace(regSpChar, '%26');
 
             if (regSpChar.test(query)) {
@@ -159,15 +169,39 @@ async function lyricsCrawling(song) {
             // 브라우저 닫기
             await browser.close();
 
-            lyricslist.create({
-                queryName: song,
-                title: data.title,
-                artist: data.artist,
-                album: data.album,
-                lyrics: data.lyrics
-            }).catch(err => {
-                console.error('Lyrics data Create Error', err);
-            })
+            if (reNameMv === ' mv') {
+                lyricslist.create({
+                    queryName: song,
+                    title: data.title + ' MV',
+                    artist: data.artist,
+                    album: data.album,
+                    lyrics: data.lyrics
+                }).catch(err => {
+                    console.error('Lyrics data Create Error', err);
+                })
+
+            } else if (reNameLive === ' live') {
+                lyricslist.create({
+                    queryName: song,
+                    title: data.title + ' Live',
+                    artist: data.artist,
+                    album: data.album,
+                    lyrics: data.lyrics
+                }).catch(err => {
+                    console.error('Lyrics data Create Error', err);
+                })
+
+            } else {
+                lyricslist.create({
+                    queryName: song,
+                    title: data.title,
+                    artist: data.artist,
+                    album: data.album,
+                    lyrics: data.lyrics
+                }).catch(err => {
+                    console.error('Lyrics data Create Error', err);
+                })
+            }
 
             return data.lyrics
         }
