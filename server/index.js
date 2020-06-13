@@ -10,6 +10,7 @@ process.env.NODE_ENV === 'production' ? configs = require('./config/production')
 const youtubeApi = require('./routes/youtubeApi');
 const crawling = require('./routes/crawling');
 const rank = require('./routes/rank');
+const dbFront = require('./routes/dbFront');
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -24,6 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/youtube', youtubeApi);
 app.use('/crawling', crawling);
 app.use('/rank', rank);
+app.use('/dbFront', dbFront);
 
 const port = process.env.PORT || 5000;
 

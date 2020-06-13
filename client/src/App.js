@@ -61,19 +61,7 @@ function Home() {
                         </div>
                     </Link> {/* <a href> 태그와 비슷 localhost:3000/main 으로 이동 */}
                 </div>
-                    <div className="sun">
-                    </div>
-                        <div className="YK">
-                             아이들을 위한
-                        </div>
-                        <div className="yourics">
-                            YouRics Kids
-                        </div>
-                        <Link to="/kids">
-                        <div className="play">
-                            시작하기
-                        </div>
-                        </Link>
+                
                     </div>
             </div>
             </div>

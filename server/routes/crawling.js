@@ -19,7 +19,10 @@ async function lyricsCrawling(song) {
                 headless: true,  // false 일 경우 실행 시 웹사이트 확인 가능
             });
             const page = await browser.newPage();
-            const query = song;
+            const regSpChar = /&/gi;
+            let query = song;
+            query = query.replace(regSpChar, '%26');
+
             let data = {};
         
             // 사이트 이동 (2초)

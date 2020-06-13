@@ -1,6 +1,3 @@
-/*------- PC ( 1920 x 1080 ) -------*/
-
-
 @font-face {
     font-family: 'BBTreeGB';
      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff') format('woff'); font-weight: normal; font-style: normal;
@@ -40,7 +37,7 @@
     width: 100%;
     height: 100vh;
     background-size: cover;
-    /* background: url(/images/bb14.jpg); */
+    /* background: url(/images/asdfg.png), no-repeat; */
     background-color: darkslategrey;
 }
 
@@ -54,7 +51,7 @@
 }
 
 /* backhome 아이콘 */
-.backhome {
+/* .backhome {
     position: absolute;
     margin-top: 30px;
     margin-left: 20px;
@@ -62,11 +59,11 @@
 
 .backhome img:hover {
     content: url(/images/ufo2.png);
-}
+} */
 
 /* yourics 로고 */
 .logo {
-    margin-top: 30px;
+    margin-top: 60px;
 }
 
 /* 검색창 */
@@ -201,11 +198,12 @@ footer {
     width: 500px;
     height: 50px;
     margin: 0px 5px;
-    background-color: dimgrey;
+    background-color: transparent;
     border: 2px solid white;
     border-radius: 45px;
     text-align: center;
     font-size: medium;
+    color: white;
     font-family: 'GmarketSansMedium';
     
 }
@@ -231,7 +229,27 @@ footer {
       text-align: center;
       font-size: small;
       color: white;
+      /* margin-top: 40px; */
   }
+  
+    form {
+        display: flex;
+    }
+
+    .songtype-checkbox {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        color: white;
+        margin: 0px 5px;
+    }
+
+    .randomImg {
+        width: 50px;
+        height: 50px;
+        margin: 0px 5px;
+    }
+
 }
 
 /* MOBILE ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●*/
@@ -242,8 +260,8 @@ footer {
     }
     
     .backg{
-        background: url(/images/bb14.jpg);
-        background-color:grey;
+        /* background: url(/images/bb14.jpg); */
+        background-color:darkslategrey;;
         width: max-content;
         height: max-content;
         background-size: cover;
@@ -428,4 +446,25 @@ footer {
           color: white;
           margin-bottom: 40px;
       }
-    }
+      
+  form {
+    display: flex;
+}
+
+.songtype-checkbox {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    color: white;
+    font-size: 30px;
+    margin: 0px 5px;
+}
+
+.randomImg {
+    width: 50px;
+    height: 50px;
+    /* margin-top: 50px;
+    margin-right: 20px; */
+}
+
+}
