@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './css/MainPage.css';
-
+import ModalComponent from './ModalComponent';
 
 class MainPage extends React.Component {
     constructor(props) {
@@ -17,7 +17,15 @@ class MainPage extends React.Component {
                 mv: false,
                 live: false
             },
-        }
+            resultList: null,   // 노래 검색 결과 리스트
+            dataLength: null,   // 노래 검색 결과 개수
+
+            show: false,
+        };
+
+        this.handleHide = () => {
+			this.setState({ show: false });
+		};
 
         this.searchChange = this.searchChange.bind(this);
         this.searchSubmit = this.searchSubmit.bind(this);
@@ -44,8 +52,15 @@ class MainPage extends React.Component {
         this.setState({
             clickAvoid: true,
             searchValue: '',
-            queryLyric: this.state.searchValue
+            queryLyric: this.state.searchValue,
+            show: true
         })
+        
+        // 중복 검색 방지
+        setTimeout(() => {
+            this.setState({ clickAvoid: false });
+
+        }, 1000);
 
         if (!songType) {
             this.setState({ videoName: this.state.searchValue });
@@ -72,6 +87,7 @@ class MainPage extends React.Component {
         const searchList = await axios.post('http://localhost:5000/searchList/findSong', {
             song: this.state.videoName
         })
+        const searchRes = searchList.data;
 
         if (!searchList.data) {
             // 가사 크롤링 -> 유튜브 API -> 노래재생
@@ -79,25 +95,42 @@ class MainPage extends React.Component {
 
         } else {
             // 여기에 모달 띄우는 코드 작성
-            const lyricsLoad = await axios.post('http://localhost:5000/crawling/lyricsLoad', {
-                song: this.state.queryLyric
+            
+            // 검색 시 리스트 보여지는 부분
+            const finalRes = searchRes.map((data, i) => {
+                return <div key={i} className="modal-list">
+                    <div className="modal-songname" onClick={() => {this.setState({ videoId: data.videoId, lyrics: data.lyrics, clickAvoid: false })}}>
+                        {data.title}
+                    </div>
+                    <div>{data.artist}</div>
+                    <div>{data.album}</div>
+                </div>
             })
 
-            this.setState({ lyrics: lyricsLoad.data })
+            this.setState({
+                resultList: finalRes,
+                dataLength: searchList.data.length 
+            })
+            
+            // const lyricsLoad = await axios.post('http://localhost:5000/crawling/lyricsLoad', {
+            //     song: this.state.queryLyric
+            // })
 
-            await axios.post('http://localhost:5000/youtube/search', {
-                song: this.state.videoName
+            // this.setState({ lyrics: lyricsLoad.data })
 
-            }).then(result => {
-                this.setState({ videoId: result.data });
+            // await axios.post('http://localhost:5000/youtube/search', {
+            //     song: this.state.videoName
 
-            }).then(() => {
-                setTimeout(() => {
-                    this.setState({ clickAvoid: false });
+            // }).then(result => {
+            //     this.setState({ videoId: result.data });
 
-                }, 1000);
+            // }).then(() => {
+            //     setTimeout(() => {
+            //         this.setState({ clickAvoid: false });
 
-            }).catch(err=>{console.log('video ID loading Error', err)});
+            //     }, 1000);
+
+            // }).catch(err=>{console.log('video ID loading Error', err)});
 
         }
     }
@@ -135,7 +168,7 @@ class MainPage extends React.Component {
     }
 
     render() {
-        const { clickAvoid, searchValue, videoId, lyrics } = this.state;
+        const { clickAvoid, searchValue, videoId, lyrics, videoName, resultList, dataLength, show } = this.state;
 
             return (
                 <div className="cotainer-main0">
@@ -189,6 +222,15 @@ class MainPage extends React.Component {
                                         </div>
                                     </form>
                                 </div>
+                                {
+                                    show ?
+                                    <ModalComponent 
+                                    modalTitle={videoName} dataLength={dataLength}
+                                    content={resultList} show={show} hide={this.handleHide}
+                                    />
+                                    :
+                                    null
+                                }
                             </header>
         
                             {/* 동영상, 가사 */}

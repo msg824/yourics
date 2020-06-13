@@ -12,7 +12,7 @@ async function searchList(song) {
     
         // 검색 결과가 2글자 이상일 경우
         if (!(queryLength === 1)) {
-            const query = `select * from songlists s INNER JOIN lyricslists l ON (l.queryName = s.queryName) where l.title like '%${song}%' or l.artist like '%${song}%';`;
+            const query = `select * from songlists s INNER JOIN lyricslists l ON (l.queryName = s.queryName) where l.queryName like '%${song}%' or l.artist like '%${song}%';`;
             let queryResult = await models.sequelize.query(query, { type : models.sequelize.QueryTypes.SELECT ,raw : true});
     
             let datas = [];
@@ -26,6 +26,7 @@ async function searchList(song) {
                 }
             })
 
+            // queryResult 에 값이 들어가는지 확인
             let isEmpty = function(value) { 
                 if (value == "" || value == null || value == undefined || (value != null && typeof value == "object" && !Object.keys(value).length)) { 
                     return true 
@@ -34,13 +35,14 @@ async function searchList(song) {
                 }
             };
 
+            // queryResult 에 값이 없으면 null 을 return
             if (isEmpty(queryResult)) {
                 return null
 
             }
     
             // console.log(queryResult);
-            console.log('datas', datas)
+            // console.log('datas', datas)
             return datas
 
         }
