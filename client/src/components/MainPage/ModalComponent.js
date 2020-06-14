@@ -1,5 +1,4 @@
 import React from 'react';
-// import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './css/Modal.css';
 
@@ -23,10 +22,6 @@ class ModalComponent extends React.Component {
 	render() {
 		return (
 			<>
-				{/* <Button variant="primary" onClick={this.handleShow}>
-					Custom Width Modal
-                </Button> */}
-
 				<Modal
 					show={this.props.show}
 					onHide={this.props.hide}

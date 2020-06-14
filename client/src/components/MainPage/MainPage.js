@@ -239,13 +239,10 @@ class MainPage extends React.Component {
                                     </form>
                                 </div>
                                 {
-                                    show ?
                                     <ModalComponent 
                                     modalTitle={videoName} dataLength={dataLength}
                                     content={resultList} show={show} hide={this.handleHide}
                                     />
-                                    :
-                                    null
                                 }
                             </header>
         
