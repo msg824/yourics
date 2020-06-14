@@ -121,25 +121,30 @@ class MainPage extends React.Component {
         } else {
             // 여기에 모달 띄우는 코드 작성
             this.setState({ show: true });
+
+            // const thumbnailUrl = "`https://i.ytimg.com/vi/${data.videoId}/default.jpg`";
             
             // 검색 시 리스트 보여지는 부분
             const finalRes = searchRes.map((data, i) => {
                 return <div key={i} className="modal-list">
-                    <div className="modal-songname" onClick={() => {
-                        this.setState ({ 
-                            videoId: data.videoId, 
-                            lyrics: data.lyrics, 
-                            clickAvoid: false, 
-                            show: false 
-                        })
+                    <img className="modal-thumbnail" src={`https://i.ytimg.com/vi/${data.videoId}/default.jpg`} alt="썸네일"></img>
+                    <div className="modal-text-div">
+                        <span className="modal-songname" onClick={() => {
+                            this.setState ({ 
+                                videoId: data.videoId, 
+                                lyrics: data.lyrics, 
+                                clickAvoid: false, 
+                                show: false 
+                            })
 
-                        this.viewCountUp(data.videoId)
+                            this.viewCountUp(data.videoId)
 
-                    }}>
-                        {data.title}
+                        }}>
+                            {data.title}
+                        </span>
+                        <div>{data.artist}</div>
+                        <div>{data.album}</div>
                     </div>
-                    <div>{data.artist}</div>
-                    <div>{data.album}</div>
                 </div>
             })
 

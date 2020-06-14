@@ -34,7 +34,7 @@ class ModalComponent extends React.Component {
                         </Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
-						<div>
+						<div className="modal-container">
                             {this.props.content}
                         </div>
 					</Modal.Body>
