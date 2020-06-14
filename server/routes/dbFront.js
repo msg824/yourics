@@ -47,7 +47,7 @@ async function randomPlay() {
 async function vcUp(song) {
     try {
         const findRes = await Songlist.findOne({
-            where: {queryName: song}
+            where: {videoId: song}
         }).catch(err => {
             console.error('Search Song Error', err);
         });
@@ -55,10 +55,12 @@ async function vcUp(song) {
         // 현재 조회수
         const currentView = findRes.dataValues.viewCount;
 
+        console.log(currentView)
+
         // 노래 검색 시 조회수 +1
         Songlist.update({
             viewCount: currentView+1 }, {
-            where: { queryName: song }
+            where: { videoId: song }
         }).catch(err => {
             console.error('viewCount Update Error', err);
         })

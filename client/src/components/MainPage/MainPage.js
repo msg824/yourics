@@ -133,7 +133,7 @@ class MainPage extends React.Component {
                             show: false 
                         })
 
-                        this.viewCountUp(data.queryName)
+                        this.viewCountUp(data.videoId)
 
                     }}>
                         {data.title}

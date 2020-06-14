@@ -82,7 +82,7 @@ async function searchList(song) {
                 return datas
 
             } else {
-                const querySQL = `select distinct s.videoId, l.title, l.artist, l.album, l.lyrics, s.queryName from songlists s INNER JOIN lyricslists l ON (l.queryName = s.queryName) where s.queryName like '%${song}%' or l.artist like '%${song}%' order by l.title asc;`;
+                const querySQL = `select distinct s.videoId, l.title, l.artist, l.album, l.lyrics from songlists s INNER JOIN lyricslists l ON (l.queryName = s.queryName) where s.queryName like '%${song}%' or l.artist like '%${song}%' order by l.title asc;`;
                 let queryResult = await models.sequelize.query(querySQL, { type : models.sequelize.QueryTypes.SELECT ,raw : true});
                 
                 let datas = [];
