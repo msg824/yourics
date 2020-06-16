@@ -10,6 +10,7 @@ class MainPage extends React.Component {
         super(props);
         this.state = {
             clickAvoid: false,  // 중복 클릭 방지
+            rClickAvoid: false, // 랜덤재생 중복 클릭 방지
             searchValue: '',    // 검색 창 value
             videoName: null,    // 검색 결과
             videoId: null,      // 노래 ID 값
@@ -177,10 +178,10 @@ class MainPage extends React.Component {
 
     async randomPlay() {
         const rPlay = await axios.get('http://localhost:5000/dbFront/randomPlay');
-        this.setState({ clickAvoid: true });
+        this.setState({ rClickAvoid: true });
 
         setTimeout(() => {
-            this.setState({ clickAvoid: false });
+            this.setState({ rClickAvoid: false });
 
         }, 1000);
         
@@ -192,7 +193,7 @@ class MainPage extends React.Component {
 
     
     render() {
-        const { clickAvoid, searchValue, videoId, lyrics, videoName, resultList, dataLength, show } = this.state;
+        const { clickAvoid, searchValue, videoId, lyrics, videoName, resultList, dataLength, show, rClickAvoid } = this.state;
 
             return (
                 <div className="cotainer-main0">
@@ -226,10 +227,15 @@ class MainPage extends React.Component {
 
                                 <div>
                                     <form onSubmit={this.searchSubmit}> 
-                                    <div className="randomsong">
-                                            <img src="/images/shuffle.png" className="randomImg" alt="random" onClick={this.randomPlay}></img>
-                                    </div>
-                                    <div className="songtype-checkbox">
+                                        <div className="randomsong">
+                                            {
+                                                !rClickAvoid ?
+                                                <img src="/images/shuffle.png" className="randomImg" alt="random" onClick={this.randomPlay}></img>
+                                                :
+                                                <img src="/images/shuffle.png" className="randomImg" alt="random"></img>
+                                            }
+                                        </div>
+                                        <div className="songtype-checkbox">
                                             <label>
                                                 <input type="checkbox" name="checkboxGroup" value="mv" checked={this.state.checkboxGroup['mv'] || ''} onChange={this.songTypeCheck} />
                                                 &nbsp; MV
@@ -239,12 +245,12 @@ class MainPage extends React.Component {
                                                 &nbsp; Live
                                             </label>
                                         </div>
-                                    <div className="f1">
-                                        <img src="/images/f1shuffle3.png" alt="shuffle icon"/>
-                                        : Click to play random song　　
-                                        <input type="checkbox" name="f1checkbox" checked="checked"/>
-                                        　: Check the video type you want (MV or Live)
-                                    </div>
+                                        <div className="f1">
+                                            <img src="/images/f1shuffle3.png" alt="shuffle icon"/>
+                                            : Click to play random song　　
+                                            <input type="checkbox" name="f1checkbox" checked="checked"/>
+                                            　: Check the video type you want (MV or Live)
+                                        </div>
                                     </form>
                                 </div>
 
