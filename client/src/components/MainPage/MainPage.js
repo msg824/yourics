@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import './css/MainPage.css';
-
+import ModalComponent from './ModalComponent';
+// import { makeStyles } from '@material-ui/core/styles';
+// import CircularProgress from '@material-ui/core/CircularProgress';
 
 class MainPage extends React.Component {
     constructor(props) {
@@ -17,7 +19,15 @@ class MainPage extends React.Component {
                 mv: false,
                 live: false
             },
-        }
+            resultList: null,   // 노래 검색 결과 리스트
+            dataLength: null,   // 노래 검색 결과 개수
+
+            show: false,        // 모달 on off
+        };
+
+        this.handleHide = () => {
+			this.setState({ show: false });
+		};
 
         this.searchChange = this.searchChange.bind(this);
         this.searchSubmit = this.searchSubmit.bind(this);
@@ -43,8 +53,15 @@ class MainPage extends React.Component {
 
         this.setState({
             clickAvoid: true,
-            searchValue: ''
+            searchValue: '',
+            queryLyric: this.state.searchValue,
         })
+        
+        // 중복 검색 방지
+        setTimeout(() => {
+            this.setState({ clickAvoid: false });
+
+        }, 1000);
 
         if (!songType) {
             this.setState({ videoName: this.state.searchValue });
@@ -68,25 +85,56 @@ class MainPage extends React.Component {
 
         }
 
-        const lyricsLoad = await axios.post('http://localhost:5000/crawling/lyricsLoad', {
+        const searchList = await axios.post('http://localhost:5000/searchList/findSong', {
             song: this.state.videoName
         })
+        const searchRes = searchList.data;
 
-        this.setState({ lyrics: lyricsLoad.data })
+        if (!searchList.data) {
+            // 가사 크롤링 -> 유튜브 API -> 노래재생
+            console.log('데이터 없음', searchList.data);
 
-        await axios.post('http://localhost:5000/youtube/search', {
-            song: this.state.videoName
+            const lyricsLoad = await axios.post('http://localhost:5000/crawling/lyricsLoad', {
+                song: this.state.videoName
+            })
 
-        }).then(result => {
-            this.setState({ videoId: result.data });
+            this.setState({ lyrics: lyricsLoad.data })
 
-        }).then(() => {
-            setTimeout(() => {
-                this.setState({ clickAvoid: false });
+            await axios.post('http://localhost:5000/youtube/search', {
+                song: this.state.videoName
 
-            }, 1000);
+            }).then(result => {
+                this.setState({ videoId: result.data });
 
-        }).catch(err=>{console.log('video ID loading Error', err)})    
+            }).then(() => {
+                setTimeout(() => {
+                    this.setState({ clickAvoid: false });
+
+                }, 1000);
+
+            }).catch(err=>{console.log('video ID loading Error', err)});
+
+        } else {
+            // 여기에 모달 띄우는 코드 작성
+            this.setState({ show: true });
+            
+            // 검색 시 리스트 보여지는 부분
+            const finalRes = searchRes.map((data, i) => {
+                return <div key={i} className="modal-list">
+                    <div className="modal-songname" onClick={() => {this.setState({ videoId: data.videoId, lyrics: data.lyrics, clickAvoid: false, show: false })}}>
+                        {data.title}
+                    </div>
+                    <div>{data.artist}</div>
+                    <div>{data.album}</div>
+                </div>
+            })
+
+            this.setState({
+                resultList: finalRes,
+                dataLength: searchList.data.length 
+            })
+            
+        }
     }
 
     async songTypeCheck(event) {
@@ -121,65 +169,81 @@ class MainPage extends React.Component {
         });
     }
 
+    
     render() {
-        const { clickAvoid, searchValue, videoId, lyrics } = this.state;
+        const { clickAvoid, searchValue, videoId, lyrics, videoName, resultList, dataLength, show } = this.state;
 
             return (
                 <div className="cotainer-main0">
                     <div className="backg">
-                        {/* <div className="backhome">
+                        <div className="backhome">
                             <a href="http://localhost:3000/">
-                                <img src="/images/ufo.png" alt="move home"></img>
+                                <img src="/images/backbt.png" alt="move home"></img>
                             </a>
-                        </div> */}
+                        </div>
         
                         <div className="container-main">
                             {/* 로고, 노래검색 */}
                             <header>
                                 <div className="logo">
-                                    <center>
-                                        <img src="/images/main_logo.png" alt="Yourics" /> 
-                                    </center>
+                                        <a href="/main">
+                                            <img src="/images/main_logo2.png" alt="Yourics" />
+                                        </a>
                                 </div>
         
                                 <div className="search">
-                                    <form onSubmit={this.searchSubmit}>
-                                        <div className="songtype-checkbox">
-                                            <label>
-                                                <input type="checkbox" name="checkboxGroup" value="mv" checked={this.state.checkboxGroup['mv'] || ''} onChange={this.songTypeCheck} />
-                                                MV
-                                            </label>
-                                            <label>
-                                                <input type="checkbox" name="checkboxGroup" value="live" checked={this.state.checkboxGroup['live'] || ''} onChange={this.songTypeCheck} />
-                                                Live
-                                            </label>
-                                        </div>
-                                        
-                                        <input type="text" value={searchValue} onChange={this.searchChange} className="search-box"/>
+                                    <form onSubmit={this.searchSubmit}>                   
+                                        <input type="text" img src="/images/main_logo2.png" value={searchValue} onChange={this.searchChange} className="search-box"/>
                                         {
                                             !clickAvoid ?
                                             <input type="submit" value=" " className="img-button" />
                                             :
-                                            <input type="submit" disabled value="검색중..." className="img-button2"/>
+                                            <input type="submit" disabled value=" " className="img-button2"/>
                                         }
-                                        
-                                        <div>
-                                            {
-                                                !clickAvoid ?
-                                                <img src="/images/randombtn.png" className="randomImg" alt="random" onClick={this.randomPlay}></img>
-                                                :
-                                                <span>랜덤</span>
-                                            }
-                                    
-                                        </div>
                                     </form>
                                 </div>
+
+                                <div>
+                                    <form onSubmit={this.searchSubmit}> 
+                                    <div className="randomsong">
+                                            <img src="/images/shuffle.png" className="randomImg" alt="random" onClick={this.randomPlay}></img>
+                                    </div>
+                                    <div className="songtype-checkbox">
+                                            <label>
+                                                <input type="checkbox" name="checkboxGroup" value="mv" checked={this.state.checkboxGroup['mv'] || ''} onChange={this.songTypeCheck} />
+                                                &nbsp; MV
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="checkboxGroup" value="live" checked={this.state.checkboxGroup['live'] || ''} onChange={this.songTypeCheck} />
+                                                &nbsp; Live
+                                            </label>
+                                        </div>
+                                    <div className="f1">
+                                        <img src="/images/f1shuffle3.png" alt="shuffle icon"/>
+                                        : Click to play random song　　
+                                        <input type="checkbox" name="f1checkbox" checked="checked"/>
+                                        　: Check the video type you want (MV or Live)
+                                    </div>
+                                    </form>
+                                </div>
+
+                                {
+                                    show ?
+                                    <ModalComponent 
+                                    modalTitle={videoName} dataLength={dataLength}
+                                    content={resultList} show={show} hide={this.handleHide}
+                                    />
+                                    :
+                                    null
+                                }
                             </header>
-        
+                                
+                        
+
                             {/* 동영상, 가사 */}
                             <div className="main-div">
                                 <div className="videoimage">
-                                    <img src="/images/videoframe2.png" alt="frame"/>
+                                    <img src="/images/videoframel.png" alt="frame"/>
                                 </div>
         
                                 <div className="video">
@@ -209,7 +273,7 @@ class MainPage extends React.Component {
                             {/* SNS 공유 */}
                             <footer>
                                 <div className="copyright">
-                                    Copyright 2020. M&P All rights reserved.
+                                    Copyright 2020. youcando All rights reserved.
                                 {/*  <li><img src="/images/sns_insta.png" alt="insta" /></li>
                                     <li><img src="/images/sns_fb.png" alt="facebook" /></li>
                                     <li><img src="/images/sns_kakao.png" alt="kakaotalk" /></li>
@@ -218,7 +282,7 @@ class MainPage extends React.Component {
                             </footer>
                         </div>
                     </div>
-                </div>   
+                </div>    
             )
     }
 }

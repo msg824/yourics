@@ -21,7 +21,22 @@ async function lyricsCrawling(song) {
             const page = await browser.newPage();
             const regSpChar = /&/gi;
             let query = song;
+
+            let reNameMv = query.substr(query.length - 3);
+            let reNameLive = query.substr(query.length - 5);
+
+            if (reNameMv === ' mv') {
+                query = query.slice(0, -3);
+            } else if (reNameLive === ' live') {
+                query = query.slice(0, -5);
+            }
+
             query = query.replace(regSpChar, '%26');
+
+            if (regSpChar.test(query)) {
+                const blankReg = /\s{1,}/g;
+                query = query.replace(blankReg, '+');
+            }
 
             let data = {};
         
@@ -80,8 +95,26 @@ async function lyricsCrawling(song) {
                         data.artist = setArtist;
         
                     } catch (err) {
-                        data.artist = null;
-                        console.log('artist is null', err);
+                        try {
+                            await page.waitFor(1000);
+                            await page.click('#content > div:nth-child(3) > div._tracklist_mytrack.tracklist_table.tracklist_type1._searchTrack > table > tbody > tr:nth-child(2) > td._artist.artist.no_ell2 > a')
+            
+                            const artist = await page.$eval('#scroll_tl_artist > div.scrollbar-box > div > ul > li:nth-child(1) > a', element => {
+                                return element.textContent
+                            });
+            
+                            const artist2 = await page.$eval('#scroll_tl_artist > div.scrollbar-box > div > ul > li:nth-child(2) > a', element => {
+                                return element.textContent
+                            });
+            
+                            const setArtist = artist + ', ' + artist2;
+                            data.artist = setArtist;
+
+                        } catch (err) {
+                            data.artist = null;
+                            console.log('artist is null', err);
+
+                        }
                     }
                     
                 }
@@ -136,15 +169,39 @@ async function lyricsCrawling(song) {
             // 브라우저 닫기
             await browser.close();
 
-            lyricslist.create({
-                queryName: song,
-                title: data.title,
-                artist: data.artist,
-                album: data.album,
-                lyrics: data.lyrics
-            }).catch(err => {
-                console.error('Lyrics data Create Error', err);
-            })
+            if (reNameMv === ' mv') {
+                lyricslist.create({
+                    queryName: song,
+                    title: data.title + ' MV',
+                    artist: data.artist,
+                    album: data.album,
+                    lyrics: data.lyrics
+                }).catch(err => {
+                    console.error('Lyrics data Create Error', err);
+                })
+
+            } else if (reNameLive === ' live') {
+                lyricslist.create({
+                    queryName: song,
+                    title: data.title + ' Live',
+                    artist: data.artist,
+                    album: data.album,
+                    lyrics: data.lyrics
+                }).catch(err => {
+                    console.error('Lyrics data Create Error', err);
+                })
+
+            } else {
+                lyricslist.create({
+                    queryName: song,
+                    title: data.title,
+                    artist: data.artist,
+                    album: data.album,
+                    lyrics: data.lyrics
+                }).catch(err => {
+                    console.error('Lyrics data Create Error', err);
+                })
+            }
 
             return data.lyrics
         }

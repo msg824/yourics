@@ -1,10 +1,12 @@
 const puppeteer = require('puppeteer');
 const express = require('express');
 const models = require('../models');
-const ranklist = models.ranklist;
 const router = express.Router();
 
-(async () => {
+// DB define
+const ranklist = models.ranklist;
+
+async function top100() {
     const browser = await puppeteer.launch({
         headless: false
     });
@@ -35,10 +37,7 @@ const router = express.Router();
 
     await page.waitFor(10000);
     await browser.close();
-
-   
-
-})();
+}
 
 
 async function getAll(page) {
@@ -74,7 +73,7 @@ async function getOne(page, index) {
 }
 
 router.get('/rankLoad', async (req, res) => {
-    const result = await getAll();
+    const result = await top100();
     res.send(result)
 })
 

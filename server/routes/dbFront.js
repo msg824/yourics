@@ -29,8 +29,18 @@ async function randomPlay() {
         })
         data.videoId = findName.videoId;
 
+        let dbQueryName = findName.queryName;
+        let reNameMv = dbQueryName.substr(dbQueryName.length - 3);
+        let reNameLive = dbQueryName.substr(dbQueryName.length - 5);
+
+        if (reNameMv === ' mv') {
+            dbQueryName = dbQueryName.slice(0, -3);
+        } else if (reNameLive === ' live') {
+            dbQueryName = dbQueryName.slice(0, -5);
+        }
+
         const findId = await Lyricslist.findOne({
-            where: {queryName: findName.queryName},
+            where: {queryName: dbQueryName},
             raw: true
         })
         data.lyrics = findId.lyrics;

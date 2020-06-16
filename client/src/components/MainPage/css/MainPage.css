@@ -26,94 +26,98 @@
 
 @font-face { font-family: 'JSDongkang-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); font-weight: normal; font-style: normal; }
 
+@font-face { font-family: 'HangultuelGothic'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_ten@1.10/HangultuelGothic.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 /* PC */
 @media screen and (min-width: 769px) and (min-width: 1950px), (min-width: 769px) {
-.container-main0 {
-    
-}
+    .container-main0 {
 
-.backg{
+    }
+
+    .backg{
     width: 100%;
     height: 100vh;
     background-size: cover;
-    /* background: url(/images/asdfg.png), no-repeat; */
-    background-color: darkslategrey;
-}
+    background: no-repeat, url(/images/testback.png);
+    background-color: white;
+    }
 
-.container-main {
+    .container-main {
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-}
+    }
 
 /* backhome 아이콘 */
-/* .backhome {
+ .backhome {
     position: absolute;
-    margin-top: 30px;
-    margin-left: 20px;
-}
+    margin-top: 10px;
+    margin-left: 1810px;
+    }
 
 .backhome img:hover {
-    content: url(/images/ufo2.png);
-} */
+    content:url(/images/backbth.png);
+}
 
 /* yourics 로고 */
-.logo {
-    margin-top: 60px;
-}
+    .logo {
+    margin-right: 1250px;
+    margin-top: 80px;
+    }
 
-/* 검색창 */
-.search {
-    margin-top: 30px;
+    /* 검색창 */
+    .search {
+    margin-top: -70px;
+    margin-left: 270px;
     text-align: center;
-}
+    }
 
-/* 동영상과 가사를 감싸는 메인 div */
-.main-div {
+    /* 동영상과 가사를 감싸는 메인 div */
+    .main-div {
     display: flex;
     flex-direction: row;
-    margin-top: 50px;
-}
+    margin-top: 10px;
+    }
 
-/* 동영상 */
-.video {
+    /* 동영상 */
+    .video {
     width: 800px;
     height: 500px;
     margin: 0px 20px;
     text-align: center;
     z-index: 2;
-}
+    }
 
- .videoimage{
+    .videoimage{
     position: absolute;
-    margin-top: -50px;
-    margin-left: -30px;
+    margin-top: -16px;
+    margin-left: 0px;
     z-index: 1;
-}
+    }
 
-#YT_Video{
+    #YT_Video{
     position: relative;
     align-items: center;
     border-radius: 30px;
-}
+    }
 
-/* 가사 박스 Image */
-.lyrics {
+    /* 가사 박스 Image */
+    .lyrics {
     display: flex;
     width: 600px;
     height: 450px;
     margin: 35px 50px;
     text-align: center;
-    background: url('/images/lyricsimg (1).png');
+    background: url('/images/lyricsimg1.png');
+    opacity: 90%;
     background-size: cover;
-}
+    }
 
-/* 가사 박스 text */
-.lyrics .content {
+    /* 가사 박스 text */
+    .lyrics .content {
     width: 500px;
     height: 240px;
     margin: 117px auto auto 60px;
@@ -123,145 +127,141 @@
     line-height: 170%;
     font-family: 'JSDongkang-Regular';
     opacity: 96%;
-}
+    }
 
-/* 가사 홀수 라인 */
-.content span:nth-child(2n-1) {
+    /* 가사 홀수 라인 */
+    .content span:nth-child(2n-1) {
     /* padding-left: 30px; */
-}
+    }
 
-/* 가사 짝수 라인 */
-.content span:nth-child(2n) {
+    /* 가사 짝수 라인 */
+    .content span:nth-child(2n) {
     opacity: 80%;
     /* padding-left: 30px; */
-}
+    }
 
-.lyrics .content::-webkit-scrollbar {
+    .lyrics .content::-webkit-scrollbar {
     width: 10px;
-}
+    }
 
-.lyrics .content::-webkit-scrollbar-thumb {
+    .lyrics .content::-webkit-scrollbar-thumb {
     background-color: #2f3542;
     border-radius: 10px;
     background-clip: padding-box;
     border: 2px solid transparent;
-}
+    }
 
-.lyrics .content::-webkit-scrollbar-track {
+    .lyrics .content::-webkit-scrollbar-track {
     background-color: grey;
     border-radius: 10px;
     box-shadow: inset 0px 0px 5px white;
-}
+    }
 
-/* footer (sns 공유 부분) */
-footer {
+    /* footer (sns 공유 부분) */
+    footer {
     width: 100%;
     margin: auto 70px;
-}
+    }
 
-/* sns ul */
-.sns-list {
-    display: flex;
-    justify-content: center;  /* 가운데 정렬 */
-    list-style: none;
-    margin-right: 50px;
-}
-
-/* sns li */
-.sns-list li {
-    margin: 0px 5px;
-
-}
-
-.sns-list li img {
-    width: 40px;
-    height: 40px;
-}
-
-.img-button {
-    background: url(/images/searchyy.png);
-    width: 40px;
-    height: 40px;
+    .img-button {
+    background: url(/images/search1.png);
+    width: 60px;
+    height: 50px;
     border: transparent;
-    margin: 0px 5px;
-  }
+    margin-left: -13px;
+    }
 
- .img-button:hover {
-    background: url(/images/searchyyy.png);
-    width: 40px;
-    height: 40px;
+    .img-button2 {
+        background: url(/images/loading.png);
+        width: 60px;
+        height: 50px;
+        margin-left: -13px;
+        border: transparent;
+      }
+
+    .img-button:hover {
+    background: url(/images/search1h.png);
+    width: 60px;
+    height: 50px;
     border: transparent;
-    margin: 0px 5px;
-  }
+    }
 
-.search-box{
-    width: 500px;
+    .search-box{
+    width: 480px;
     height: 50px;
     margin: 0px 5px;
     background-color: transparent;
-    border: 2px solid white;
-    border-radius: 45px;
+    border: 2px solid black;
+    border-radius: 10px;
     text-align: center;
     font-size: medium;
-    color: white;
-    font-family: 'GmarketSansMedium';
-    
-}
+    color: black;
+    font-family: 'JSDongkang-Regular';
+    }
 
-.search-box:hover {
+    .search-box:hover {
     /* border: 2px solid grey; */
-}
-
-  .img-button2 {
-    width: 90px;
-    height: 40px;
-    margin: 0px -10px;
-    background-color: transparent;
-    border:transparent;
-    text-align: center;
-    font-size: large;
-    font-family: 'GmarketSansBold';
-    color: white;
-  }
+    }
 
   .copyright {
-      font-family: 'GmarketSansLight';
+    font-family: 'JSDongkang-Regular';
       text-align: center;
       font-size: small;
-      color: white;
+      color: black;
       /* margin-top: 40px; */
   }
   
     form {
         display: flex;
+        margin-top: 10px;
+    }
+
+    .randomsong{
+        margin-top:10px;
+        margin-left: 660px;
     }
 
     .songtype-checkbox {
         display: flex;
         flex-direction: column;
         text-align: left;
-        color: white;
-        margin: 0px 5px;
+        color: black;
+        font-family: 'JSDongkang-Regular';
+        margin: 20px 10px;
     }
 
     .randomImg {
-        width: 50px;
-        height: 50px;
+        width: 70px;
+        height: 70px;
         margin: 0px 5px;
+        margin-top: 0px;
     }
 
+    .randomImg:hover {
+        content: url(/images/shuffleh.png);
+    }
+    
+    .f1 {
+       margin-left: -800px;
+       margin-top: 60px;
+       font-family: 'JSDongkang-Regular';
+       font-size: small;
+    }
+    
+    input[type=checkbox] {
+        transform : scale(1.5);
+        }
 }
 
 /* MOBILE ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●*/
-@media screen and (max-width: 768px), (max-height: 800px) {
+@media screen and (max-width: 769px), (max-height: 800px) {
 
     .container-main0 {
     
     }
     
     .backg{
-        /* background: url(/images/bb14.jpg); */
-        background-color:darkslategrey;;
+        background-color:white;
         width: max-content;
         height: max-content;
         background-size: cover;
@@ -280,21 +280,15 @@ footer {
     /* backhome 아이콘 */
     .backhome {
         position: absolute;
-        margin-top: 30px;
-        margin-left: 20px;
+        margin-top: 20px;
+        margin-left: 1000px;
     }
-    
-    .backhome img:hover {
-        content: url(/images/ufo2.png);
-    }
-    
+
     /* yourics 로고 */
     .logo {
-        /* display: flex; */
-        /* justify-content: center; */
-        /* align-items: center; */
-        /* flex-direction: column; */
-        margin-top: 200px;
+        margin-top: 80px;
+        margin-bottom: 100px;
+        text-align: center;
     }
     
     /* 검색창 */
@@ -320,8 +314,8 @@ footer {
     
     .videoimage{
         position: absolute;
-        margin-top: 100px;
-        margin-left: 110px;
+        margin-top: 134px;
+        margin-left: 140px;
         align-items: center;
         z-index: 1;
     }
@@ -341,9 +335,9 @@ footer {
         display: flex;
         width: 900px;
         height: 1000px;
-        margin: 200px 110px;
+        margin: 90px 110px;
         text-align: center;
-        background: url('/images/lyricsimg_m.png');
+        background: url('/images/lyricsimg_m2.png');
         background-size: cover;
         margin-top: 330px;
     }
@@ -397,53 +391,45 @@ footer {
     }
     
     .img-button {
-        background: url(/images/searchyy.png);
-        width: 40px;
-        height: 40px;
+        background: url(/images/msearch.png);
+        width: 120px;
+        height: 100px;
         border: transparent;
-        margin: 0px 5px;
+        margin-left: -20px;
       }
     
      .img-button:hover {
-        background: url(/images/searchyyy.png);
-        width: 40px;
-        height: 40px;
+        background: url(/images/msearchh.png);
+        width: 120px;
+        height: 100px;
         border: transparent;
-        margin: 0px 5px;
+        margin-left: -20px;
       }
-    
+
+      .img-button2 {
+        background: url(/images/msearchl.png);
+        width: 120px;
+        height: 100px;
+        border: transparent;
+        margin-left: -20px;
+      }
+
     .search-box{
         width: 900px;
         height: 100px;
-        margin: 0px 5px;
-        border: 2px solid white;
+        margin-left: 20px;
+        border: 2px solid black;
         border-radius: 15px;
         text-align: center;
-        font-size: 50px;
-        font-family: 'GmarketSansMedium';
+        font-size: 40px;
+        font-family: 'JSDongkang-Regular';
     }
-    
-    .search-box:hover {
-        border: 2px solid orange;
-    }
-    
-      .img-button2 {
-        width: 90px;
-        height: 40px;
-        margin: 0px -10px;
-        background-color: transparent;
-        border:transparent;
-        text-align: center;
-        font-size: large;
-        font-family: 'GmarketSansBold';
-        color: white;
-      }
     
       .copyright {
-          font-family: 'GmarketSansLight';
+          font-family: 'JSDongkang-Regular';
           text-align: center;
-          font-size: small;
-          color: white;
+          font-size: 20px;
+          color: black;
           margin-bottom: 40px;
       }
       
@@ -452,19 +438,39 @@ footer {
 }
 
 .songtype-checkbox {
+    position: absolute;
     display: flex;
     flex-direction: column;
     text-align: left;
-    color: white;
+    color: black;
     font-size: 30px;
-    margin: 0px 5px;
+    margin-top: 20px;
+    margin-left: 50px;
 }
 
 .randomImg {
-    width: 50px;
-    height: 50px;
-    /* margin-top: 50px;
-    margin-right: 20px; */
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    margin-left: 920px;
+    margin-top: 20px;
 }
 
+.randomImg:hover {
+    content: url(/images/shuffleh.png);
+}
+
+.f1 {
+   position: absolute;
+   width: max-content;
+   margin-top: -150px;
+   margin-left: 100px;
+   font-family: 'JSDongkang-Regular';
+   font-size: 20px;
+}
+
+input[type=checkbox] {
+    transform : scale(3);
+    }
 }

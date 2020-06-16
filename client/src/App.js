@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import { TransitionGroup, CSSTransition } from "react-transition-group";
 
@@ -28,11 +29,7 @@ function App() {
 function Home() {
     return (
         <div className="container-home">
-            <div className="home-background">
-            <div className="link-kids">
-                    
-                </div>
-            
+            <div className="home-background">       
             {/* <div className="sns-place">
                 <img src="/images/sns.png" alt="share SNS"></img>
             </div> */}
@@ -50,6 +47,9 @@ function Home() {
             </div> */}
 
             <div className="container-center">
+                <div className="hometext">Watch the lyrics and Enjoy to the music.</div>
+                
+                {/* <div>and Enjoy to the music.</div> */}
                 가사를 보며 음악을 감상해보세요.
                 <div className="yourics">
                  YouRics
@@ -57,7 +57,7 @@ function Home() {
                 <div className="link-main">
                     <Link to="/main">
                         <div className="play">
-                            시작하기
+                            <img src="/images/onoff.png" alt="play"/>
                         </div>
                     </Link> {/* <a href> 태그와 비슷 localhost:3000/main 으로 이동 */}
                 </div>

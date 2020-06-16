@@ -1,0 +1,15 @@
+/* @media (min-width: 576px) {
+    .modal-dialog {
+        width: 90%;
+    }
+} */
+
+.modalcss {
+    width: 80%;
+    max-width: none!important;
+}
+
+.modal-songname {
+    color: blue;
+    cursor: pointer;
+}
