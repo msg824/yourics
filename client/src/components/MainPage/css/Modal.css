@@ -17,6 +17,22 @@
     border-bottom: 1px solid black;
 }
 
+/* Modal 리스트 X축 스크롤 CSS */
+.modal::-webkit-scrollbar {
+    width: 15px;
+}
+.modal::-webkit-scrollbar-thumb {
+    background-color: #5e626b;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+}
+.modal::-webkit-scrollbar-track {
+    background-color: rgb(179, 179, 179);
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+}
+
 /* Modal 배경색 */
 .modal-content {
     /* background-color: gainsboro; */
@@ -28,22 +44,6 @@
     height: 100%;
     overflow-x: auto;
     overflow-y: auto;
-}
-
-/* Modal 리스트 X축 스크롤 CSS */
-.modal-body::-webkit-scrollbar {
-    width: 5px;
-}
-.modal-body::-webkit-scrollbar-thumb {
-    background-color: #5e626b;
-    border-radius: 10px;
-    background-clip: padding-box;
-    border: 2px solid transparent;
-}
-.modal-body::-webkit-scrollbar-track {
-    background-color: rgb(179, 179, 179);
-    border-radius: 10px;
-    box-shadow: inset 0px 0px 5px white;
 }
 
 /* Modal (Header, Body) 전체 DIV */

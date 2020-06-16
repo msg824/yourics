@@ -259,7 +259,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        
     }
+
+    
 
     /* 영상 로딩 컴포넌트, 텍스트 CSS */
     .loading {
@@ -272,7 +275,27 @@
         color: white;
         font-size: 20px;
         background-color: black;
-        opacity: 55%;
+        animation: fadein 2s 1s infinite linear alternate;
+        -webkit-animation: fadein 2s 1s infinite linear alternate;
+        opacity: 70%;
+    }
+
+    @keyframes fadein {
+        from {
+            opacity: 0.7;
+        }
+        to {
+            opacity: 0.5;
+        }
+    }
+
+    @-webkit-keyframes fadein { /* Safari and Chrome */
+        from {
+            opacity: 0.7;
+        }
+        to {
+            opacity: 0.5;
+        }
     }
 
     /* 영상 로딩 텍스트 2번쨰 Div CSS */

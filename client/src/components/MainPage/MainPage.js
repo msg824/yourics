@@ -89,7 +89,6 @@ class MainPage extends React.Component {
         if (this.state.videoName === '' || (blankRegExp && !stringRegExp)) {
             this.setState({ clickAvoid: false });
             return null
-
         }
 
         const searchList = await axios.post('http://localhost:5000/searchList/findSong', {
@@ -135,9 +134,7 @@ class MainPage extends React.Component {
                             clickAvoid: false, 
                             show: false 
                         })
-
                         this.viewCountUp(data.videoId)
-
                     }}>
                     </img>
                     <div className="modal-text-div">
@@ -148,9 +145,7 @@ class MainPage extends React.Component {
                                 clickAvoid: false, 
                                 show: false 
                             })
-
                             this.viewCountUp(data.videoId)
-
                         }}>
                             {data.title}
                         </span>
