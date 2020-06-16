@@ -2,8 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './css/MainPage.css';
 import ModalComponent from './ModalComponent';
-// import { makeStyles } from '@material-ui/core/styles';
-// import CircularProgress from '@material-ui/core/CircularProgress';
+import Progress from './Progress';
 
 class MainPage extends React.Component {
     constructor(props) {
@@ -24,6 +23,7 @@ class MainPage extends React.Component {
             dataLength: null,   // 노래 검색 결과 개수
 
             show: false,        // 모달 on off
+            videoLoading: false,// 영상 로딩 state
         };
 
         this.handleHide = () => {
@@ -99,7 +99,7 @@ class MainPage extends React.Component {
 
         if (!searchList.data) {
             // 가사 크롤링 -> 유튜브 API -> 노래재생
-            console.log('No data, 크롤링 진행', searchList.data);
+            this.setState({ videoLoading: true })
 
             const lyricsLoad = await axios.post('http://localhost:5000/crawling/lyricsLoad', {
                 song: this.state.videoName
@@ -111,7 +111,7 @@ class MainPage extends React.Component {
                 song: this.state.videoName
 
             }).then(result => {
-                this.setState({ videoId: result.data });
+                this.setState({ videoId: result.data, videoLoading: false });
 
             }).then(() => {
                 setTimeout(() => {
@@ -124,13 +124,22 @@ class MainPage extends React.Component {
         } else {
             // 여기에 모달 띄우는 코드 작성
             this.setState({ show: true });
-
-            // const thumbnailUrl = "`https://i.ytimg.com/vi/${data.videoId}/default.jpg`";
             
             // 검색 시 리스트 보여지는 부분
             const finalRes = searchRes.map((data, i) => {
                 return <div key={i} className="modal-list">
-                    <img className="modal-thumbnail" src={`https://i.ytimg.com/vi/${data.videoId}/default.jpg`} alt="썸네일"></img>
+                    <img className="modal-thumbnail" src={`https://i.ytimg.com/vi/${data.videoId}/default.jpg`} alt="썸네일" onClick={() => {
+                        this.setState ({ 
+                            videoId: data.videoId, 
+                            lyrics: data.lyrics, 
+                            clickAvoid: false, 
+                            show: false 
+                        })
+
+                        this.viewCountUp(data.videoId)
+
+                    }}>
+                    </img>
                     <div className="modal-text-div">
                         <span className="modal-songname" onClick={() => {
                             this.setState ({ 
@@ -145,8 +154,8 @@ class MainPage extends React.Component {
                         }}>
                             {data.title}
                         </span>
-                        <div>{data.artist}</div>
-                        <div>{data.album}</div>
+                        <div className="modal-artist">{data.artist}</div>
+                        <div className="modal-album">{data.album}</div>
                     </div>
                 </div>
             })
@@ -193,7 +202,7 @@ class MainPage extends React.Component {
 
     
     render() {
-        const { clickAvoid, searchValue, videoId, lyrics, videoName, resultList, dataLength, show, rClickAvoid } = this.state;
+        const { clickAvoid, searchValue, videoId, lyrics, videoName, resultList, dataLength, show, rClickAvoid, videoLoading } = this.state;
 
             return (
                 <div className="cotainer-main0">
@@ -278,7 +287,19 @@ class MainPage extends React.Component {
                                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen> 
                                         </iframe>
                                     }
+                                    {
+                                        videoLoading &&
+                                        <div className="loading">
+                                            <Progress />
+                                            비디오를 불러오는 중입니다...
+                                            <div>
+                                            네트워크 상태에 따라 4~10초 시간이 걸립니다.
+                                            </div>
+                                            
+                                        </div>
+                                    }
                                 </div>
+                                
         
                                 <div className="lyrics">
                                     <span className="content">
@@ -298,10 +319,6 @@ class MainPage extends React.Component {
                             <footer>
                                 <div className="copyright">
                                     Copyright 2020. youcando All rights reserved.
-                                {/*  <li><img src="/images/sns_insta.png" alt="insta" /></li>
-                                    <li><img src="/images/sns_fb.png" alt="facebook" /></li>
-                                    <li><img src="/images/sns_kakao.png" alt="kakaotalk" /></li>
-                                    <li><img src="/images/sns_twitter.png" alt="twitter" /></li> */}
                                 </div>
                             </footer>
                         </div>
