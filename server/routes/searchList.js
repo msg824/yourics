@@ -20,7 +20,7 @@ async function searchList(song) {
         // 검색 결과가 2글자 이상일 경우
         if (!(queryLength === 1)) {
             if (reNameMv === ' mv') {
-                const querySQL = `select distinct s.videoId, l.title, l.artist, l.album, l.lyrics from songlists s INNER JOIN lyricslists l ON (l.queryName = s.queryName) where s.queryName like '%${query}%' and l.queryName regexp 'mv$' or l.artist like '%${query}%' and l.queryName regexp 'mv$' order by l.title asc;`;
+                const querySQL = `select distinct s.videoId, l.title, l.artist, l.album, l.lyrics, s.queryName from songlists s INNER JOIN lyricslists l ON (l.queryName = s.queryName) where s.queryName like '%${query}%' and l.queryName regexp 'mv$' or l.artist like '%${query}%' and l.queryName regexp 'mv$' order by l.title asc;`;
                 let queryResult = await models.sequelize.query(querySQL, { type : models.sequelize.QueryTypes.SELECT ,raw : true});
 
                 let datas = [];
@@ -30,7 +30,8 @@ async function searchList(song) {
                         title: data.title,
                         artist: data.artist,
                         album: data.album,
-                        lyrics: data.lyrics
+                        lyrics: data.lyrics,
+                        queryName: data.queryName
                     }
                 })
 
@@ -51,7 +52,7 @@ async function searchList(song) {
                 return datas
 
             } else if (reNameLive === ' live') {
-                const querySQL = `select distinct s.videoId, l.title, l.artist, l.album, l.lyrics from songlists s INNER JOIN lyricslists l ON (l.queryName = s.queryName) where s.queryName like '%${query}%' and l.queryName regexp 'live$' or l.artist like '%${query}%' and l.queryName regexp 'live$' order by l.title asc;`;
+                const querySQL = `select distinct s.videoId, l.title, l.artist, l.album, l.lyrics, s.queryName from songlists s INNER JOIN lyricslists l ON (l.queryName = s.queryName) where s.queryName like '%${query}%' and l.queryName regexp 'live$' or l.artist like '%${query}%' and l.queryName regexp 'live$' order by l.title asc;`;
                 let queryResult = await models.sequelize.query(querySQL, { type : models.sequelize.QueryTypes.SELECT ,raw : true});
 
                 let datas = [];
@@ -61,7 +62,8 @@ async function searchList(song) {
                         title: data.title,
                         artist: data.artist,
                         album: data.album,
-                        lyrics: data.lyrics
+                        lyrics: data.lyrics,
+                        queryName: data.queryName
                     }
                 })
 
@@ -90,7 +92,8 @@ async function searchList(song) {
                         title: data.title,
                         artist: data.artist,
                         album: data.album,
-                        lyrics: data.lyrics
+                        lyrics: data.lyrics,
+                        queryName: data.queryName
                     }
                 })
 
@@ -112,7 +115,7 @@ async function searchList(song) {
         // 노래 제목이 1 글자인 경우
         } else if (queryLength === 1) {
             if (reNameMv === ' mv') {
-                const querySQL = `select distinct s.videoId, l.title, l.artist, l.album, l.lyrics from songlists s INNER JOIN lyricslists l ON (l.queryName = s.queryName) where s.queryName regexp '${query}{1}...$' and l.queryName regexp 'mv$' or l.artist like '${query}' and l.queryName regexp 'mv$' order by l.title asc;`;
+                const querySQL = `select distinct s.videoId, l.title, l.artist, l.album, l.lyrics, s.queryName from songlists s INNER JOIN lyricslists l ON (l.queryName = s.queryName) where s.queryName regexp '${query}{1}...$' and l.queryName regexp 'mv$' or l.artist like '${query}' and l.queryName regexp 'mv$' order by l.title asc;`;
                 let queryResult = await models.sequelize.query(querySQL, { type : models.sequelize.QueryTypes.SELECT ,raw : true});
                 
                 let datas = [];
@@ -122,7 +125,8 @@ async function searchList(song) {
                         title: data.title,
                         artist: data.artist,
                         album: data.album,
-                        lyrics: data.lyrics
+                        lyrics: data.lyrics,
+                        queryName: data.queryName
                     }
                 })
 
@@ -141,7 +145,7 @@ async function searchList(song) {
                 return datas
 
             } else if (reNameLive === ' live') {
-                const querySQL = `select distinct s.videoId, l.title, l.artist, l.album, l.lyrics from songlists s INNER JOIN lyricslists l ON (l.queryName = s.queryName) where s.queryName regexp '${query}{1}.....$' and l.queryName regexp 'live$' or l.artist like '${query}' and l.queryName regexp 'live$' order by l.title asc;`;
+                const querySQL = `select distinct s.videoId, l.title, l.artist, l.album, l.lyrics, s.queryName from songlists s INNER JOIN lyricslists l ON (l.queryName = s.queryName) where s.queryName regexp '${query}{1}.....$' and l.queryName regexp 'live$' or l.artist like '${query}' and l.queryName regexp 'live$' order by l.title asc;`;
                 let queryResult = await models.sequelize.query(querySQL, { type : models.sequelize.QueryTypes.SELECT ,raw : true});
                 
                 let datas = [];
@@ -151,7 +155,8 @@ async function searchList(song) {
                         title: data.title,
                         artist: data.artist,
                         album: data.album,
-                        lyrics: data.lyrics
+                        lyrics: data.lyrics,
+                        queryName: data.queryName
                     }
                 })
 
@@ -170,7 +175,7 @@ async function searchList(song) {
                 return datas
 
             } else {
-                const querySQL = `select distinct s.videoId, l.title, l.artist, l.album, l.lyrics from songlists s INNER JOIN lyricslists l ON (l.queryName = s.queryName) where s.queryName regexp '${song}$' or s.queryName regexp '${song}{1}.mv$' or s.queryName regexp '${song}{1}.live$' or l.artist like '${song}' order by l.title asc;`;
+                const querySQL = `select distinct s.videoId, l.title, l.artist, l.album, l.lyrics, s.queryName from songlists s INNER JOIN lyricslists l ON (l.queryName = s.queryName) where s.queryName regexp '${song}$' or s.queryName regexp '${song}{1}.mv$' or s.queryName regexp '${song}{1}.live$' or l.artist like '${song}' order by l.title asc;`;
                 let queryResult = await models.sequelize.query(querySQL, { type : models.sequelize.QueryTypes.SELECT ,raw : true});
                 
                 let datas = [];
@@ -180,7 +185,8 @@ async function searchList(song) {
                         title: data.title,
                         artist: data.artist,
                         album: data.album,
-                        lyrics: data.lyrics
+                        lyrics: data.lyrics,
+                        queryName: data.queryName
                     }
                 })
 
