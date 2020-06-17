@@ -57,7 +57,7 @@ function Home() {
                 <div className="link-main">
                     <Link to="/main">
                         <div className="play">
-                            <img src="/images/onoff.png" alt="play"/>
+                            <img src="/images/ONOFF1.png" alt="play"/>
                         </div>
                     </Link> {/* <a href> 태그와 비슷 localhost:3000/main 으로 이동 */}
                 </div>

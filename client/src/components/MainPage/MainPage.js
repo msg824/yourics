@@ -240,7 +240,7 @@ class MainPage extends React.Component {
                                             </label>
                                         </div>
                                     <div className="f1">
-                                        <img src="/images/f1shuffle3.png" alt="shuffle icon"/>
+                                        <img src="/images/f1shuffle1.png" alt="shuffle icon"/>
                                         : Click to play random song　　
                                         <input type="checkbox" name="f1checkbox" checked="checked"/>
                                         　: Check the video type you want (MV or Live)

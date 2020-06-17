@@ -81,7 +81,7 @@
     }
 
     .play:hover{
-        content: url(/images/onoffh.png);
+        content: url(/images/onoff1h.png);
     }
     
     .hometext{
@@ -132,7 +132,7 @@
 }
 
 .play:hover{
-    content: url(/images/onoffh.png);
+    content: url(/images/onoff1h.png);
 }
 
 .DesignPage {
