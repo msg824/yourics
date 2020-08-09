@@ -7,8 +7,10 @@ const router = express.Router();
 const ranklist = models.ranklist;
 
 async function top100() {
+    await ranklist.destroy({ truncate: true });
+
     const browser = await puppeteer.launch({
-        headless: false
+        headless: true
     });
     const page = await browser.newPage();
     await page.setViewport({
