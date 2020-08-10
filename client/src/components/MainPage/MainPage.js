@@ -2,8 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import './css/MainPage.css';
 import ModalComponent from './ModalComponent';
-// import { makeStyles } from '@material-ui/core/styles';
-// import CircularProgress from '@material-ui/core/CircularProgress';
 
 class MainPage extends React.Component {
     constructor(props) {
