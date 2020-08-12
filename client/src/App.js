@@ -1,15 +1,11 @@
 import React from 'react';
-import './App.css';
+import MainPage from './components/MainPage/MainPage';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+
+// CSS
+import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// import { TransitionGroup, CSSTransition } from "react-transition-group";
-
-import MainPage from './components/MainPage/MainPage';
-// import KidsPage from './components/KidsPage/KidsHome';
-// import TitlePage from './components/TitlePage/TitlePage';
-// import KidsMain from './components/KidsMain/KidsMain';
-// import pre from './components/pre/pre';
 
 // React Router 정의
 function App() {
@@ -46,25 +42,20 @@ function Home() {
                 </Link>
             </div> */}
 
-            <div className="container-center">
-                <div className="hometext">Watch the lyrics and Enjoy to the music.</div>
-                
-                {/* <div>and Enjoy to the music.</div> */}
-                가사를 보며 음악을 감상해보세요.
-                <div className="yourics">
-                 YouRics
-                </div>
-                <div className="link-main">
-                    <Link to="/main">
-                        <div className="play">
-                            <img src="/images/onoff.png" alt="play"/>
-                        </div>
-                    </Link> {/* <a href> 태그와 비슷 localhost:3000/main 으로 이동 */}
-                </div>
-                
+                <div className="container-center">
+                    <div className="hometext">Watch the lyrics and Enjoy to the music.</div>
+                    <div>가사를 보며 음악을 감상해보세요.</div>
+                    <div className="yourics">YouRics</div>
+                    <div className="link-main">
+                        <Link to="/main">
+                            <div className="play">
+                                <img src="/images/onoff.png" alt="play"/>
+                            </div>
+                        </Link>
                     </div>
+                </div>
             </div>
-            </div>
+        </div>
     )
 }
 

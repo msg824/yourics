@@ -31,7 +31,6 @@ app.use('/searchList', searchList);
 
 const port = process.env.PORT || 5000;
 
-// Sequelize 연결 후 Node server 연결
 sequelize.sync({ force: false }).then(() => {
     app.listen(port, () => console.log(`Listening on port ${port}`));
 })

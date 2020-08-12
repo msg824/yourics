@@ -10,7 +10,7 @@ async function top100() {
     await ranklist.destroy({ truncate: true });
 
     const browser = await puppeteer.launch({
-        headless: true
+        headless: false
     });
     const page = await browser.newPage();
     await page.setViewport({
@@ -20,25 +20,34 @@ async function top100() {
 
     let data = [];
 
-        await page.goto('https://music.bugs.co.kr/chart');
-        data.push(await getAll(page));
+    await page.goto('https://music.bugs.co.kr/chart');
+    data.push(await getAll(page));
 
-        data.forEach(async (res, i) =>{
-            for(i = 0; i < res.length; i++) {
-                await ranklist.bulkCreate([{
-                    rank: res[i].rank,
-                    title: res[i].title,
-                    artist: res[i].artist,
-                    album: res[i].album
-                }], {
-                    individualHooks : true,
-                })
-                // console.log(res[i].title, i+1 + "번째")
-            }
-        })
+    let searchNameArray = [];
+    data.forEach(async (res, i) => {
+        for (i = 0; i < res.length; i++) {
+            await ranklist.bulkCreate([{
+                rank: res[i].rank,
+                title: res[i].title,
+                artist: res[i].artist,
+                album: res[i].album
+            }], {
+                individualHooks : true,
+            });
 
+            searchNameArray.push({
+                rank: res[i].rank,
+                searchName: res[i].title + ' ' + res[i].artist
+            });
+            
+            
+        };
+    });
     await page.waitFor(10000);
     await browser.close();
+
+    return searchNameArray;
+    
 }
 
 
