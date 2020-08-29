@@ -405,15 +405,35 @@ async function crawlingTop100(song) {
                     })
     
                 } else {
-                    lyricslist.create({
-                        queryName: song[i].searchName,
-                        title: data.title,
-                        artist: data.artist,
-                        album: data.album,
-                        lyrics: data.lyrics
-                    }).catch(err => {
-                        console.error('Lyrics data Create Error', err);
-                    })
+                    // 함수 내에 불필요한 코드 삭제 필요.
+                    for (let j = 0; j < 2; j++) {
+
+                        if (j === 0) {
+                            lyricslist.create({
+                                queryName: song[i].searchName,
+                                title: data.title,
+                                artist: data.artist,
+                                album: data.album,
+                                lyrics: data.lyrics
+                            }).catch(err => {
+                                console.error('Lyrics data Create Error', err);
+                            });
+                        }
+
+                        if (j === 1) {
+                            lyricslist.create({
+                                queryName: song[i].searchName + ' mv',
+                                title: data.title + ' MV',
+                                artist: data.artist,
+                                album: data.album,
+                                lyrics: data.lyrics
+                            }).catch(err => {
+                                console.error('Lyrics data Create Error', err);
+                            });
+                        }
+                        
+                    }
+                    
                 }
     
                 console.log(i+1 + '번 노래 저장');

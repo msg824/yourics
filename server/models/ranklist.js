@@ -26,6 +26,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true
         },
 
+        videoMvId: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+
         lyrics: {
             type: DataTypes.STRING(5000),
             allowNull: true
