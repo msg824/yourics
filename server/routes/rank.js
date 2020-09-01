@@ -10,7 +10,7 @@ async function top100() {
     await ranklist.destroy({ truncate: true });
 
     const browser = await puppeteer.launch({
-        headless: false
+        headless: true
     });
     const page = await browser.newPage();
     await page.setViewport({
@@ -83,7 +83,7 @@ async function getOne(page, index) {
 
 }
 
-router.get('/rankLoad', async (req, res) => {
+router.get('/load', async (req, res) => {
     const result = await top100();
     res.send(result)
 })

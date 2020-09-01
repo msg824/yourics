@@ -228,21 +228,15 @@ async function crawlingTop100(song) {
             if (!findRes) {
                 console.log(i + '번 노래 크롤링 시작');
 
-                const browser = await puppeteer.launch({
+                const browser = await puppeteer.launch({   
                     headless: true,  // false 일 경우 실행 시 웹사이트 확인 가능
                 });
                 const page = await browser.newPage();
+
+                await page.setDefaultNavigationTimeout(0); // 크롤링 시간제한 제거 (default: 30000 ms)
+
                 const regSpChar = /&/gi;
                 let query = song[i].searchName;
-    
-                let reNameMv = query.substr(query.length - 3);
-                let reNameLive = query.substr(query.length - 5);
-    
-                if (reNameMv === ' mv') {
-                    query = query.slice(0, -3);
-                } else if (reNameLive === ' live') {
-                    query = query.slice(0, -5);
-                }
     
                 query = query.replace(regSpChar, '%26');
     
@@ -254,7 +248,9 @@ async function crawlingTop100(song) {
                 let data = {};
             
                 // 사이트 이동 (2초)
-                await page.goto(`https://music.naver.com/search/search.nhn?query=${query}&x=0&y=0`);
+                await page.goto(`https://music.naver.com/search/search.nhn?query=${query}&x=0&y=0`, {
+                    timeout: 0
+                });
             
                 // title
                 try {
@@ -269,6 +265,10 @@ async function crawlingTop100(song) {
                             let stringRep = element.textContent.replace(/(\n|\t)/g, "");
                             return stringRep
                         })
+
+                        console.log('AAA', data.title);
+                        if (!data.title) console.log('BBB');
+
                         // console.log('title is null', err);
             
                     } catch (err) {
@@ -382,58 +382,32 @@ async function crawlingTop100(song) {
                 // 브라우저 닫기
                 await browser.close();
     
-                if (reNameMv === ' mv') {
-                    lyricslist.create({
-                        queryName: song[i].searchName,
-                        title: data.title + ' MV',
-                        artist: data.artist,
-                        album: data.album,
-                        lyrics: data.lyrics
-                    }).catch(err => {
-                        console.error('Lyrics data Create Error', err);
-                    })
-    
-                } else if (reNameLive === ' live') {
-                    lyricslist.create({
-                        queryName: song[i].searchName,
-                        title: data.title + ' Live',
-                        artist: data.artist,
-                        album: data.album,
-                        lyrics: data.lyrics
-                    }).catch(err => {
-                        console.error('Lyrics data Create Error', err);
-                    })
-    
-                } else {
-                    // 함수 내에 불필요한 코드 삭제 필요.
-                    for (let j = 0; j < 2; j++) {
+                // 함수 내에 불필요한 코드 삭제 필요.
+                for (let j = 0; j < 2; j++) {
 
-                        if (j === 0) {
-                            lyricslist.create({
-                                queryName: song[i].searchName,
-                                title: data.title,
-                                artist: data.artist,
-                                album: data.album,
-                                lyrics: data.lyrics
-                            }).catch(err => {
-                                console.error('Lyrics data Create Error', err);
-                            });
-                        }
-
-                        if (j === 1) {
-                            lyricslist.create({
-                                queryName: song[i].searchName + ' mv',
-                                title: data.title + ' MV',
-                                artist: data.artist,
-                                album: data.album,
-                                lyrics: data.lyrics
-                            }).catch(err => {
-                                console.error('Lyrics data Create Error', err);
-                            });
-                        }
-                        
+                    if (j === 0) {
+                        lyricslist.create({
+                            queryName: song[i].searchName,
+                            title: data.title,
+                            artist: data.artist,
+                            album: data.album,
+                            lyrics: data.lyrics
+                        }).catch(err => {
+                            console.error('Lyrics data Create Error', err);
+                        });
                     }
-                    
+
+                    if (j === 1) {
+                        lyricslist.create({
+                            queryName: song[i].searchName + ' mv',
+                            title: data.title + ' MV',
+                            artist: data.artist,
+                            album: data.album,
+                            lyrics: data.lyrics
+                        }).catch(err => {
+                            console.error('Lyrics data Create Error', err);
+                        });
+                    }
                 }
     
                 console.log(i+1 + '번 노래 저장');
@@ -456,13 +430,11 @@ async function crawlingTop100(song) {
                     console.error('Ranklist lyrics Update Error', err);
                 });
             }
-    
         }
         
     } catch (err) {
         console.log('Lyrics Crawling Error', err);
     }
-    
 }
 
 router.post('/lyricsLoad', async (req, res) => {

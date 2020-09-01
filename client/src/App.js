@@ -1,11 +1,11 @@
 import React from 'react';
-import MainPage from './components/MainPage/MainPage';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 // CSS
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import MainPage from './components/MainPage/MainPage';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 // React Router 정의
 function App() {
@@ -25,23 +25,7 @@ function App() {
 function Home() {
     return (
         <div className="container-home">
-            <div className="home-background">       
-            {/* <div className="sns-place">
-                <img src="/images/sns.png" alt="share SNS"></img>
-            </div> */}
-
-            {/* <div className="DesignPage">
-                <Link to="/title">
-                <p> 타이틀 페이지 </p>
-                </Link>
-                <Link to="/kidsmain">
-                <p> 키즈메인 페이지 </p>
-                </Link>
-                <Link to="/pre">
-                <p> 연습 페이지 </p>
-                </Link>
-            </div> */}
-
+            <div className="home-background">
                 <div className="container-center">
                     <div className="hometext">Watch the lyrics and Enjoy to the music.</div>
                     <div>가사를 보며 음악을 감상해보세요.</div>
