@@ -38,10 +38,9 @@ sequelize.sync({ force: false }).then(() => {
 app.get('/bugschart', async (req, res) => {
     try {
         let rankArray = await axios.get(`${configs.server_url}/rank/load`);
-
+        
         await axios.post(`${configs.server_url}/crawling/bugs`, {song: rankArray.data});
-
-        // await axios.post(`${configs.server_url}/youtube/bugs`, {song: rankArray.data});
+        await axios.post(`${configs.server_url}/youtube/bugs`, {song: rankArray.data});
 
     } catch (err) {
         console.log('bugschart load failed', err);
