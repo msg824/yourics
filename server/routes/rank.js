@@ -83,9 +83,18 @@ async function getOne(page, index) {
 
 }
 
-router.get('/load', async (req, res) => {
+router.get('/crawling', async (req, res) => {
     const result = await top100();
     res.send(result)
+})
+
+router.get('/load', async (req, res) => {
+    const data = await ranklist.findAll();
+    let array = [];
+    data.forEach(obj => {
+        array.push(obj.dataValues);
+    })
+    res.send(array);
 })
 
 module.exports = router;
