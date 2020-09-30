@@ -7,46 +7,51 @@ const router = express.Router();
 const ranklist = models.ranklist;
 
 async function top100() {
-    await ranklist.destroy({ truncate: true });
+    try {
+        await ranklist.destroy({ truncate: true });
 
-    const browser = await puppeteer.launch({
-        headless: true
-    });
-    const page = await browser.newPage();
-    await page.setViewport({
-        width: 1920,
-        height: 1080
-    });
+        const browser = await puppeteer.launch({
+            headless: true
+        });
+        const page = await browser.newPage();
+        await page.setViewport({
+            width: 1920,
+            height: 1080
+        });
+    
+        let data = [];
+    
+        await page.goto('https://music.bugs.co.kr/chart');
+        data.push(await getAll(page));
+    
+        let searchNameArray = [];
+        data.forEach(async (res, i) => {
+            for (i = 0; i < res.length; i++) {
+                await ranklist.bulkCreate([{
+                    rank: res[i].rank,
+                    title: res[i].title,
+                    artist: res[i].artist,
+                    album: res[i].album
+                }], {
+                    individualHooks : true,
+                });
+    
+                searchNameArray.push({
+                    rank: res[i].rank,
+                    searchName: res[i].title + ' ' + res[i].artist
+                });
+                
+                
+            };
+        });
+        await page.waitFor(10000);
+        await browser.close();
+    
+        return searchNameArray;
 
-    let data = [];
-
-    await page.goto('https://music.bugs.co.kr/chart');
-    data.push(await getAll(page));
-
-    let searchNameArray = [];
-    data.forEach(async (res, i) => {
-        for (i = 0; i < res.length; i++) {
-            await ranklist.bulkCreate([{
-                rank: res[i].rank,
-                title: res[i].title,
-                artist: res[i].artist,
-                album: res[i].album
-            }], {
-                individualHooks : true,
-            });
-
-            searchNameArray.push({
-                rank: res[i].rank,
-                searchName: res[i].title + ' ' + res[i].artist
-            });
-            
-            
-        };
-    });
-    await page.waitFor(10000);
-    await browser.close();
-
-    return searchNameArray;
+    } catch (err) {
+        console.log('rank crawling', err);
+    }
     
 }
 
@@ -89,12 +94,18 @@ router.get('/crawling', async (req, res) => {
 })
 
 router.get('/load', async (req, res) => {
-    const data = await ranklist.findAll();
-    let array = [];
-    data.forEach(obj => {
-        array.push(obj.dataValues);
-    })
-    res.send(array);
+    try {
+        const data = await ranklist.findAll();
+        let array = [];
+        data.forEach(obj => {
+            array.push(obj.dataValues);
+        })
+        res.send(array);
+
+    } catch (err) {
+        console.log('Rank load', err);
+    }
+    
 })
 
 module.exports = router;
