@@ -14,12 +14,16 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
  - mysql2
  - sequelize
  - sequelize-cli (global)
+ - puppeteer
+ - bootstrap
+ - react-bootstrap
+ - @material-ui/core
 
 ## Sharing required
  - config/development.js
  - config/production.js
 
- ## Web App Usage
+## Web App Usage
  - Add configs file.
  - MySQL, MySQL Workbench download. (version 8.0.20)
  - Execute the SQL query before running the server.

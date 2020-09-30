@@ -29,7 +29,7 @@
 @font-face { font-family: 'HangultuelGothic'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_ten@1.10/HangultuelGothic.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 /* PC */
-@media screen and (min-width: 769px) and (min-width: 1950px), (min-width: 769px) {
+@media screen and (max-width: 1950px) and (min-width: 769px), (min-width: 769px) {
     .container-main0 {
 
     }
@@ -53,9 +53,11 @@
 
 /* backhome 아이콘 */
  .backhome {
-    position: absolute;
-    margin-top: 10px;
-    margin-left: 1810px;
+    position: fixed;
+    left: 1%;
+    top: 1%;
+    /* margin-top: 10px;
+    margin-right: 1810px; */
     }
 
 .backhome img:hover {
@@ -302,6 +304,132 @@
     .loading :nth-child(2) {
         font-size: 15px;
         margin-top: 10px;
+    }
+
+    .chart {
+        position: fixed;
+        top: 1%;
+        right: 1%;
+    }
+
+    .chart-menu {
+        font-size: 50px;
+        cursor: pointer
+    }
+
+    .chart-menu-close {
+        font-size: 30px;
+        cursor: pointer;
+        color: white;
+    }
+
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 50px;
+        border-top-left-radius: 10px;
+    }
+
+    /* 차트 고정 상단메뉴 */
+    .sidenav-header {
+        width: 100%;
+        height: 60px;
+        background-color:  #111;
+        position: fixed;
+        top: 0;
+        border-top-left-radius: 10px;
+    }
+
+    .sidenav-title {
+        color: #818181;
+        font-size: 30px;
+        padding: 0 20px;
+        position: fixed;
+        top: 10px;
+    }
+    .sidenav-title:hover {
+        color: #f1f1f1;
+    }
+
+    /* 노래 1개 div */
+    .chart-div {
+        padding: 10px 5px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: flex;
+        transition: 0.3s;
+    }
+    .chart-div div {
+        padding: 0 10px;
+    }
+    
+    /* 랭크 div */
+    .chart-rank {
+        width: 35px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 노래명, 가수 div 그룹 */
+    .chart-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    /* 재생 버튼 div 그룹 */
+    .chart-play {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    .chart-play span {
+        width: 100px;
+        text-align: center;
+        margin: 0 35px;
+        color: #818181;
+        cursor: pointer;
+        border: 1px solid gray;
+    }
+    .chart-play span:hover {
+        /* transition: 0.3s; */
+        color: #f1f1f1;
+    }
+      
+    .sidenav div:hover {
+        color: #f1f1f1;
+    }
+      
+    .sidenav .closebtn {
+        position: fixed;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+        cursor: pointer;
+        transition: 0.3s;
+        color: #818181;
+    }
+
+    .sidenav .closebtn:hover {
+        color: #f1f1f1;
     }
 }
 

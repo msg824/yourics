@@ -14,7 +14,7 @@ const rank = require('./routes/rank');
 const searchList = require('./routes/searchList');
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.header("Access-Control-Allow-Origin", configs.client_url);
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-access-token");
     next();
@@ -29,9 +29,21 @@ app.use('/dbFront', dbFront);
 app.use('/rank', rank);
 app.use('/searchList', searchList);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || configs.port;
 
-// Sequelize 연결 후 Node server 연결
 sequelize.sync({ force: false }).then(() => {
     app.listen(port, () => console.log(`Listening on port ${port}`));
-})
+});
+
+app.get('/bugschart', async (req, res) => {
+    try {
+        let rankArray = await axios.get(`${configs.server_url}/rank/crawling`);
+        
+        await axios.post(`${configs.server_url}/crawling/bugs`, {song: rankArray.data});
+        await axios.post(`${configs.server_url}/youtube/bugs`, {song: rankArray.data});
+
+    } catch (err) {
+        console.log('bugschart load failed', err);
+    }
+    
+});
