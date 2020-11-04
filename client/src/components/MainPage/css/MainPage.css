@@ -1,45 +1,42 @@
 @font-face {
     font-family: 'BBTreeGB';
-     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff') format('woff'); font-weight: normal; font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff') format('woff'); font-weight: normal; font-style: normal;
 }
-
 @font-face {
     font-family: 'GmarketSansLight';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
     font-weight: normal; 
     font-style: normal;
 }
-
 @font-face {
     font-family: 'GmarketSansBold';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
-
 @font-face {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
     font-style: normal; 
 }
-
 @font-face { font-family: 'JSDongkang-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); font-weight: normal; font-style: normal; }
-
 @font-face { font-family: 'HangultuelGothic'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_ten@1.10/HangultuelGothic.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 /* PC */
 @media screen and (max-width: 1950px) and (min-width: 769px), (min-width: 769px) {
-    .container-main0 {
-
-    }
-
-    .backg{
+    .main-bg{
     width: 100%;
     height: 100vh;
     background-size: cover;
-    background: no-repeat, url(/images/testback.png);
+    background: url(/images/testback.png);
+    background-repeat: no-repeat;
     background-color: white;
+
+    /* width : 100%;
+    height : 0;
+    padding-bottom : calc(1080 / 1920 * 100%);
+    background : url(/images/testback.png) center center / cover no-repeat; */
     }
 
     .container-main {
@@ -51,18 +48,16 @@
     flex-direction: column;
     }
 
-/* backhome 아이콘 */
- .backhome {
-    position: fixed;
-    left: 1%;
-    top: 1%;
-    /* margin-top: 10px;
-    margin-right: 1810px; */
+    /* 홈 바로가기 버튼 */
+    .move-home-btn {
+        position: fixed;
+        left: 1%;
+        top: 1%;
     }
 
-.backhome img:hover {
-    content:url(/images/backbth.png);
-}
+    .move-home-btn img:hover {
+        content:url(/images/backbth.png);
+    }
 
 /* yourics 로고 */
     .logo {
@@ -166,26 +161,26 @@
     }
 
     .img-button {
-    background: url(/images/search1.png);
-    width: 60px;
-    height: 50px;
-    border: transparent;
-    margin-left: -13px;
+      background: url(/images/search1.png);
+      width: 60px;
+      height: 50px;
+      border: transparent;
+      margin-left: -13px;
     }
 
     .img-button2 {
-        background: url(/images/loading.png);
-        width: 60px;
-        height: 50px;
-        margin-left: -13px;
-        border: transparent;
-      }
+      background: url(/images/loading.png);
+      width: 60px;
+      height: 50px;
+      margin-left: -13px;
+      border: transparent;
+    }
 
     .img-button:hover {
-    background: url(/images/search1h.png);
-    width: 60px;
-    height: 50px;
-    border: transparent;
+      background: url(/images/search1h.png);
+      width: 60px;
+      height: 50px;
+      border: transparent;
     }
 
     .search-box{
@@ -435,12 +430,7 @@
 
 /* MOBILE ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●*/
 @media screen and (max-width: 769px), (max-height: 800px) {
-
-    .container-main0 {
-    
-    }
-    
-    .backg{
+    .main-bg{
         background-color:white;
         width: max-content;
         height: max-content;
@@ -457,11 +447,14 @@
         flex-direction: column;
     }
     
-    /* backhome 아이콘 */
-    .backhome {
-        position: absolute;
-        margin-top: 20px;
-        margin-left: 1000px;
+    /* 홈 바로가기 버튼 */
+    .move-home-btn {
+      position: fixed;
+      left: 1%;
+      top: 1%;
+    }
+    .move-home-btn img:hover {
+      content:url(/images/backbth.png);
     }
 
     /* yourics 로고 */

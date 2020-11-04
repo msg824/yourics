@@ -202,8 +202,8 @@ class MainPage extends React.Component {
         const onChart = chart ? '400px' : '0';
 
             return (
-                <div className="backg">
-                    <div className="backhome">
+                <div className="main-bg">
+                    <div className="move-home-btn">
                         <a href="http://localhost:3000/">
                             <img src="/images/backbt.png" alt="move home"></img>
                         </a>
