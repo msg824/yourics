@@ -55,8 +55,6 @@ async function vcUp(song) {
         // 현재 조회수
         const currentView = findRes.dataValues.viewCount;
 
-        console.log(currentView)
-
         // 노래 검색 시 조회수 +1
         Songlist.update({
             viewCount: currentView+1 }, {

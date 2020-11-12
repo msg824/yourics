@@ -47,16 +47,17 @@
       height: 100%;
       overflow-x: auto;
       overflow-y: auto;
+      text-align: center;
   }
 
   /* Modal (Header, Body) 전체 DIV */
   .modal-container {
       width: 100%;
-      /* max-width: 4000px; */
       height: 100%;
       display: flex;
       flex-wrap: wrap;
       flex-direction: row;
+      justify-content: center;
   }
 
   /* Modal List */
@@ -160,16 +161,17 @@
       height: 100%;
       overflow-x: auto;
       overflow-y: auto;
+      text-align: center;
   }
 
   /* Modal (Header, Body) 전체 DIV */
   .modal-container {
       width: 100%;
-      /* max-width: 4000px; */
       height: 100%;
       display: flex;
       flex-wrap: wrap;
       flex-direction: row;
+      justify-content: center;
   }
 
   /* Modal List */

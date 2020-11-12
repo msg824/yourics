@@ -3,6 +3,7 @@ import axios from 'axios';
 import './css/MainPage.css';
 import ModalComponent from './ModalComponent';
 import Progress from './Progress';
+import SearchFilter from './SearchFilter';
 
 class MainPage extends React.Component {
     constructor(props) {
@@ -31,11 +32,8 @@ class MainPage extends React.Component {
         this.handleHide = () => {
 			this.setState({ show: false });
         };
-        
         this.viewCountUp = async (song) => {
-            await axios.post('http://localhost:5000/dbFront/viewCountUp', {
-                song: song
-            })
+            await axios.post('http://localhost:5000/dbFront/viewCountUp', { song: song })
         };
 
         this.searchChange = this.searchChange.bind(this);
@@ -45,9 +43,10 @@ class MainPage extends React.Component {
     }
 
     async componentDidMount() {
-
         const chartData = await axios.get('http://localhost:5000/rank/load');
         this.setState({ chartData: chartData.data });
+
+        console.log(SearchFilter);
     }
 
     // input 에 텍스트 입력시 state 값 변경
@@ -58,18 +57,13 @@ class MainPage extends React.Component {
     // 검색 버튼 클릭 시 영상 호출되도록 구현
     async searchSubmit(event) {
         const { songType } = this.state;
-
         this.setState({
             clickAvoid: true,
             searchValue: '',
             queryLyric: this.state.searchValue,
-        })
-        
+        });
         // 중복 검색 방지
-        setTimeout(() => {
-            this.setState({ clickAvoid: false });
-
-        }, 1000);
+        setTimeout(() => { this.setState({ clickAvoid: false }); }, 1000);
 
         if (!songType) {
             this.setState({ videoName: this.state.searchValue });
@@ -86,39 +80,27 @@ class MainPage extends React.Component {
         const stringReg = /(\S)\w*/g;
         const blankRegExp = blankReg.test(this.state.videoName);
         const stringRegExp = stringReg.test(this.state.videoName);
-
         if (this.state.videoName === '' || (blankRegExp && !stringRegExp)) {
             this.setState({ clickAvoid: false });
-            return null
+            return;
         }
 
-        const searchList = await axios.post('http://localhost:5000/searchList/findSong', {
-            song: this.state.videoName
-        })
+        const searchList = await axios.post('http://localhost:5000/searchList/findSong', { song: this.state.videoName });
         const searchRes = searchList.data;
 
         if (!searchList.data) {
             // 가사 크롤링 -> 유튜브 API -> 노래재생
-            this.setState({ videoLoading: true })
-
-            const lyricsLoad = await axios.post('http://localhost:5000/crawling/lyricsLoad', {
-                song: this.state.videoName
-            })
-
-            this.setState({ lyrics: lyricsLoad.data })
-
+            this.setState({ videoLoading: true });
+            const lyricsLoad = await axios.post('http://localhost:5000/crawling/lyricsLoad', { song: this.state.videoName });
+            this.setState({ lyrics: lyricsLoad.data });
             await axios.post('http://localhost:5000/youtube/search', {
                 song: this.state.videoName
-
             }).then(result => {
                 this.setState({ videoId: result.data, videoLoading: false });
-
             }).then(() => {
                 setTimeout(() => {
                     this.setState({ clickAvoid: false });
-
                 }, 1000);
-
             }).catch(err=>{console.log('video ID loading Error', err)});
 
         } else {
@@ -155,20 +137,16 @@ class MainPage extends React.Component {
                     </div>
                 </div>
             })
-
             this.setState({
                 resultList: finalRes,
                 dataLength: searchList.data.length 
-            })
-            
+            });
         }
     }
 
     async songTypeCheck(event) {
         let songTypeObj = {};
-
         songTypeObj[event.target.value] = await event.target.checked;
-
         this.setState({ checkboxGroup: songTypeObj });
 
         if (this.state.checkboxGroup['mv']) {
@@ -178,7 +156,6 @@ class MainPage extends React.Component {
         } else {
             this.setState({ songType: '' })
         }
-
     }
 
     async randomPlay() {
@@ -208,7 +185,6 @@ class MainPage extends React.Component {
                             <img src="/images/backbt.png" alt="move home"></img>
                         </a>
                     </div>
-    
                     <div className="container-main">
                         {/* 로고, 노래검색 */}
                         <header>
@@ -217,7 +193,6 @@ class MainPage extends React.Component {
                                         <img src="/images/main_logo2.png" alt="Yourics" />
                                     </a>
                             </div>
-    
                             <div className="search">
                                 <form onSubmit={this.searchSubmit}>                   
                                     <input type="text" src="/images/main_logo2.png" value={searchValue} onChange={this.searchChange} className="search-box"/>
@@ -229,7 +204,6 @@ class MainPage extends React.Component {
                                     }
                                 </form>
                             </div>
-
                             <div>
                                 <form onSubmit={this.searchSubmit}> 
                                     <div className="randomsong">
@@ -242,23 +216,22 @@ class MainPage extends React.Component {
                                     </div>
                                     <div className="songtype-checkbox">
                                         <label>
-                                            <input type="checkbox" name="checkboxGroup" value="mv" defaultChecked={this.state.checkboxGroup['mv'] || ''} onChange={this.songTypeCheck} />
+                                            <input type="checkbox" name="checkboxGroup" value="mv" onChange={this.songTypeCheck} checked={this.state.checkboxGroup['mv'] || ''} />
                                             &nbsp; MV
                                         </label>
                                         <label>
-                                            <input type="checkbox" name="checkboxGroup" value="live" defaultChecked={this.state.checkboxGroup['live'] || ''} onChange={this.songTypeCheck} />
+                                            <input type="checkbox" name="checkboxGroup" value="live" onChange={this.songTypeCheck} checked={this.state.checkboxGroup['live'] || ''} />
                                             &nbsp; Live
                                         </label>
                                     </div>
                                     <div className="f1">
                                         <img src="/images/f1shuffle3.png" alt="shuffle icon"/>
                                         : Click to play random song　　
-                                        <input type="checkbox" name="f1checkbox" defaultChecked="checked"/>
+                                        <input type="checkbox" name="f1checkbox" checked="checked" readOnly/>
                                         　: Check the video type you want (MV or Live)
                                     </div>
                                 </form>
                             </div>
-
                             {
                                 <ModalComponent 
                                 modalTitle={videoName} dataLength={dataLength}
@@ -266,9 +239,6 @@ class MainPage extends React.Component {
                                 />
                             }
                         </header>
-                            
-                    
-
                         {/* 동영상, 가사 */}
                         <div className="main-div">
                             <div className="videoimage">
@@ -295,8 +265,6 @@ class MainPage extends React.Component {
                                     </div>
                                 }
                             </div>
-                            
-    
                             <div className="lyrics">
                                 <span className="content">
                                     {
@@ -309,11 +277,9 @@ class MainPage extends React.Component {
                                     }
                                 </span>
                             </div>
-
                             <div className="chart">
                                 <span className="chart-menu" onClick={() => this.setState({ chart: true })}>&#9776;</span>
                             </div>
-
                             <div className="sidenav" style={{width: onChart}}>
                                 {
                                     chart && <>
@@ -362,7 +328,6 @@ class MainPage extends React.Component {
                                 }
                             </div>
                         </div>
-    
                         <footer>
                             <div className="copyright">
                                 Copyright ⓒ 2020. youcando All rights reserved.
