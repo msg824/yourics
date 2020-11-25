@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const configs = require('../config/development');
 const { google } = require('googleapis');
 const models = require('../models');
 
 // DB define
 const Songlist = models.songlist;
 const Ranklist = models.ranklist;
+
+let configs = {};
+process.env.NODE_ENV === 'production' ? configs = require('../config/env').production : configs = require('../config/env').development;
 
 const youtube = google.youtube({
     version: 'v3',

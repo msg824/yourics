@@ -4,7 +4,7 @@ const axios = require('axios');
 const sequelize = require('./models').sequelize;
 
 let configs = {};
-process.env.NODE_ENV === 'production' ? configs = require('./config/production') : configs = require('./config/development');
+process.env.NODE_ENV === 'production' ? configs = require('./config/env').production : configs = require('./config/env').development;
 
 // router 정의
 const youtubeApi = require('./routes/youtubeApi');

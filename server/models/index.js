@@ -7,7 +7,7 @@ const basename = path.basename(__filename);
 const db = {};
 
 let configs = {};
-process.env.NODE_ENV === 'production' ? configs = require('../config/production') : configs = require('../config/development');
+process.env.NODE_ENV === 'production' ? configs = require('../config/env').production : configs = require('../config/env').development;
 
 const sequelize = new Sequelize(configs.database, configs.username, configs.password, { host: configs.host, dialect: configs.dialect, timezone: '+09:00', 
     dialectOptions: {       // DB에 저장된 날짜 데이터 +09:00 하여 표기.

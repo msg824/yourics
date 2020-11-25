@@ -3,7 +3,9 @@ import axios from 'axios';
 import './css/MainPage.css';
 import ModalComponent from './ModalComponent';
 import Progress from './Progress';
-import SearchFilter from './SearchFilter';
+
+let configs = {};
+process.env.NODE_ENV === 'production' ? configs = require('../../env').production : configs = require('../../env').development;
 
 class MainPage extends React.Component {
     constructor(props) {
@@ -33,7 +35,7 @@ class MainPage extends React.Component {
 			this.setState({ show: false });
         };
         this.viewCountUp = async (song) => {
-            await axios.post('http://localhost:5000/dbFront/viewCountUp', { song: song })
+            await axios.post(`${configs.server_url}/dbFront/viewCountUp`, { song: song })
         };
 
         this.searchChange = this.searchChange.bind(this);
@@ -43,10 +45,8 @@ class MainPage extends React.Component {
     }
 
     async componentDidMount() {
-        const chartData = await axios.get('http://localhost:5000/rank/load');
+        const chartData = await axios.get(`${configs.server_url}/rank/load`);
         this.setState({ chartData: chartData.data });
-
-        console.log(SearchFilter);
     }
 
     // input 에 텍스트 입력시 state 값 변경
@@ -85,15 +85,15 @@ class MainPage extends React.Component {
             return;
         }
 
-        const searchList = await axios.post('http://localhost:5000/searchList/findSong', { song: this.state.videoName });
+        const searchList = await axios.post(`${configs.server_url}/searchList/findSong`, { song: this.state.videoName });
         const searchRes = searchList.data;
 
         if (!searchList.data) {
             // 가사 크롤링 -> 유튜브 API -> 노래재생
             this.setState({ videoLoading: true });
-            const lyricsLoad = await axios.post('http://localhost:5000/crawling/lyricsLoad', { song: this.state.videoName });
+            const lyricsLoad = await axios.post(`${configs.server_url}/crawling/lyricsLoad`, { song: this.state.videoName });
             this.setState({ lyrics: lyricsLoad.data });
-            await axios.post('http://localhost:5000/youtube/search', {
+            await axios.post(`${configs.server_url}/youtube/search`, {
                 song: this.state.videoName
             }).then(result => {
                 this.setState({ videoId: result.data, videoLoading: false });
@@ -146,7 +146,7 @@ class MainPage extends React.Component {
 
     async songTypeCheck(event) {
         let songTypeObj = {};
-        songTypeObj[event.target.value] = await event.target.checked;
+        songTypeObj[event.target.value] = event.target.checked;
         this.setState({ checkboxGroup: songTypeObj });
 
         if (this.state.checkboxGroup['mv']) {
@@ -159,7 +159,7 @@ class MainPage extends React.Component {
     }
 
     async randomPlay() {
-        const rPlay = await axios.get('http://localhost:5000/dbFront/randomPlay');
+        const rPlay = await axios.get(`${configs.server_url}/dbFront/randomPlay`);
         this.setState({ rClickAvoid: true });
 
         setTimeout(() => {
@@ -180,14 +180,15 @@ class MainPage extends React.Component {
 
             return (
                 <div className="main-bg">
-                    <div className="move-home-btn">
-                        <a href="http://localhost:3000/">
-                            <img src="/images/backbt.png" alt="move home"></img>
-                        </a>
-                    </div>
+                    
                     <div className="container-main">
                         {/* 로고, 노래검색 */}
                         <header>
+                            <div className="move-home-btn">
+                                <a href={configs.client_url}>
+                                    <img src="/images/backbt.png" alt="move home"></img>
+                                </a>
+                            </div>
                             <div className="logo">
                                     <a href="/main">
                                         <img src="/images/main_logo2.png" alt="Yourics" />
@@ -216,11 +217,11 @@ class MainPage extends React.Component {
                                     </div>
                                     <div className="songtype-checkbox">
                                         <label>
-                                            <input type="checkbox" name="checkboxGroup" value="mv" onChange={this.songTypeCheck} checked={this.state.checkboxGroup['mv'] || ''} />
+                                            <input type="checkbox" name="checkboxGroup" value="mv" onChange={(e) => this.songTypeCheck(e)} checked={this.state.checkboxGroup['mv'] || ''} />
                                             &nbsp; MV
                                         </label>
                                         <label>
-                                            <input type="checkbox" name="checkboxGroup" value="live" onChange={this.songTypeCheck} checked={this.state.checkboxGroup['live'] || ''} />
+                                            <input type="checkbox" name="checkboxGroup" value="live" onChange={(e) => this.songTypeCheck(e)} checked={this.state.checkboxGroup['live'] || ''} />
                                             &nbsp; Live
                                         </label>
                                     </div>
@@ -288,6 +289,7 @@ class MainPage extends React.Component {
                                             <span className="sidenav-title">TOP 100</span>
                                         </div>
                                         {
+                                            chartData.length > 0 &&
                                             chartData.map((data, i) => {
                                                 return <div key={i}>
                                                     <div className="chart-div">
