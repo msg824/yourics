@@ -1,5 +1,4 @@
 /node_modules
 
-development.js
-production.js
+env.js
 package-lock.json
