@@ -21,7 +21,6 @@
     font-style: normal; 
 }
 @font-face { font-family: 'JSDongkang-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'HangultuelGothic'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_ten@1.10/HangultuelGothic.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 /* PC */
 @media screen and (max-width: 1950px) and (min-width: 769px), (min-width: 769px) {
@@ -108,8 +107,7 @@
     height: 450px;
     margin: 35px 50px;
     text-align: center;
-    background: url('/images/lyricsimg1.png');
-    opacity: 90%;
+    background: url(/images/lyricsimg1.png);
     background-size: cover;
     }
 
@@ -510,7 +508,7 @@
         height: 1000px;
         margin: 90px 110px;
         text-align: center;
-        background: url('/images/lyricsimg_m2.png');
+        background: url(/images/lyricsimg_m2.png);
         background-size: cover;
         margin-top: 330px;
     }
