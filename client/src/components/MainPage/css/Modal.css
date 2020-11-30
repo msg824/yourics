@@ -5,7 +5,7 @@
   .modalcss {
       width: 70%;
       max-width: none!important;
-      opacity: 90%;
+      opacity: 0.9;
       margin: 1.25rem auto;
   }
 
@@ -118,7 +118,7 @@
   .modalcss {
       width: 70%;
       max-width: none!important;
-      opacity: 90%;
+      opacity: 0.9;
       margin: 1.25rem auto;
   }
 

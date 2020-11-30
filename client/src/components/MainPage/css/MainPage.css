@@ -121,7 +121,7 @@
     overflow-y: auto;
     line-height: 170%;
     font-family: 'JSDongkang-Regular';
-    opacity: 96%;
+    opacity: 0.96;
     }
 
     /* 가사 홀수 라인 */
@@ -131,7 +131,7 @@
 
     /* 가사 짝수 라인 */
     .content span:nth-child(2n) {
-    opacity: 80%;
+    opacity: 0.8;
     /* padding-left: 30px; */
     }
 
@@ -524,7 +524,7 @@
         line-height: 200%;
         font-family: 'JSDongkang-Regular';
         font-size: 35px;
-        opacity: 96%;
+        opacity: 0.96;
     }
     
     /* 가사 홀수 라인 */
@@ -534,7 +534,7 @@
     
     /* 가사 짝수 라인 */
     .content span:nth-child(2n) {
-        opacity: 80%;
+        opacity: 0.8;
         /* padding-left: 30px; */
     }
     
