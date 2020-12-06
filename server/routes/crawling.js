@@ -18,6 +18,7 @@ async function lyricsCrawling(song) {
         if (!findRes) {
             const browser = await puppeteer.launch({
                 headless: true,  // false 일 경우 실행 시 웹사이트 확인 가능
+                args: ['--no-sandbox', '--disable-setuid-sandbox'],
             });
             const page = await browser.newPage();
             const regSpChar = /&/gi;
@@ -230,6 +231,7 @@ async function crawlingTop100(song) {
 
                 const browser = await puppeteer.launch({   
                     headless: true,  // false 일 경우 실행 시 웹사이트 확인 가능
+                    args: ['--no-sandbox', '--disable-setuid-sandbox'],
                 });
                 const page = await browser.newPage();
 
