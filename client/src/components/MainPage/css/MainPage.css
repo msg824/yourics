@@ -25,17 +25,20 @@
 /* PC */
 @media screen and (max-width: 1950px) and (min-width: 769px), (min-width: 769px) {
     .main-bg{
-    width: 100%;
-    height: 100vh;
-    background-size: cover;
-    background: url(/images/testback.png);
-    background-repeat: no-repeat;
-    background-color: white;
+      width: 100%;
+      height: 100vh;
+      background-size: cover;
+      background: url(/images/testback.png);
+      background-repeat: no-repeat;
+      background-color: white;
+      
+      /* -webkit-filter: invert(90%); */
+      /* filter: invert(85%); */
 
-    /* width : 100%;
-    height : 0;
-    padding-bottom : calc(1080 / 1920 * 100%);
-    background : url(/images/testback.png) center center / cover no-repeat; */
+      /* width : 100%;
+      height : 0;
+      padding-bottom : calc(1080 / 1920 * 100%);
+      background : url(/images/testback.png) center center / cover no-repeat; */
     }
 
     .container-main {
@@ -317,22 +320,22 @@
     }
 
     .sidenav {
-        height: 100%;
-        width: 0;
+        height: 0;
+        width: 400px;
         position: fixed;
         z-index: 1;
         top: 0;
         right: 0;
         background-color: #111;
         overflow-x: hidden;
-        transition: 0.5s;
+        transition: 0.7s cubic-bezier(0, 0, 0.2, 1);
         padding-top: 50px;
         border-top-left-radius: 10px;
     }
 
     /* 차트 고정 상단메뉴 */
     .sidenav-header {
-        width: 100%;
+        width: 380px;
         height: 60px;
         background-color:  #111;
         position: fixed;
@@ -429,10 +432,11 @@
 /* MOBILE ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●*/
 @media screen and (max-width: 769px), (max-height: 800px) {
     .main-bg{
-        background-color:white;
-        width: max-content;
-        height: max-content;
-        background-size: cover;
+      background: url(/images/testback.png);
+      background-color:black;
+      width: max-content;
+      height: max-content;
+      background-size: cover;
         
     }
     
@@ -469,36 +473,29 @@
     }
     
     /* 동영상과 가사를 감싸는 메인 div */
-    /* .main-div {
+    .main-div {
         display:flex;
-        flex-direction: row;
-        margin-top: 50px;
-    } */
+        flex-direction: column;
+        margin-top: 10px;
+    }
     
     /* 동영상 */
     .video {
-        width: 800px;
-        height: 500px;
-        margin: -59px 94px;
-        text-align: center;
+      width: 800px;
+      height: 500px;
+      margin: 150px auto 0;
     }
     
     .videoimage{
-        position: absolute;
-        margin-top: 134px;
-        margin-left: 140px;
-        align-items: center;
-        z-index: 1;
+      position: absolute;
+      margin-top: 134px;
+      margin-left: 140px;
     }
     
     #YT_Video{
-        position: relative;
-        align-items: center;
-        margin: 210px -120px auto auto; 
-        z-index: 2;
-        border-radius: 30px;
-        /* margin-top: 158px; */
-        margin-left: 12px;
+      position: relative;
+      align-items: center;
+      border-radius: 30px;
     }
     
     /* 가사 박스 Image */
@@ -506,11 +503,10 @@
         display: flex;
         width: 900px;
         height: 1000px;
-        margin: 90px 110px;
+        margin: 50px 110px;
         text-align: center;
         background: url(/images/lyricsimg_m2.png);
         background-size: cover;
-        margin-top: 330px;
     }
     
     /* 가사 박스 text */
@@ -524,7 +520,6 @@
         line-height: 200%;
         font-family: 'JSDongkang-Regular';
         font-size: 35px;
-        opacity: 0.96;
     }
     
     /* 가사 홀수 라인 */

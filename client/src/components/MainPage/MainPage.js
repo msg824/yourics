@@ -47,6 +47,10 @@ class MainPage extends React.Component {
     async componentDidMount() {
         const chartData = await axios.get(`${configs.server_url}/rank/load`);
         this.setState({ chartData: chartData.data });
+
+        const deviceWidth = window.screen.width;
+        const deviceHeight = window.screen.height;
+        console.log('screen', deviceWidth, deviceHeight);
     }
 
     // input 에 텍스트 입력시 state 값 변경
@@ -176,27 +180,32 @@ class MainPage extends React.Component {
     render() {
         const { clickAvoid, searchValue, videoId, lyrics, videoName, resultList, dataLength, show, rClickAvoid, videoLoading } = this.state;
         const { chart, chartData } = this.state;
-        const onChart = chart ? '400px' : '0';
+        const onChart = chart ? {
+            height: '100%',
+            visibility: 'visible'
+        } : {
+            height: 0,
+            visibility: 'hidden',
+            transition: 'none'
+        }
 
             return (
                 <div className="main-bg">
-                    
                     <div className="container-main">
-                        {/* 로고, 노래검색 */}
                         <header>
-                            <div className="move-home-btn">
+                            {/* <div className="move-home-btn">
                                 <a href={configs.client_url}>
                                     <img src="/images/backbt.png" alt="move home"></img>
                                 </a>
-                            </div>
+                            </div> */}
                             <div className="logo">
-                                    <a href="/main">
-                                        <img src="/images/main_logo2.png" alt="Yourics" />
-                                    </a>
+                                <a href="/">
+                                    <img src="/images/main_logo2.png" alt="Yourics" />
+                                </a>
                             </div>
                             <div className="search">
                                 <form onSubmit={this.searchSubmit}>                   
-                                    <input type="text" src="/images/main_logo2.png" value={searchValue} onChange={this.searchChange} className="search-box"/>
+                                    <input type="text" value={searchValue} onChange={this.searchChange} className="search-box"/>
                                     {
                                         !clickAvoid ?
                                         <input type="submit" value=" " className="img-button" />
@@ -259,10 +268,7 @@ class MainPage extends React.Component {
                                     <div className="loading">
                                         <Progress />
                                         비디오를 불러오는 중입니다...
-                                        <div>
-                                        네트워크 상태에 따라 4~10초 시간이 걸립니다.
-                                        </div>
-                                        
+                                        <div>네트워크 상태에 따라 4~10초 시간이 걸립니다.</div>
                                     </div>
                                 }
                             </div>
@@ -281,7 +287,7 @@ class MainPage extends React.Component {
                             <div className="chart">
                                 <span className="chart-menu" onClick={() => this.setState({ chart: true })}>&#9776;</span>
                             </div>
-                            <div className="sidenav" style={{width: onChart}}>
+                            <div className="sidenav" style={onChart}>
                                 {
                                     chart && <>
                                         <div className="sidenav-header">
