@@ -94,18 +94,18 @@ class MainPage extends React.Component {
 
         if (!searchList.data) {
             // 가사 크롤링 -> 유튜브 API -> 노래재생
-            this.setState({ videoLoading: true });
-            const lyricsLoad = await axios.post(`${configs.server_url}/crawling/lyricsLoad`, { song: this.state.videoName });
-            this.setState({ lyrics: lyricsLoad.data });
-            await axios.post(`${configs.server_url}/youtube/search`, {
-                song: this.state.videoName
-            }).then(result => {
-                this.setState({ videoId: result.data, videoLoading: false });
-            }).then(() => {
-                setTimeout(() => {
-                    this.setState({ clickAvoid: false });
-                }, 1000);
-            }).catch(err=>{console.log('video ID loading Error', err)});
+            // this.setState({ videoLoading: true });
+            // const lyricsLoad = await axios.post(`${configs.server_url}/crawling/lyricsLoad`, { song: this.state.videoName });
+            // this.setState({ lyrics: lyricsLoad.data });
+            // await axios.post(`${configs.server_url}/youtube/search`, {
+            //     song: this.state.videoName
+            // }).then(result => {
+            //     this.setState({ videoId: result.data, videoLoading: false });
+            // }).then(() => {
+            //     setTimeout(() => {
+            //         this.setState({ clickAvoid: false });
+            //     }, 1000);
+            // }).catch(err=>{console.log('video ID loading Error', err)});
 
         } else {
             // 여기에 모달 띄우는 코드 작성
@@ -191,6 +191,7 @@ class MainPage extends React.Component {
 
             return (
                 <div className="main-bg">
+                    <div className="home_background"></div>
                     <div className="container-main">
                         <header>
                             {/* <div className="move-home-btn">
