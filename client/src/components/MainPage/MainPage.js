@@ -190,15 +190,10 @@ class MainPage extends React.Component {
         }
 
             return (
-                <div className="main-bg">
-                    <div className="home_background"></div>
+                <div className="main">
+                    {/* <div className="home_background"></div> */}
                     <div className="container-main">
                         <header>
-                            {/* <div className="move-home-btn">
-                                <a href={configs.client_url}>
-                                    <img src="/images/backbt.png" alt="move home"></img>
-                                </a>
-                            </div> */}
                             <div className="logo">
                                 <a href="/">
                                     <img src="/images/main_logo2.png" alt="Yourics" />
@@ -209,9 +204,9 @@ class MainPage extends React.Component {
                                     <input type="text" value={searchValue} onChange={this.searchChange} className="search-box"/>
                                     {
                                         !clickAvoid ?
-                                        <input type="submit" value=" " className="img-button" />
+                                        <input type="submit" value=" " className="search-btn" />
                                         :
-                                        <input type="submit" disabled value=" " className="img-button2"/>
+                                        <input type="submit" disabled value=" " className="search-btn-loading"/>
                                     }
                                 </form>
                             </div>
@@ -253,7 +248,7 @@ class MainPage extends React.Component {
                         {/* 동영상, 가사 */}
                         <div className="main-div">
                             <div className="videoimage">
-                                <img src="/images/videoframel.png" alt="frame"/>
+                                <img src="/images/videoframe.png" alt="frame"/>
                             </div>
     
                             <div className="video">
