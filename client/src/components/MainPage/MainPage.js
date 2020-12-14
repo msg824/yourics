@@ -40,7 +40,6 @@ class MainPage extends React.Component {
 
         this.searchChange = this.searchChange.bind(this);
         this.searchSubmit = this.searchSubmit.bind(this);
-        this.songTypeCheck = this.songTypeCheck.bind(this);
         this.randomPlay = this.randomPlay.bind(this);
     }
 
@@ -150,7 +149,7 @@ class MainPage extends React.Component {
 
     async songTypeCheck(event) {
         let songTypeObj = {};
-        songTypeObj[event.target.value] = event.target.checked;
+        songTypeObj[event.target.value] = await event.target.checked;
         this.setState({ checkboxGroup: songTypeObj });
 
         if (this.state.checkboxGroup['mv']) {
