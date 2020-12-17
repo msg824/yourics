@@ -31,7 +31,15 @@ class MainPage extends React.Component {
       chartData: [],
       yt_width: 800,
       yt_height: 500,
+      screenSize: 'default',
     };
+    this.yt_Css = {
+      position: 'relative',
+      borderRadius: '30px'
+    }
+    this.scrChangeBtn = {
+      position: ''
+    }
 
     this.handleHide = () => {
       this.setState({ show: false });
@@ -39,6 +47,46 @@ class MainPage extends React.Component {
     this.viewCountUp = async (song) => {
       await axios.post(`${configs.server_url}/dbFront/viewCountUp`, { song: song })
     };
+    this.changeScreen = () => {
+      const { screenSize } = this.state;
+      const deviceWidth = window.screen.width;
+      const deviceHeight = window.screen.height;
+
+      screenSize === 'default' ? 
+      this.setState({ screenSize: 'big' })
+      :
+      this.setState({ screenSize: 'default' })
+
+      if (screenSize !== 'default') { // 기본
+        this.yt_Css = {
+          position: 'relative',
+          borderRadius: '30px',
+        };
+        this.scrChangeBtn = {
+          position: ''
+        }
+        this.setState({
+          yt_width: 800,
+          yt_height: 500
+        })
+      } else {  // 큰 화면
+        this.yt_Css = {
+          position: 'absolute',
+          borderRadius: '0',
+          left: '0',
+          bottom: '0'
+        };
+        this.scrChangeBtn = {
+          position: 'absolute',
+          top: '1rem',
+          left: '50%'
+        };
+        this.setState({
+          yt_width: deviceWidth * 0.6,
+          yt_height: deviceHeight * 0.8
+        })
+      }
+    }
 
     this.searchChange = this.searchChange.bind(this);
     this.searchSubmit = this.searchSubmit.bind(this);
@@ -52,7 +100,6 @@ class MainPage extends React.Component {
     const deviceWidth = window.screen.width;
     const deviceHeight = window.screen.height;
     console.log('screen', deviceWidth, deviceHeight);
-    console.log('width', deviceWidth * 0.6);
   }
 
   // input 에 텍스트 입력시 state 값 변경
@@ -210,8 +257,18 @@ class MainPage extends React.Component {
                 }
               </form>
             </div>
-            <div>
+            <div className="option">
               <form onSubmit={this.searchSubmit}>
+                <div className="usage-text">
+                  <span>
+                    <img src="/images/f1shuffle3.png" alt="shuffle icon" />
+                    &nbsp;Click to play random song
+                  </span>
+                  <span>
+                    <input type="checkbox" name="f1checkbox" checked="checked" readOnly />
+                  　Check the video type you want (MV or Live)
+                  </span>
+                </div>
                 <div className="randomsong">
                   {
                     !rClickAvoid ?
@@ -230,13 +287,10 @@ class MainPage extends React.Component {
                       &nbsp; Live
                   </label>
                 </div>
-                <div className="f1">
-                  <img src="/images/f1shuffle3.png" alt="shuffle icon" />
-                  : Click to play random song
-                  <input type="checkbox" name="f1checkbox" checked="checked" readOnly />
-                　: Check the video type you want (MV or Live)
-                </div>
               </form>
+              <div className="screen-change" style={this.scrChangeBtn}>
+                <button onClick={this.changeScreen}>크게</button>
+              </div>
             </div>
             {
               <ModalComponent
@@ -253,7 +307,7 @@ class MainPage extends React.Component {
 
             <div className="video">
               {
-                videoId && <iframe title="song" width={yt_width} height={yt_height} className="YT_Video"
+                videoId && <iframe title="song" width={yt_width} height={yt_height} style={this.yt_Css} className="YT_Video"
                   src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
                   frameBorder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>

@@ -100,8 +100,8 @@
   }
   .YT_Video {
     position: relative;
-    align-items: center;
     border-radius: 30px;
+    transition: 0.6s;
   }
   /* 가사 박스 Image */
   .lyrics {
@@ -192,13 +192,20 @@
     color: black;
     /* margin-top: 40px; */
   }
+  header .option {
+    display: flex;
+    margin-top: 10px;
+  }
+  header .option .screen-change {
+    margin: auto 0;
+  }
   form {
     display: flex;
     margin-top: 10px;
   }
   .randomsong {
     margin-top: 10px;
-    margin-left: 660px;
+    margin-left: 70px;
   }
   .songtype-checkbox {
     display: flex;
@@ -216,11 +223,13 @@
   .randomImg:hover {
     filter: opacity(0.4) drop-shadow(0 0 0 red);
   }
-  .f1 {
-    margin-left: -800px;
+  .usage-text {
     margin-top: 60px;
     font-family: 'JSDongkang-Regular';
     font-size: small;
+  }
+  .usage-text span:nth-child(2) {
+    margin-left: 20px;
   }
   input[type=checkbox] {
     transform: scale(1.5);
@@ -453,6 +462,7 @@
     position: relative;
     align-items: center;
     border-radius: 30px;
+    transition: 0.6s;
   }
   /* 가사 박스 Image */
   .lyrics {
@@ -562,13 +572,16 @@
   .randomImg:hover {
     content: url(/images/shuffleh.png);
   }
-  .f1 {
+  .usage-text {
     position: absolute;
     width: max-content;
     margin-top: -150px;
     margin-left: 100px;
     font-family: 'JSDongkang-Regular';
     font-size: 20px;
+  }
+  .usage-text span:nth-child(2) {
+    margin-left: 30px;
   }
   input[type=checkbox] {
     transform: scale(3);
