@@ -9,12 +9,13 @@ const db = {};
 let configs = {};
 process.env.NODE_ENV === 'production' ? configs = require('../config/env').production : configs = require('../config/env').development;
 
-const sequelize = new Sequelize(configs.database, configs.username, configs.password, { host: configs.host, dialect: configs.dialect, timezone: '+09:00', 
-    dialectOptions: {       // DB에 저장된 날짜 데이터 +09:00 하여 표기.
-        charset: 'utf8mb4',
-        dateStrings: true,
-        typeCast: true
-    } 
+const sequelize = new Sequelize(configs.database, configs.username, configs.password, {
+  host: configs.host, dialect: configs.dialect, timezone: '+09:00',
+  dialectOptions: {       // DB에 저장된 날짜 데이터 +09:00 하여 표기.
+    charset: 'utf8mb4',
+    dateStrings: true,
+    typeCast: true
+  }
 });
 
 sequelize.authenticate().then(() => {

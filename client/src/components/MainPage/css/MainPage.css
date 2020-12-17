@@ -1,110 +1,110 @@
 @font-face {
-    font-family: 'BBTreeGB';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff') format('woff'); font-weight: normal; font-style: normal;
+  font-family: 'BBTreeGB';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
+
 @font-face {
-    font-family: 'GmarketSansLight';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
-    font-weight: normal; 
-    font-style: normal;
+  font-family: 'GmarketSansLight';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
+
 @font-face {
-    font-family: 'GmarketSansBold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'GmarketSansBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
+
 @font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal; 
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
-@font-face { font-family: 'JSDongkang-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+@font-face {
+  font-family: 'JSDongkang-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 /* PC */
-@media screen and (max-width: 1950px) and (min-width: 769px), (min-width: 769px) {
-    .main{
-      width: 100%;
-      height: 100vh;
-      /* background-size: cover;
-      background: url(/images/testback.png);
-      background-repeat: no-repeat;
-      background-color: white; */
-      
-      /* -webkit-filter: invert(90%); */
-      /* filter: invert(85%); */
 
-      /* width : 100%;
+@media screen and (max-width: 1950px) and (min-width: 769px), (min-width: 769px) {
+  .main {
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background: url(/images/testback.png);
+    background-repeat: no-repeat;
+    background-color: white;
+    /* -webkit-filter: invert(90%); */
+    /* filter: invert(85%); */
+    /* width : 100%;
       height : 0;
       padding-bottom : calc(1080 / 1920 * 100%);
       background : url(/images/testback.png) center center / cover no-repeat; */
-    }
-
-    .container-main {
+  }
+  .container-main {
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    }
-
-    /* 홈 바로가기 버튼 */
-    .move-home-btn {
-        position: fixed;
-        left: 1%;
-        top: 1%;
-    }
-
-    .move-home-btn img:hover {
-        content:url(/images/backbth.png);
-    }
-
-/* yourics 로고 */
-    .logo {
+  }
+  /* 홈 바로가기 버튼 */
+  .move-home-btn {
+    position: fixed;
+    left: 1%;
+    top: 1%;
+  }
+  .move-home-btn img:hover {
+    content: url(/images/backbth.png);
+  }
+  /* yourics 로고 */
+  .logo {
     margin-right: 1250px;
     margin-top: 80px;
-    }
-
-    /* 검색창 */
-    .search {
+  }
+  /* 검색창 */
+  .search {
     margin-top: -70px;
     margin-left: 270px;
     text-align: center;
-    }
-
-    /* 동영상과 가사를 감싸는 메인 div */
-    .main-div {
+  }
+  /* 동영상과 가사를 감싸는 메인 div */
+  .main-div {
     display: flex;
     flex-direction: row;
     margin-top: 10px;
-    }
-
-    /* 동영상 */
-    .video {
+  }
+  /* 동영상 */
+  .video {
     width: 800px;
     height: 500px;
     margin: 0px 20px;
     text-align: center;
     z-index: 2;
-    }
-
-    .videoimage{
+  }
+  .videoimage {
     position: absolute;
     margin-top: -16px;
     margin-left: 0px;
     z-index: 1;
-    }
-
-    #YT_Video{
+  }
+  .YT_Video {
     position: relative;
     align-items: center;
     border-radius: 30px;
-    }
-
-    /* 가사 박스 Image */
-    .lyrics {
+  }
+  /* 가사 박스 Image */
+  .lyrics {
     display: flex;
     width: 600px;
     height: 450px;
@@ -112,10 +112,9 @@
     text-align: center;
     background: url(/images/lyricsimg1.png);
     background-size: cover;
-    }
-
-    /* 가사 박스 text */
-    .lyrics .content {
+  }
+  /* 가사 박스 text */
+  .lyrics .content {
     width: 500px;
     height: 240px;
     margin: 117px auto auto 60px;
@@ -125,60 +124,53 @@
     line-height: 170%;
     font-family: 'JSDongkang-Regular';
     opacity: 0.96;
-    }
-
-    /* 가사 홀수 라인 */
-    .content span:nth-child(2n-1) {
+  }
+  /* 가사 홀수 라인 */
+  .content span:nth-child(2n-1) {
     /* padding-left: 30px; */
-    }
-
-    /* 가사 짝수 라인 */
-    .content span:nth-child(2n) {
+  }
+  /* 가사 짝수 라인 */
+  .content span:nth-child(2n) {
     opacity: 0.8;
     /* padding-left: 30px; */
-    }
-
-    .lyrics .content::-webkit-scrollbar {
+  }
+  .lyrics .content::-webkit-scrollbar {
     width: 10px;
-    }
-
-    .lyrics .content::-webkit-scrollbar-thumb {
+  }
+  .lyrics .content::-webkit-scrollbar-thumb {
     background-color: #2f3542;
     border-radius: 10px;
     background-clip: padding-box;
     border: 2px solid transparent;
-    }
-
-    .lyrics .content::-webkit-scrollbar-track {
+  }
+  .lyrics .content::-webkit-scrollbar-track {
     background-color: grey;
     border-radius: 10px;
     box-shadow: inset 0px 0px 5px white;
-    }
-
-    /* footer (sns 공유 부분) */
-    footer {
+  }
+  /* footer (sns 공유 부분) */
+  footer {
     width: 100%;
     margin: auto 70px;
-    }
-
-    .search-btn {
-      background: url(/images/search_btn.png);
-      width: 60px;
-      height: 50px;
-      border: transparent;
-      margin-left: -13px;
-    }
-    .search-btn:hover {
-      filter: brightness(1.2);
-    }
-    .search-btn-loading {
-      background: url(/images/loading.png);
-      width: 60px;
-      height: 50px;
-      margin-left: -13px;
-      border: transparent;
-    }
-    .search-box{
+  }
+  .search-btn {
+    background: url(/images/search_btn.png);
+    width: 60px;
+    height: 50px;
+    border: transparent;
+    margin-left: -13px;
+  }
+  .search-btn:hover {
+    filter: brightness(1.2);
+  }
+  .search-btn-loading {
+    background: url(/images/loading.png);
+    width: 60px;
+    height: 50px;
+    margin-left: -13px;
+    border: transparent;
+  }
+  .search-box {
     width: 480px;
     height: 50px;
     margin: 0px 5px;
@@ -189,421 +181,367 @@
     font-size: medium;
     color: black;
     font-family: 'JSDongkang-Regular';
-    }
-
-    .search-box:hover {
+  }
+  .search-box:hover {
     /* border: 2px solid grey; */
-    }
-
+  }
   .copyright {
     font-family: 'JSDongkang-Regular';
-      text-align: center;
-      font-size: small;
-      color: black;
-      /* margin-top: 40px; */
+    text-align: center;
+    font-size: small;
+    color: black;
+    /* margin-top: 40px; */
   }
-  
-    form {
-        display: flex;
-        margin-top: 10px;
+  form {
+    display: flex;
+    margin-top: 10px;
+  }
+  .randomsong {
+    margin-top: 10px;
+    margin-left: 660px;
+  }
+  .songtype-checkbox {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    color: black;
+    font-family: 'JSDongkang-Regular';
+    margin: 20px 10px;
+  }
+  .randomImg {
+    width: 70px;
+    height: 70px;
+    margin: 0px 5px;
+  }
+  .randomImg:hover {
+    filter: opacity(0.4) drop-shadow(0 0 0 red);
+  }
+  .f1 {
+    margin-left: -800px;
+    margin-top: 60px;
+    font-family: 'JSDongkang-Regular';
+    font-size: small;
+  }
+  input[type=checkbox] {
+    transform: scale(1.5);
+  }
+  /* 영상 로딩 배경 CSS */
+  .loading-bg {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* 영상 로딩 컴포넌트, 텍스트 CSS */
+  .loading {
+    width: 100%;
+    height: 32%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 20px;
+    background-color: black;
+    animation: fadein 2s 1s infinite linear alternate;
+    -webkit-animation: fadein 2s 1s infinite linear alternate;
+    opacity: 70%;
+  }
+  @keyframes fadein {
+    from {
+      opacity: 0.7;
     }
-
-    .randomsong{
-        margin-top:10px;
-        margin-left: 660px;
+    to {
+      opacity: 0.5;
     }
-
-    .songtype-checkbox {
-        display: flex;
-        flex-direction: column;
-        text-align: left;
-        color: black;
-        font-family: 'JSDongkang-Regular';
-        margin: 20px 10px;
+  }
+  @-webkit-keyframes fadein {
+    /* Safari and Chrome */
+    from {
+      opacity: 0.7;
     }
-
-    .randomImg {
-      width: 70px;
-      height: 70px;
-      margin: 0px 5px;
+    to {
+      opacity: 0.5;
     }
-
-    .randomImg:hover {
-      filter: opacity(0.4) drop-shadow(0 0 0 red);
-    }
-    
-    .f1 {
-       margin-left: -800px;
-       margin-top: 60px;
-       font-family: 'JSDongkang-Regular';
-       font-size: small;
-    }
-    
-    input[type=checkbox] {
-        transform : scale(1.5);
-    }
-
-    /* 영상 로딩 배경 CSS */
-    .loading-bg {
-        width: 100%;
-        height: 60%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        
-    }
-
-    
-
-    /* 영상 로딩 컴포넌트, 텍스트 CSS */
-    .loading {
-        width: 100%;
-        height: 32%;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-size: 20px;
-        background-color: black;
-        animation: fadein 2s 1s infinite linear alternate;
-        -webkit-animation: fadein 2s 1s infinite linear alternate;
-        opacity: 70%;
-    }
-
-    @keyframes fadein {
-        from {
-            opacity: 0.7;
-        }
-        to {
-            opacity: 0.5;
-        }
-    }
-
-    @-webkit-keyframes fadein { /* Safari and Chrome */
-        from {
-            opacity: 0.7;
-        }
-        to {
-            opacity: 0.5;
-        }
-    }
-
-    /* 영상 로딩 텍스트 2번쨰 Div CSS */
-    .loading :nth-child(2) {
-        font-size: 15px;
-        margin-top: 10px;
-    }
-
-    .chart {
-        position: fixed;
-        top: 1%;
-        right: 1%;
-    }
-
-    .chart-menu {
-        font-size: 50px;
-        cursor: pointer
-    }
-
-    .chart-menu-close {
-        font-size: 30px;
-        cursor: pointer;
-        color: white;
-    }
-
-    .home_background {
-      width: 100%;
-      height: 100%;
-      z-index: -1000;
-      
-      background-color: #000000;
-      background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
-      
-      position: absolute;
-      transition: 0.6s;
-    }
-
-    .sidenav {
-        height: 0;
-        width: 400px;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        right: 0;
-        background-color: #111;
-        overflow-x: hidden;
-        transition: 0.7s cubic-bezier(0, 0, 0.2, 1);
-        padding-top: 50px;
-        border-top-left-radius: 10px;
-    }
-
-    /* 차트 고정 상단메뉴 */
-    .sidenav-header {
-        width: 380px;
-        height: 60px;
-        background-color:  #111;
-        position: fixed;
-        top: 0;
-        border-top-left-radius: 10px;
-    }
-
-    .sidenav-title {
-        color: #818181;
-        font-size: 30px;
-        padding: 0 20px;
-        position: fixed;
-        top: 10px;
-    }
-    .sidenav-title:hover {
-        color: #f1f1f1;
-    }
-
-    /* 노래 1개 div */
-    .chart-div {
-        padding: 10px 5px;
-        text-decoration: none;
-        font-size: 25px;
-        color: #818181;
-        display: flex;
-        transition: 0.3s;
-    }
-    .chart-div div {
-        padding: 0 10px;
-    }
-    
-    /* 랭크 div */
-    .chart-rank {
-        width: 35px;
-        text-decoration: none;
-        font-size: 25px;
-        color: #818181;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* 노래명, 가수 div 그룹 */
-    .chart-content {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        font-size: 15px;
-        text-align: center;
-    }
-
-    /* 재생 버튼 div 그룹 */
-    .chart-play {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-    }
-    .chart-play span {
-        width: 100px;
-        text-align: center;
-        margin: 0 35px;
-        color: #818181;
-        cursor: pointer;
-        border: 1px solid gray;
-    }
-    .chart-play span:hover {
-        /* transition: 0.3s; */
-        color: #f1f1f1;
-    }
-      
-    .sidenav div:hover {
-        color: #f1f1f1;
-    }
-      
-    .sidenav .closebtn {
-        position: fixed;
-        top: 0;
-        right: 25px;
-        font-size: 36px;
-        margin-left: 50px;
-        cursor: pointer;
-        transition: 0.3s;
-        color: #818181;
-    }
-
-    .sidenav .closebtn:hover {
-        color: #f1f1f1;
-    }
+  }
+  /* 영상 로딩 텍스트 2번쨰 Div CSS */
+  .loading :nth-child(2) {
+    font-size: 15px;
+    margin-top: 10px;
+  }
+  .chart {
+    position: fixed;
+    top: 1%;
+    right: 1%;
+  }
+  .chart-menu {
+    font-size: 50px;
+    cursor: pointer
+  }
+  .chart-menu-close {
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+  }
+  .home_background {
+    width: 100%;
+    height: 100%;
+    z-index: -1000;
+    background-color: #000000;
+    background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
+    position: absolute;
+    transition: 0.6s;
+  }
+  .sidenav {
+    height: 0;
+    width: 400px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.7s cubic-bezier(0, 0, 0.2, 1);
+    padding-top: 50px;
+    border-top-left-radius: 10px;
+  }
+  /* 차트 고정 상단메뉴 */
+  .sidenav-header {
+    width: 380px;
+    height: 60px;
+    background-color: #111;
+    position: fixed;
+    top: 0;
+    border-top-left-radius: 10px;
+  }
+  .sidenav-title {
+    color: #818181;
+    font-size: 30px;
+    padding: 0 20px;
+    position: fixed;
+    top: 10px;
+  }
+  .sidenav-title:hover {
+    color: #f1f1f1;
+  }
+  /* 노래 1개 div */
+  .chart-div {
+    padding: 10px 5px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: flex;
+    transition: 0.3s;
+  }
+  .chart-div div {
+    padding: 0 10px;
+  }
+  /* 랭크 div */
+  .chart-rank {
+    width: 35px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* 노래명, 가수 div 그룹 */
+  .chart-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    text-align: center;
+  }
+  /* 재생 버튼 div 그룹 */
+  .chart-play {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .chart-play span {
+    width: 100px;
+    text-align: center;
+    margin: 0 35px;
+    color: #818181;
+    cursor: pointer;
+    border: 1px solid gray;
+  }
+  .chart-play span:hover {
+    /* transition: 0.3s; */
+    color: #f1f1f1;
+  }
+  .sidenav div:hover {
+    color: #f1f1f1;
+  }
+  .sidenav .closebtn {
+    position: fixed;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #818181;
+  }
+  .sidenav .closebtn:hover {
+    color: #f1f1f1;
+  }
 }
 
 /* MOBILE ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●*/
+
 @media screen and (max-width: 769px), (max-height: 800px) {
-    .main {
-      background: url(/images/testback.png);
-      background-color:black;
-      width: max-content;
-      height: max-content;
-      background-size: cover;
-    }
-    
-    .container-main {
-        width: max-content;
-        height: max-content;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-    
-    /* 홈 바로가기 버튼 */
-    .move-home-btn {
-      position: fixed;
-      left: 1%;
-      top: 1%;
-    }
-    .move-home-btn img:hover {
-      content:url(/images/backbth.png);
-    }
-
-    /* yourics 로고 */
-    .logo {
-        margin-top: 80px;
-        margin-bottom: 100px;
-        text-align: center;
-    }
-    
-    /* 검색창 */
-    .search {
-        margin-top: 30px;
-        text-align: center;
-    }
-    
-    /* 동영상과 가사를 감싸는 메인 div */
-    .main-div {
-        display:flex;
-        flex-direction: column;
-        margin-top: 10px;
-    }
-    
-    /* 동영상 */
-    .video {
-      width: 800px;
-      height: 500px;
-      margin: 150px auto 0;
-    }
-    
-    .videoimage{
-      position: absolute;
-      margin-top: 134px;
-      margin-left: 140px;
-    }
-    
-    #YT_Video{
-      position: relative;
-      align-items: center;
-      border-radius: 30px;
-    }
-    
-    /* 가사 박스 Image */
-    .lyrics {
-        display: flex;
-        width: 900px;
-        height: 1000px;
-        margin: 50px 110px;
-        text-align: center;
-        background: url(/images/lyricsimg_m2.png);
-        background-size: cover;
-    }
-    
-    /* 가사 박스 text */
-    .lyrics .content {
-        width: 700px;
-        height: 780px;
-        margin: 117px auto auto 100px;
-        color: white;
-        text-align: center;
-        overflow-y: auto;
-        line-height: 200%;
-        font-family: 'JSDongkang-Regular';
-        font-size: 35px;
-    }
-    
-    /* 가사 홀수 라인 */
-    .content span:nth-child(2n-1) {
-        /* padding-left: 30px; */
-    }
-    
-    /* 가사 짝수 라인 */
-    .content span:nth-child(2n) {
-        opacity: 0.8;
-        /* padding-left: 30px; */
-    }
-    
-    .lyrics .content::-webkit-scrollbar {
-        width: 10px;
-    }
-    
-    .lyrics .content::-webkit-scrollbar-thumb {
-        background-color: #2f3542;
-        border-radius: 10px;
-        background-clip: padding-box;
-        border: 2px solid transparent;
-    }
-    
-    .lyrics .content::-webkit-scrollbar-track {
-        background-color: grey;
-        border-radius: 10px;
-        box-shadow: inset 0px 0px 5px white;
-    }
-    
-    /* footer (sns 공유 부분) */
-    footer {
-        width: 100%;
-        margin: auto 70px;
-    }
-    
-    .search-btn {
-        background: url(/images/msearch_btn.png);
-        width: 120px;
-        height: 100px;
-        border: transparent;
-        margin-left: -20px;
-      }
-    
-     .search-btn:hover {
-        filter: brightness(1.2);
-      }
-
-      .search-btn-loading {
-        background: url(/images/m_loading.png);
-        width: 120px;
-        height: 100px;
-        border: transparent;
-        margin-left: -20px;
-      }
-
-    .search-box{
-        width: 900px;
-        height: 100px;
-        margin-left: 20px;
-        border: 2px solid black;
-        border-radius: 15px;
-        text-align: center;
-        font-size: 40px;
-        font-family: 'JSDongkang-Regular';
-    }
-    
-      .copyright {
-          font-family: 'JSDongkang-Regular';
-          text-align: center;
-          font-size: 20px;
-          color: black;
-          margin-bottom: 40px;
-      }
-      
+  .main {
+    background: url(/images/testback.png);
+    background-color: black;
+    width: max-content;
+    height: max-content;
+    background-size: cover;
+  }
+  .container-main {
+    width: max-content;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  /* 홈 바로가기 버튼 */
+  .move-home-btn {
+    position: fixed;
+    left: 1%;
+    top: 1%;
+  }
+  .move-home-btn img:hover {
+    content: url(/images/backbth.png);
+  }
+  /* yourics 로고 */
+  .logo {
+    margin-top: 80px;
+    margin-bottom: 100px;
+    text-align: center;
+  }
+  /* 검색창 */
+  .search {
+    margin-top: 30px;
+    text-align: center;
+  }
+  /* 동영상과 가사를 감싸는 메인 div */
+  .main-div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+  /* 동영상 */
+  .video {
+    width: 800px;
+    height: 500px;
+    margin: 150px auto 0;
+  }
+  .videoimage {
+    position: absolute;
+    margin-top: 134px;
+    margin-left: 140px;
+  }
+  .YT_Video {
+    position: relative;
+    align-items: center;
+    border-radius: 30px;
+  }
+  /* 가사 박스 Image */
+  .lyrics {
+    display: flex;
+    width: 900px;
+    height: 1000px;
+    margin: 50px 110px;
+    text-align: center;
+    background: url(/images/lyricsimg_m2.png);
+    background-size: cover;
+  }
+  /* 가사 박스 text */
+  .lyrics .content {
+    width: 700px;
+    height: 780px;
+    margin: 117px auto auto 100px;
+    color: white;
+    text-align: center;
+    overflow-y: auto;
+    line-height: 200%;
+    font-family: 'JSDongkang-Regular';
+    font-size: 35px;
+  }
+  /* 가사 홀수 라인 */
+  .content span:nth-child(2n-1) {
+    /* padding-left: 30px; */
+  }
+  /* 가사 짝수 라인 */
+  .content span:nth-child(2n) {
+    opacity: 0.8;
+    /* padding-left: 30px; */
+  }
+  .lyrics .content::-webkit-scrollbar {
+    width: 10px;
+  }
+  .lyrics .content::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+  .lyrics .content::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
+  /* footer (sns 공유 부분) */
+  footer {
+    width: 100%;
+    margin: auto 70px;
+  }
+  .search-btn {
+    background: url(/images/msearch_btn.png);
+    width: 120px;
+    height: 100px;
+    border: transparent;
+    margin-left: -20px;
+  }
+  .search-btn:hover {
+    filter: brightness(1.2);
+  }
+  .search-btn-loading {
+    background: url(/images/m_loading.png);
+    width: 120px;
+    height: 100px;
+    border: transparent;
+    margin-left: -20px;
+  }
+  .search-box {
+    width: 900px;
+    height: 100px;
+    margin-left: 20px;
+    border: 2px solid black;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'JSDongkang-Regular';
+  }
+  .copyright {
+    font-family: 'JSDongkang-Regular';
+    text-align: center;
+    font-size: 20px;
+    color: black;
+    margin-bottom: 40px;
+  }
   form {
     display: flex;
-}
-
-.songtype-checkbox {
+  }
+  .songtype-checkbox {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -612,31 +550,27 @@
     font-size: 30px;
     margin-top: 20px;
     margin-left: 50px;
-}
-
-.randomImg {
+  }
+  .randomImg {
     position: absolute;
     width: 100px;
     height: 100px;
     text-align: center;
     margin-left: 920px;
     margin-top: 20px;
-}
-
-.randomImg:hover {
+  }
+  .randomImg:hover {
     content: url(/images/shuffleh.png);
-}
-
-.f1 {
-   position: absolute;
-   width: max-content;
-   margin-top: -150px;
-   margin-left: 100px;
-   font-family: 'JSDongkang-Regular';
-   font-size: 20px;
-}
-
-input[type=checkbox] {
-    transform : scale(3);
-    }
+  }
+  .f1 {
+    position: absolute;
+    width: max-content;
+    margin-top: -150px;
+    margin-left: 100px;
+    font-family: 'JSDongkang-Regular';
+    font-size: 20px;
+  }
+  input[type=checkbox] {
+    transform: scale(3);
+  }
 }
